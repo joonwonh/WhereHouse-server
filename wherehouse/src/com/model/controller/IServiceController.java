@@ -1,14 +1,13 @@
 package com.model.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
 
 import com.model.command.*;
 import com.model.dao.InfoDao;
@@ -35,16 +34,16 @@ public class IServiceController extends HttpServlet {
 			command = new InfoPoliceOffice();
 		}
 		
-		command.execute(request, response);		
+		command.execute(request, response);	
 	}
 	
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
-	public void init(ServletConfig config) throws ServletException {
+	public void init(ServletConfig config) throws ServletException {	
 		InfoDao dao = InfoDao.getInstance();
 		//서버가 호출될 때 DB에 데이터가 있는지 체크
-		if (!dao.checkDB("policeoffice")) {dao.setDB(ReadJSON.readGeoJson("C:\\Users\\admin\\eclipse-workspace\\wherehouse\\WebContent\\json\\policeOffice.geojson"));}
+		if (!dao.checkDB("policeoffice")) {dao.setDB(ReadJSON.readGeoJson("C:\\Users\\admin\\git\\WhereHouse2\\wherehouse\\WebContent\\json\\policeOffice.geojson"));}
 	}
 
 	/**

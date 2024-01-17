@@ -30,7 +30,7 @@ public class InfoDao {
 		return Instance;
 	}
 	
-	public ArrayList<PoliceOfficeDto> getPO() {
+	public ArrayList<PoliceOfficeDto> getListPO() {
 		ArrayList<PoliceOfficeDto> dtos = new ArrayList<PoliceOfficeDto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -39,12 +39,17 @@ public class InfoDao {
 		try {
 			con = dataFactory.getConnection();
 
-			String query = "select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from mvc_board order by bGroup desc, bStep asc";
+			String query = "select * from policeoffice";
 			pstmt = con.prepareStatement(query);
 			set = pstmt.executeQuery();
 
 			while (set.next()) {
+				PoliceOfficeDto dto = new PoliceOfficeDto();
+				dto.setAddress(set.getString("address"));
+				dto.setLatitude(set.getDouble("latitude"));
+				dto.setLongitude(set.getDouble("longitude"));
 				
+				dtos.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,28 +107,31 @@ public class InfoDao {
 	public void setDB(JsonArray json) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		int count = 0;
 		try {
+			int count = 0;
 			con = dataFactory.getConnection();
 			for (int i=0; i<json.size(); i++) {
 				if (json.get(i).getAsJsonObject() != null) {
 					JsonObject jsonObject = json.get(i).getAsJsonObject();
-					String address = jsonObject.getAsJsonPrimitive("address").getAsString();
-					double lat = jsonObject.getAsJsonPrimitive("lat").getAsDouble();
-					double lng = jsonObject.getAsJsonPrimitive("lng").getAsDouble();
-					
-					if (address.contains("서울")) {
-						String query = "insert into policeoffice values (?,?,?)";
-						pstmt = con.prepareStatement(query);
-						pstmt.setString(1, address);
-						pstmt.setDouble(2, lat);
-						pstmt.setDouble(3, lng);
-						pstmt.executeUpdate();
-					} else {
-						if (count == 2) {
-							break;
+					if (jsonObject.has("address") && jsonObject.has("lat") && jsonObject.has("lng")) {
+						String address = jsonObject.getAsJsonPrimitive("address").getAsString();
+						double lat = jsonObject.getAsJsonPrimitive("lat").getAsDouble();
+						double lng = jsonObject.getAsJsonPrimitive("lng").getAsDouble();
+						
+						if (address.contains("서울")) {
+							String query = "insert into policeoffice values (?,?,?)";
+							pstmt = con.prepareStatement(query);
+							pstmt.setString(1, address);
+							pstmt.setDouble(2, lat);
+							pstmt.setDouble(3, lng);
+							pstmt.executeUpdate();
+							count = 0;
+						} else {
+							if (count == 2) {
+								break;
+							}
+							count++;
 						}
-						count++;
 					}
 				}
 			}
