@@ -95,5 +95,6 @@
     <script src="./js/map.js"></script>
     <script src="./js/mouseEvent.js"></script>
     <script src="./js/panel.js"></script>
+    <script src="./js/policeOffice"></script>
 </body>
 </html>
