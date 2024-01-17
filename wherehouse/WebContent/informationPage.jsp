@@ -5,6 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- 카카오맵 API 키 세팅 -->
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c3c68c349cd485fe2feeb1800479027&libraries=services,drawing"></script>
@@ -95,6 +99,6 @@
     <script src="./js/map.js"></script>
     <script src="./js/mouseEvent.js"></script>
     <script src="./js/panel.js"></script>
-    <script src="./js/policeOffice"></script>
+    <script src="./js/policeOffice.js"></script>
 </body>
 </html>

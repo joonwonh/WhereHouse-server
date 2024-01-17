@@ -31,9 +31,10 @@ public class FrontController extends HttpServlet {
 		String com = uri.substring(ctx.length());
 		
 		if (com.equals("/policeOffice.do")) {
-			viewPage = "/infromation"+com;
+			viewPage = "/information"+com;
 		}
-		
+		System.out.println(com);
+		System.out.println(viewPage);
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}
 

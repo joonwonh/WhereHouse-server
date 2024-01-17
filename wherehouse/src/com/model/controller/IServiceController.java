@@ -29,7 +29,7 @@ public class IServiceController extends HttpServlet {
 		String ctx = request.getContextPath() + request.getServletPath();
 		String com = uri.substring(ctx.length());
 		
-		if (com.equals("/policeOffice")) {
+		if (com.equals("/policeOffice.do")) {
 			System.out.println("Ok!");
 			command = new InfoPoliceOffice();
 		}
