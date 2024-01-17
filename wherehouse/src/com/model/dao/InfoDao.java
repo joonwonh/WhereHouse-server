@@ -1,8 +1,5 @@
 package com.model.dao;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,13 +9,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.model.dto.PoliceOfficeDto;
-import com.model.json.GeoJSON;
-import com.model.json.ReadJSON;
 
 public class InfoDao {
 	private DataSource dataFactory;

@@ -19,11 +19,8 @@ public class ReadJSON {
             Gson gson = new Gson();
             // JsonObject를 원하는 클래스로 변환 (예: DataSet 클래스)
             GeoJSON dataSet = gson.fromJson(jsonObject, GeoJSON.class);
-            // 리더 닫기
-            reader.close();
             
             JsonArray jsonArray = dataSet.getFeatures();
-            
             JsonArray propertiesArray = new JsonArray();
             
             for (int i = 0; i < jsonArray.size(); i++) {
@@ -34,6 +31,9 @@ public class ReadJSON {
                 // 새로운 JsonArray에 추가
                 propertiesArray.add(properties);
             }
+            
+            // 리더 닫기
+            reader.close();
             
             return propertiesArray;
 		} catch (Exception e) {
