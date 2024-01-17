@@ -43,11 +43,11 @@
                     <div class="each" id="each5" style="color: #3a80e9;">-</div>
                 </li>
                 <li id="pinImgs">
-                    <img src="./imgs/pin_icon.png" alt="">
-                    <img src="./imgs/pin_icon.png" alt="">
-                    <img src="./imgs/pin_icon.png" alt="">
-                    <img src="./imgs/pin_icon.png" alt="">
-                    <img src="./imgs/pin_icon.png" alt="">
+                    <img src="./images/pin_icon.png" alt="">
+                    <img src="./images/pin_icon.png" alt="">
+                    <img src="./images/pin_icon.png" alt="">
+                    <img src="./images/pin_icon.png" alt="">
+                    <img src="./images/pin_icon.png" alt="">
                 </li>
                 <div class="tip" style="bottom: 0; right: 6px; bottom: 3px;">*반경 500m 범위의 정보입니다.</div>
             </ul>
@@ -87,7 +87,7 @@
             </ul>
         </div>
         <footer>
-            <img src="./imgs/home_icon.png" alt="" style="width: 110px;">
+            <img src="./images/home_icon.png" alt="" style="width: 110px;">
             <div class="tip" style="font-size: 0.64rem;">마포구 신촌로 176 / 마포구 대흥동 12-20 / 전화번호 : 02-313-1711</div>
         </footer>
     </div>
