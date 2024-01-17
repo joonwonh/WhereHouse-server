@@ -37,7 +37,10 @@ window.onload = function () {
     var container = document.getElementById("map");
     var options = {
         center: new kakao.maps.LatLng(37.5642135, 127.0016985),
-        level: 8
+        level: 8,
+        minLevel: 8,
+        maxLevel: 8, // 5
+        disableDoubleClickZoom: true // 더블 클릭 확대 잠금
     };
 
     var map = new kakao.maps.Map(container, options);
@@ -98,7 +101,7 @@ window.onload = function () {
         kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
             var content = '<div class="info">'
                 + '<div id="info_close_wrap">'
-                + '<img src="../images/closeBtn.svg" alt="" srcset="" id="info_close_btn" onclick="infoClose()"></div>'
+                + '<img src="images/closeBtn.svg" alt="" srcset="" id="info_close_btn" onclick="infoClose()"></div>'
                 + '<div class="info_title">' + population.name + '</div><hr>'
                 + '<div class="info_rank">'
                 + '<div id="info_price_rank">'
@@ -240,7 +243,7 @@ function initInfo(selected_name) {
         conv_barChart.style.height = (tmp2 + 15) + "px";
     }
 
-    var imgPath = "../images/hotPlace/" + selected_name;
+    var imgPath = "images/hotPlace/" + selected_name;
 
     for (var i = 0; i < guInfo.length; i++) {
         if (guInfo[i].name === selected_name) {

@@ -34,7 +34,7 @@ window.onload = function () {
             iframeSection.src = "gu_map.jsp";
         } else if (sel === 3) {
             menu_detail_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
-            iframeSection.src = "../../team_2/informationPage.html";
+            iframeSection.src = "informationPage.jsp";
         }
     }
 }
@@ -52,7 +52,7 @@ function initIframe() {
         menu_gu_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
     } else if (iframe_target === "detail_map") {
         menu_detail_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
-        iframe_target = "../../team_2/informationPage";
+        iframe_target = "informationPage";
     }
     iframeSection.src = iframe_target + ".jsp";
     console.log(iframe_target);

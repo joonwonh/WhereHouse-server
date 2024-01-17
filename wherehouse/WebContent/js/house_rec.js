@@ -43,7 +43,10 @@ window.onload = function () {
     var container = document.getElementById("map");
     var options = {
         center: new kakao.maps.LatLng(37.5642135, 127.0016985),
-        level: 8
+        level: 8,
+        minLevel: 8,
+        maxLevel: 8, // 5
+        disableDoubleClickZoom: true // 더블 클릭 확대 잠금
     };
 
     map = new kakao.maps.Map(container, options);
