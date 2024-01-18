@@ -97,8 +97,10 @@
     </div>
     
     <script src="./js/map.js"></script>
-    <script src="./js/mouseEvent.js"></script>
     <script src="./js/panel.js"></script>
-    <script src="./js/policeOffice.js"></script>
+    <script type="module" src="./js/marker.js"></script>
+    <script type="module" src="./js/circle.js"></script>
+    <script type="module" src="./js/policeOffice.js"></script>
+    <script type="module" src="./js/mouseEvent.js"></script>
 </body>
 </html>

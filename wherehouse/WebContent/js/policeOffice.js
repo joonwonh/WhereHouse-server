@@ -1,8 +1,6 @@
 /**
  * [이재서] 파출소 호출
  */
-var policeOffice = [];
-
 $.ajax({
 	url : "policeOffice.do",
 	type : "get",
@@ -26,7 +24,37 @@ $.ajax({
 				zIndex : 1
 			});
 
-			policeOffice.push(marker);
 		}
+
 	}
+
 });
+
+function getLength_toMouseEvent(latlng, callback) {
+	$.ajax({
+		url : "dist.do",
+		type : "get",
+		data : {
+			'latitude' : latlng.Ma,
+			'longitude' : latlng.La
+		},
+		dataType : "json",
+		success : function(result) {
+			var polyline=new kakao.maps.Polyline({
+				path : [
+				new kakao.maps.LatLng(result.latitude,result.longitude),
+				new kakao.maps.LatLng(latlng.Ma,latlng.La)
+				],
+			strokeWeight: 0,
+			strokeColor: '#fff',
+			strokeOpacity: 0,
+			strokeStyle: 'solid'
+			});
+
+			callback(polyline.getLength());
+		}
+	
+	});
+}
+
+export {getLength_toMouseEvent}

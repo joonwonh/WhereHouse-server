@@ -1,49 +1,40 @@
 /**
  * [이재서] 마우스 이벤트
  */
-//마커 구현 코드
-var marker = new kakao.maps.Marker({ 
-    // 지도 중심좌표에 마커를 생성
-    position: map.getCenter(),
-    zIndex: 2
-});
-
-// 지도에 표시할 원을 생성합니다
-var circle = new kakao.maps.Circle({
-    position: map.getCenter() ,  // 원의 중심좌표
-    radius: 500, // 미터 단위의 원의 반지름
-    strokeWeight: 3, // 선의 두께
-    strokeColor: '#0B5ED7', // 선의 색깔
-    strokeOpacity: 0.7, // 선의 불투명도
-    strokeStyle: 'dashed', // 선의 스타일
-    fillColor: '#0B5ED7', // 채우기 색깔
-    fillOpacity: 0.1  // 채우기 불투명도
-});
+import { marker_toMouseEvent } from "./marker.js";
+import { circle_toMouseEvent } from "./circle.js";
+import { getLength_toMouseEvent } from "./policeOffice.js";
 
 // 지도에 클릭 이벤트를 등록
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-    //마커와 원 표시
-    circle.setMap(map);
-    marker.setMap(map);
-    
     // 클릭한 위도, 경도 정보
     var latlng = mouseEvent.latLng
-    
-    // 마커와 원 위치, 그리고 화면 이동
-    circle.setPosition(latlng);
-    marker.setPosition(latlng);
+
+    //핀포인트 마커 표시
+    marker_toMouseEvent(latlng);
+
+    //500m 서클 표시
+    circle_toMouseEvent(latlng);
+
+    // 화면 이동
     map.panTo(latlng);
 
-//    searchAddrFromCoords(latlng, displayInfo);
-//    searchDetailAddrFromCoords(latlng, displayDetailInfo);
-    
+    // 파출소 최단 거리
+    var closest;
+    getLength_toMouseEvent(latlng, function (callback) {
+        closest = callback;
+        document.querySelector("#distance").innerHTML = Math.round(closest) + ' M';
+    });
+
+    searchAddrFromCoords(latlng, displayInfo);
+    searchDetailAddrFromCoords(latlng, displayDetailInfo);
+
 });
 
+// =====================================================================================================
 // 주소 - 좌표 변환 객체
 var geocoder = new kakao.maps.services.Geocoder();
-
-// =====================================================================================================
 
 // 좌표의 행정동 주소 정보 요청 함수
 function searchAddrFromCoords(coords, callback) {

@@ -49,11 +49,13 @@ public class ReadJSON {
             Reader reader = new FileReader(path);
             // JSON 파싱
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
-            // 리더 닫기
-            reader.close();
             
+            // 리턴 통일을 위한 Array로 변환
             JsonArray jsonArray = new JsonArray();
             jsonArray.add(jsonObject);
+            
+            // 리더 닫기
+            reader.close();
             
             return jsonArray;
 		} catch (Exception e) {

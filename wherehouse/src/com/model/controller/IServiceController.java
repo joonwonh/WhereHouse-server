@@ -30,8 +30,9 @@ public class IServiceController extends HttpServlet {
 		String com = uri.substring(ctx.length());
 		
 		if (com.equals("/policeOffice.do")) {
-			System.out.println("Ok!");
 			command = new InfoPoliceOffice();
+		} else if (com.equals("/dist.do")) {
+			command = new InfoClosest();
 		}
 		
 		command.execute(request, response);	
@@ -43,7 +44,8 @@ public class IServiceController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {	
 		InfoDao dao = InfoDao.getInstance();
 		//서버가 호출될 때 DB에 데이터가 있는지 체크
-		if (!dao.checkDB("policeoffice")) {dao.setDB(ReadJSON.readGeoJson("C:\\Users\\admin\\git\\WhereHouse2\\wherehouse\\WebContent\\json\\policeOffice.geojson"));}
+		if (!dao.checkDB("policeOffice")) {dao.setDBPO(ReadJSON.readGeoJson("C:\\Users\\admin\\git\\WhereHouse2\\wherehouse\\WebContent\\json\\policeOffice.geojson"));}
+		if (!dao.checkDB("cctv")) {dao.setDBCCTV(ReadJSON.readJsonArray("C:\\Users\\admin\\git\\WhereHouse2\\wherehouse\\WebContent\\json\\SeoulCCTV.json"));}
 	}
 
 	/**

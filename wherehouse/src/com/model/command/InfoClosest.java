@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,10 +13,10 @@ import com.google.gson.JsonObject;
 import com.model.dao.InfoDao;
 import com.model.dto.PoliceOfficeDto;
 
-public class InfoPoliceOffice implements InfoCommand {
+public class InfoClosest implements InfoCommand {
 	private InfoDao dao;
 	
-	public InfoPoliceOffice() {
+	public InfoClosest() {
 		dao = InfoDao.getInstance();
 	}
 	
@@ -24,19 +25,19 @@ public class InfoPoliceOffice implements InfoCommand {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		JsonArray jsonArray = new JsonArray();
+		double latitude = Double.parseDouble(request.getParameter("latitude"));
+		double longitude = Double.parseDouble(request.getParameter("longitude"));
 		
-		for (PoliceOfficeDto dto : dao.getListPO()) {
-		    JsonObject json = new JsonObject();
-		    json.addProperty("address", dto.getAddress());
-		    json.addProperty("latitude", dto.getLatitude());
-		    json.addProperty("longitude", dto.getLongitude());
-		    
-		    jsonArray.add(json);
-		}
+		PoliceOfficeDto dto = dao.getClosestPO(latitude, longitude);
+		
+		JsonObject json = new JsonObject();
+		
+		json.addProperty("address", dto.getAddress());
+	    json.addProperty("latitude", dto.getLatitude());
+	    json.addProperty("longitude", dto.getLongitude());
 		
 		try (PrintWriter out = response.getWriter()) {
-	        out.print(jsonArray);
+	        out.print(json);
 	        out.flush();
 	    } catch (IOException e) {
 	        e.printStackTrace();
