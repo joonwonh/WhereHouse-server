@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.model.dao.InfoDao;
+import com.model.dao.PoliceOfficeDao;
 import com.model.dto.PoliceOfficeDto;
 
 public class InfoClosest implements InfoCommand {
-	private InfoDao dao;
+private PoliceOfficeDao dao;
 	
 	public InfoClosest() {
-		dao = InfoDao.getInstance();
+		dao = PoliceOfficeDao.getInstance();
 	}
 	
 	@Override

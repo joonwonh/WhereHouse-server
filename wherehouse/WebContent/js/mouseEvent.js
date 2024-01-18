@@ -4,6 +4,7 @@
 import { marker_toMouseEvent } from "./marker.js";
 import { circle_toMouseEvent } from "./circle.js";
 import { getLength_toMouseEvent } from "./policeOffice.js";
+import { getCCTV_toMouseEvent } from "./cctv.js";
 
 // 지도에 클릭 이벤트를 등록
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출
@@ -20,11 +21,14 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 화면 이동
     map.panTo(latlng);
 
-    // 파출소 최단 거리
-    var closest;
-    getLength_toMouseEvent(latlng, function (callback) {
-        closest = callback;
-        document.querySelector("#distance").innerHTML = Math.round(closest) + ' M';
+    // 파출소 최단거리
+    getLength_toMouseEvent(latlng, function (result) {
+        document.querySelector("#distance").innerHTML = Math.round(result) + ' M';
+    });
+
+    // 반경 500m안 cctv
+    getCCTV_toMouseEvent(latlng, function (result) {
+        document.querySelector("#cctvPcs").innerHTML = result + ' 개';
     });
 
     searchAddrFromCoords(latlng, displayInfo);

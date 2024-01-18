@@ -2,34 +2,40 @@ package com.model.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.model.dao.PoliceOfficeDao;
-import com.model.dto.PoliceOfficeDto;
+import com.model.dao.CCTVDao;
+import com.model.dto.CCTVDto;
 
-public class InfoPoliceOffice implements InfoCommand {
-	private PoliceOfficeDao dao;
+public class InfoCCTV implements InfoCommand {
+	private CCTVDao dao;
 	
-	public InfoPoliceOffice() {
-		dao = PoliceOfficeDao.getInstance();
+	public InfoCCTV() {
+		dao = CCTVDao.getInstance();
 	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+
+		double longitude = Double.parseDouble(request.getParameter("longitude"));
 		
 		JsonArray jsonArray = new JsonArray();
 		
-		for (PoliceOfficeDto dto : dao.getListPO()) {
+		for (CCTVDto dto : dao.getListCCTV(longitude)) {
 		    JsonObject json = new JsonObject();
 		    json.addProperty("address", dto.getAddress());
 		    json.addProperty("latitude", dto.getLatitude());
 		    json.addProperty("longitude", dto.getLongitude());
+		    json.addProperty("cameraCount", dto.getCameraCount());
+		    json.addProperty("numbers", dto.getNumbers());
 		    
 		    jsonArray.add(json);
 		}

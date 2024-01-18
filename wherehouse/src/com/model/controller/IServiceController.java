@@ -33,6 +33,8 @@ public class IServiceController extends HttpServlet {
 			command = new InfoPoliceOffice();
 		} else if (com.equals("/dist.do")) {
 			command = new InfoClosest();
+		} else if (com.equals("/cctv.do")) {
+			command = new InfoCCTV();
 		}
 		
 		command.execute(request, response);	
