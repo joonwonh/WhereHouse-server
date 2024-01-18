@@ -397,26 +397,118 @@ function showResult() {
     document.getElementById("recommend_result_page").style.display = "block";
 
     // 거주지 추천 결과 랜덤 데이터 보여주기
+
     var orders = ["first", "second", "third"];
+//    // fetch 사용
+//    const charter_avg = document.querySelector('#charterInput input[name="charterDeposit"]').value;
+//    // const monthlyDeposit = document.querySelector('#monthlyInput input[name="monthlyDeposit"]').value;
+//    const monthly_avg = document.querySelector('#monthlyInput input[name="monthlyMonth"]').value;
+//    // const safetyLevel = document.getElementById('myRange_safety').value;
+//    // const convenienceLevel = document.getElementById('myRange_convenience').value;
+//
+//    fetch('RecServiceController', {
+//        method: 'POST',
+//        headers: {
+//            'Content-Type': 'application/json'
+//        },
+//        body: JSON.stringify({
+//            charter_avg: charter_avg,
+//            monthly_avg: monthly_avg
+//        })
+//    })
+//    .then(response => response.json())
+//    .then(data => {
+//        displayData(data);
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.error('에러 발생:', error);
+//    });
+    
+    const charter_avg = $('#charterInput input[name="charterDeposit"]').val();
+    const monthly_avg = $('#monthlyInput input[name="monthlyMonth"]').val();
 
-    for (var i = 0; i < rand.length; i++) {
-        var recommend_result = "recommend_" + orders[i] + "_result";
+    console.log(charter_avg);
+    console.log(monthly_avg);
+    $.ajax({
+        url: 'RecServiceController/charter',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+        	charter_avg: charter_avg
+        }),
+        success: function(data) {
+            displayCharter(data);
+            console.log(data);
+            charterMap(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('에러 발생:', textStatus, errorThrown);
+        }
+    });
+    
+    $.ajax({
+        url: 'RecServiceController/monthly',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+        	monthly_avg: monthly_avg
+        }),
+        success: function(data) {
+            displayMonthly(data);
+            console.log(data);
+            monthlyMap(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('에러 발생:', textStatus, errorThrown);
+        }
+    });
+    
 
-        document.getElementById(recommend_result).innerText = guSpec[rand[i]].name;
-
-        var recommend_detail = recommend_result + "_detail";
-        document.getElementById(recommend_detail).innerText = guSpec[rand[i]].name;
-
-        var select_charter = orders[i] + "_charter_fee";
-        document.getElementById(select_charter).innerText = guSpec[rand[i]].charter;
-
-        var select_deposit = orders[i] + "_deposit_fee";
-        document.getElementById(select_deposit).innerText = guSpec[rand[i]].deposit;
-
-        var select_monthly = orders[i] + "_monthly_fee";
-        document.getElementById(select_monthly).innerText = guSpec[rand[i]].monthly;
+    
+    // 거주지 추천 결과 데이터 보여주기
+    
+    function displayCharter(data)  {
+    	console.log("전세 함수 실행");
+        for (var i = 0; i < data.length; i++) {
+            var recommend_result = "recommend_" + orders[i] + "_result";
+            document.getElementById(recommend_result).innerText = data[i].gu_name;
+            console.log(data[i].gu_name);
+    
+            var recommend_detail = recommend_result + "_detail";
+            document.getElementById(recommend_detail).innerText = data[i].gu_name;
+    
+            var select_charter = orders[i] + "_charter_fee";
+            document.getElementById(select_charter).innerText = data[i].charter_avg;
+    
+            var select_deposit = orders[i] + "_deposit_fee";
+            document.getElementById(select_deposit).innerText = data[i].deposit_avg;
+    
+            var select_monthly = orders[i] + "_monthly_fee";
+            document.getElementById(select_monthly).innerText = data[i].monthly_avg;
+        }
     }
-
+    
+    function displayMonthly(data)  {
+    	console.log("월세 함수 실행");
+        for (var i = 0; i < data.length; i++) {
+            var recommend_result = "recommend_" + orders[i] + "_result";
+            document.getElementById(recommend_result).innerText = data[i].gu_name;
+            console.log(data[i].gu_name);
+    
+            var recommend_detail = recommend_result + "_detail";
+            document.getElementById(recommend_detail).innerText = data[i].gu_name;
+    
+            var select_charter = orders[i] + "_charter_fee";
+            document.getElementById(select_charter).innerText = data[i].charter_avg;
+    
+            var select_deposit = orders[i] + "_deposit_fee";
+            document.getElementById(select_deposit).innerText = data[i].deposit_avg;
+    
+            var select_monthly = orders[i] + "_monthly_fee";
+            document.getElementById(select_monthly).innerText = data[i].monthly_avg;
+        }
+    }
     // 추천 지역 다시 그리기
     var randIdx = 0;
     for (var i = 0; i < areas.length; i++) {
@@ -429,6 +521,42 @@ function showResult() {
     }
 
     polygon_interval = setInterval(intervalFunc, 500);
+    
+    
+//    var randIdx = 0;
+//    
+//    function charterMap(data)	{
+//        for (var i = 0; i < data.length; i++) {
+//            if (rand.indexOf(i) != -1) {
+//                displayArea(data[i], populationArea[i], true);
+//                randIdx++;
+//            } else {
+//                displayArea(data[i], populationArea[i], false);
+//            }
+//        }
+//    }
+//    
+//    function monthlyMap(data)	{
+//        for (var i = 0; i < data.length; i++) {
+//            if (rand.indexOf(i) != -1) {
+//                displayArea(data[i], populationArea[i], true);
+//                randIdx++;
+//            } else {
+//                displayArea(data[i], populationArea[i], false);
+//            }
+//        }
+//    }
+    
+    
+    
+    // 추천 지역 다시 그리기
+    
+
+
+    
+    
+    
+    
 }
 
 function intervalFunc() {
