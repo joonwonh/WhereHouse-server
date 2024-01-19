@@ -100,6 +100,7 @@
     <script src="./js/panel.js"></script>
     <script type="module" src="./js/marker.js"></script>
     <script type="module" src="./js/circle.js"></script>
+    <script type="module" src="./js/graph.js"></script>
     <script type="module" src="./js/policeOffice.js"></script>
     <script type="module" src="./js/cctv.js"></script>
     <script type="module" src="./js/score.js"></script>

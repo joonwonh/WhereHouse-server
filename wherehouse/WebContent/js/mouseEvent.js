@@ -3,10 +3,15 @@
  */
 import { marker_toMouseEvent } from "./marker.js";
 import { circle_toMouseEvent } from "./circle.js";
+import { moveGraph } from "./graph.js";
 import { getLength_toMouseEvent } from "./policeOffice.js";
 import { getCCTV_toMouseEvent } from "./cctv.js";
 import { getArrestRate_toMouseEvent } from "./getAddress.js";
-import { score } from "./score.js";
+import { saftyScore } from "./score.js";
+
+var saftyWeight = { d : 60,
+    c : 30,
+    r : 10 };
 
 // 지도에 클릭 이벤트를 등록
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출
@@ -23,10 +28,12 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 화면 이동
     map.panTo(latlng);
 
-    score([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
-        console.log(results[0]);
-        console.log(results[1]);
-        console.log(results[2]);
+    //안전성 점수 시각화 그래프
+    saftyScore([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
+        var safty = document.querySelector("#safty");
+        var value = results[0]*saftyWeight.d + results[1]*saftyWeight.c + results[2]*saftyWeight.r;
+
+        moveGraph(safty, value);
     });
 
 });

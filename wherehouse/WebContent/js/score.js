@@ -86,7 +86,7 @@ var total = document.querySelector("#total"),
 
 // }
 
-function score(callbacks, latlng, finalCallback) {
+function saftyScore(callbacks, latlng, finalCallback) {
     const results = [];
     let count = 0;
   
@@ -105,9 +105,6 @@ function score(callbacks, latlng, finalCallback) {
 
     // // 각각의 가중치
     // // 거리 d, cctv수 c, 검거율 r
-    // var weight = { d : 60,
-    //                 c : 30,
-    //                 r : 10 };
 
     // // 파출소의 거리와 반경 안 cctv대수, 검거율에 가중치를 부여해 안전성 점수 산출
     // var value = distance*weight.d + cctvScore*weight.c + arrest_rate*weight.r;
@@ -122,4 +119,4 @@ function score(callbacks, latlng, finalCallback) {
 //     colorChange(conv, value);
 // }
 
-export {score}
+export {saftyScore}
