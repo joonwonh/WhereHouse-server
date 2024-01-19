@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="json/mapData.json" type="text/javascript"></script>
@@ -13,7 +14,7 @@
     </script>
     <script src="https://kit.fontawesome.com/09b067fdc5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/house_rec.css">
-    <link rel="stylesheet" href="css//rec_graph.css">
+    <link rel="stylesheet" href="css//rec_graph.css?ver=123">
     <link rel="stylesheet" href="css/gu_main_map.css">
     <link rel="stylesheet" href="css/rec_info.css">
     <link rel="stylesheet" href="css/comp_modal.css">
@@ -171,7 +172,7 @@
                 <div id="recommend_first">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            1. <span id="recommend_first_result">ex1</span>
+                            1. <span id="recommend_first_result"></span>
                         </div>
                         <input type="checkbox" name="first" value="first" id="check_first">
                         <span id="recommend_first_btn" onclick="showDetailFirst()">▼</span>
@@ -180,18 +181,18 @@
                 <div id="recommend_first_info">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            1. <span id="recommend_first_result_detail">ex1</span>
+                            1. <span id="recommend_first_result_detail"></span>
                         </div>
                         <input type="checkbox" name="first" value="first" id="check_first_info">
                         <span id="recommend_first_btn" onclick="hideDetailFirst()">▲</span>
                     </div>
                     <hr class="gu_name_hr">
                     <div id="select_first_charter" class="select_price">
-                        평균 전세금 : <span id="first_charter_fee" class="average_money">ex</span> 만원
+                        평균 전세금 : <span id="first_charter_fee" class="average_money">-</span> 만원
                     </div>
                     <div id="select_first_monthly" class="select_price">
-                        평균 보증금 : <span id="first_deposit_fee" class="average_money">ex</span> 만원<br>
-                        평균 월세금 : <span id="first_monthly_fee" class="average_money">ex</span> 만원
+                        평균 보증금 : <span id="first_deposit_fee" class="average_money">-</span> 만원<br>
+                        평균 월세금 : <span id="first_monthly_fee" class="average_money">-</span> 만원
                     </div>
                     <hr class="price_hr">
                     <div class="result_graph_wrap">
@@ -199,12 +200,12 @@
                             <div class="result_label_safety">생활 안전</div>
                             <div id="safety_first_graph" class="result_safety_graph">
                             </div>
-                            <span id="safety_first_value">&nbsp 4</span>
+                            <span id="safety_first_value">0</span>
                         </div>
                         <div class="conv_wrap">
                             <div class="result_label_conv">생활 편의</div>
                             <div id="conv_first_graph" class="result_conv_graph">
-                            </div><span id="conv_first_value">&nbsp 2</span>
+                            </div><span id="conv_first_value">0</span>
                         </div>
                     </div>
                 </div>
@@ -213,7 +214,7 @@
                 <div id="recommend_second">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            2. <span id="recommend_second_result">ex2</span>
+                            2. <span id="recommend_second_result"></span>
                         </div>
                         <input type="checkbox" name="second" value="second" id="check_second">
                         <span id="recommend_second_btn" onclick="showDetailSecond()">▼</span>
@@ -222,18 +223,18 @@
                 <div id="recommend_second_info">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            2. <span id="recommend_second_result_detail">ex2</span>
+                            2. <span id="recommend_second_result_detail"></span>
                         </div>
                         <input type="checkbox" name="second" value="second" id="check_second_info">
                         <span id="recommend_second_btn" onclick="hideDetailSecond()">▲</span>
                     </div>
                     <hr class="gu_name_hr">
                     <div id="select_second_charter" class="select_price">
-                        평균 전세금 : <span id="second_charter_fee" class="average_money">ex</span> 만원
+                        평균 전세금 : <span id="second_charter_fee" class="average_money">-</span> 만원
                     </div>
                     <div id="select_second_monthly" class="select_price">
-                        평균 보증금 : <span id="second_deposit_fee" class="average_money">ex</span> 만원<br>
-                        평균 월세금 : <span id="second_monthly_fee" class="average_money">ex</span> 만원
+                        평균 보증금 : <span id="second_deposit_fee" class="average_money">-</span> 만원<br>
+                        평균 월세금 : <span id="second_monthly_fee" class="average_money">-</span> 만원
                     </div>
                     <hr class="price_hr">
                     <div class="result_graph_wrap">
@@ -241,12 +242,12 @@
                             <div class="result_label_safety">생활 안전</div>
                             <div id="safety_second_graph" class="result_safety_graph">
                             </div>
-                            <span id="safety_second_value">&nbsp 4</span>
+                            <span id="safety_second_value">0</span>
                         </div>
                         <div class="conv_wrap">
                             <div class="result_label_conv">생활 편의</div>
                             <div id="conv_second_graph" class="result_conv_graph">
-                            </div><span id="conv_second_value">&nbsp 2</span>
+                            </div><span id="conv_second_value">0</span>
                         </div>
                     </div>
                 </div>
@@ -254,7 +255,7 @@
                 <div id="recommend_third">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            3. <span id="recommend_third_result">ex3</span>
+                            3. <span id="recommend_third_result"></span>
                         </div>
                         <input type="checkbox" name="third" value="third" id="check_third">
                         <span id="recommend_third_btn" onclick="showDetailThird()">▼</span>
@@ -263,18 +264,18 @@
                 <div id="recommend_third_info">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            3. <span id="recommend_third_result_detail">ex3</span>
+                            3. <span id="recommend_third_result_detail"></span>
                         </div>
                         <input type="checkbox" name="third" value="third" id="check_third_info">
                         <span id="recommend_third_btn" onclick="hideDetailThird()">▲</span>
                     </div>
                     <hr class="gu_name_hr">
                     <div id="select_third_charter" class="select_price">
-                        평균 전세금 : <span id="third_charter_fee" class="average_money">ex</span> 만원
+                        평균 전세금 : <span id="third_charter_fee" class="average_money">-</span> 만원
                     </div>
                     <div id="select_third_monthly" class="select_price">
-                        평균 보증금 : <span id="third_deposit_fee" class="average_money">ex</span> 만원<br>
-                        평균 월세금 : <span id="third_monthly_fee" class="average_money">ex</span> 만원
+                        평균 보증금 : <span id="third_deposit_fee" class="average_money">-</span> 만원<br>
+                        평균 월세금 : <span id="third_monthly_fee" class="average_money">-</span> 만원
                     </div>
                     <hr class="price_hr">
                     <div class="result_graph_wrap">
@@ -282,12 +283,12 @@
                             <div class="result_label_safety">생활 안전</div>
                             <div id="safety_third_graph" class="result_safety_graph">
                             </div>
-                            <span id="safety_third_value">&nbsp 4</span>
+                            <span id="safety_third_value">0</span>
                         </div>
                         <div class="conv_wrap">
                             <div class="result_label_conv">생활 편의</div>
                             <div id="conv_third_graph" class="result_conv_graph">
-                            </div><span id="conv_third_value">&nbsp 2</span>
+                            </div><span id="conv_third_value">0</span>
                         </div>
                     </div>
                 </div>
