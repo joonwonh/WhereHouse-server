@@ -2,34 +2,31 @@ package com.model.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.model.dao.InfoDao;
-import com.model.dao.PoliceOfficeDao;
-import com.model.dto.PoliceOfficeDto;
+import com.model.dao.AddrDao;
+import com.model.dao.CCTVDao;
+import com.model.dto.CCTVDto;
 
-public class InfoClosest implements InfoCommand {
-private PoliceOfficeDao dao;
+public class InfoAddr implements InfoCommand {
+	private AddrDao dao;
 	
-	public InfoClosest() {
-		dao = PoliceOfficeDao.getInstance();
+	public InfoAddr() {
+		dao = AddrDao.getInstance();
 	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+
+		String addr = (String)request.getParameter("addr");
 		
-		double latitude = Double.parseDouble(request.getParameter("latitude"));
-		double longitude = Double.parseDouble(request.getParameter("longitude"));
-		
-		JsonObject json = dao.getClosestPO(latitude, longitude);
+		JsonObject json = dao.getArrestRate(addr);
 		
 		try (PrintWriter out = response.getWriter()) {
 	        out.print(json);

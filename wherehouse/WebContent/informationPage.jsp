@@ -102,6 +102,7 @@
     <script type="module" src="./js/circle.js"></script>
     <script type="module" src="./js/policeOffice.js"></script>
     <script type="module" src="./js/cctv.js"></script>
+    <script type="module" src="./js/score.js"></script>
     <script type="module" src="./js/mouseEvent.js"></script>
 </body>
 </html>

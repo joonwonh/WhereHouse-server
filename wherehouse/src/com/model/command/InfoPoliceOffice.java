@@ -20,19 +20,12 @@ public class InfoPoliceOffice implements InfoCommand {
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		long startTime = System.currentTimeMillis();
+		System.out.println("시작!");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		JsonArray jsonArray = new JsonArray();
-		
-		for (PoliceOfficeDto dto : dao.getListPO()) {
-		    JsonObject json = new JsonObject();
-		    json.addProperty("address", dto.getAddress());
-		    json.addProperty("latitude", dto.getLatitude());
-		    json.addProperty("longitude", dto.getLongitude());
-		    
-		    jsonArray.add(json);
-		}
+		JsonArray jsonArray = dao.getListPO();
 		
 		try (PrintWriter out = response.getWriter()) {
 	        out.print(jsonArray);
@@ -40,6 +33,7 @@ public class InfoPoliceOffice implements InfoCommand {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+		System.out.println("걸린시간 : "+(System.currentTimeMillis()-startTime)+"ms");
 	}
 
 }

@@ -86,14 +86,20 @@ var total = document.querySelector("#total"),
 
 // }
 
-function score(callback) {
-    // // R에서 만든 내가 원하는 그림의 "거리에 따른 점수 산출 수식"
-    // var distance;
-    // if (dist < 1000) {distance = (1 / Math.log(dist + 150))/0.2;}
-    // else if (dist < 1743 && dist >= 1000) {distance = (1 / Math.log(dist - 850))/0.5;}
-    // else {distance = (1 / Math.log(dist - 1700));}
-    // // cctv가 200대 이상 일 경우 만점
-    // var cctvScore = Math.min(cctvPcs/300, 1);
+function score(callbacks, latlng, finalCallback) {
+    const results = [];
+    let count = 0;
+  
+    callbacks.forEach((callback, index) => {
+      callback(latlng, (result) => {
+        results[index] = result;
+        count++;
+  
+        if (count === callbacks.length) {
+          finalCallback(results);
+        }
+      });
+    });
     // // R 데이터 분석을 통한 검거율 상관분석 회귀식
     // var arrest_rate = 0.8104 - 3374*Math.pow(10,-7)*population + 0.006977*poCount - 6682*Math.pow(10,-6)*density;
 
@@ -109,7 +115,6 @@ function score(callback) {
     
     // totalScore();
     // console.log("{ " + "\"거리\"\t:\t" + distance + ",\n  \"CCVT수\"\t:\t" + cctvScore + ",\n  \"검거율\"\t:\t" + arrest_rate + " }");
-    console.log("distance : " + callback);
 }
 
 // function convScore(amenity, density) {

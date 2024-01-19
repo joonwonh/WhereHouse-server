@@ -30,7 +30,7 @@ public class FrontController extends HttpServlet {
 		String ctx = request.getContextPath();
 		String com = uri.substring(ctx.length());
 		
-		if (com.equals("/policeOffice.do") || com.equals("/dist.do") || com.equals("/cctv.do")) {
+		if (com.equals("/policeOffice.do") || com.equals("/dist.do") || com.equals("/cctv.do") || com.equals("/addr.do")) {
 			viewPage = "/information"+com;
 		}
 

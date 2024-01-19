@@ -13,11 +13,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.model.dto.CCTVDto;
 
-public class CCTVDao {
+public class AddrDao {
 	private DataSource dataFactory;
-	private static CCTVDao Instance = new CCTVDao();
+	private static AddrDao Instance = new AddrDao();
 
-	private CCTVDao() {
+	private AddrDao() {
 		try {
 			Context ctx = new InitialContext();
 			dataFactory = (DataSource) ctx.lookup("java:/comp/env/jdbc/Oracle11g");
@@ -26,12 +26,12 @@ public class CCTVDao {
 		}
 	}
 
-	public static CCTVDao getInstance() {
+	public static AddrDao getInstance() {
 		return Instance;
 	}
 
-	public JsonArray getListCCTV(double latitude, double longitude) {
-		JsonArray jsonArray = new JsonArray();
+	public JsonObject getArrestRate(String addr) {
+		JsonObject json = new JsonObject();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
@@ -39,20 +39,13 @@ public class CCTVDao {
 		try {
 			con = dataFactory.getConnection();
 
-			String query = "select * from cctv "
-					+ "where sqrt(power(abs(latitude - ?), 2) + power(abs(longitude - ?), 2)) * (6371 * 3.14159 / 180) * 1000 <= 500";
+			String query = "select * from arrestrate where addr = ?";
 			pstmt = con.prepareStatement(query);
-			pstmt.setDouble(1, latitude);
-			pstmt.setDouble(2, longitude);
+			pstmt.setString(1, addr);
 			set = pstmt.executeQuery();
 
-			while (set.next()) {
-				JsonObject json = new JsonObject();
-			    json.addProperty("latitude", set.getDouble("latitude"));
-			    json.addProperty("longitude", set.getDouble("longitude"));
-			    json.addProperty("cameraCount", set.getInt("cameraCount"));
-
-				jsonArray.add(json);
+			if (set.next()) {
+			    json.addProperty("rate", set.getDouble("rate"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +62,7 @@ public class CCTVDao {
 			}
 		}
 
-		return jsonArray;
+		return json;
 	}
 
 }

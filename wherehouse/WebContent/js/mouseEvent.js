@@ -5,6 +5,8 @@ import { marker_toMouseEvent } from "./marker.js";
 import { circle_toMouseEvent } from "./circle.js";
 import { getLength_toMouseEvent } from "./policeOffice.js";
 import { getCCTV_toMouseEvent } from "./cctv.js";
+import { getArrestRate_toMouseEvent } from "./getAddress.js";
+import { score } from "./score.js";
 
 // 지도에 클릭 이벤트를 등록
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출
@@ -21,58 +23,54 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 화면 이동
     map.panTo(latlng);
 
-    // 파출소 최단거리
-    getLength_toMouseEvent(latlng, function (result) {
-        document.querySelector("#distance").innerHTML = Math.round(result) + ' M';
+    score([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
+        console.log(results[0]);
+        console.log(results[1]);
+        console.log(results[2]);
     });
-
-    // 반경 500m안 cctv
-    getCCTV_toMouseEvent(latlng, function (result) {
-        document.querySelector("#cctvPcs").innerHTML = result + ' 개';
-    });
-
-    searchAddrFromCoords(latlng, displayInfo);
-    searchDetailAddrFromCoords(latlng, displayDetailInfo);
 
 });
 
-// =====================================================================================================
-// 주소 - 좌표 변환 객체
-var geocoder = new kakao.maps.services.Geocoder();
+//=======================================================================================================
 
-// 좌표의 행정동 주소 정보 요청 함수
-function searchAddrFromCoords(coords, callback) {
-    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+function distFunction(latlng, callback) {
+    //파출소 최단거리를 표시하고 거리식 적용해서 콜백
+    getLength_toMouseEvent(latlng, (result) => {
+        document.querySelector("#distance").innerHTML = Math.round(result) + ' M';
+        var distScore;
+        if (result < 1000) { distScore = (1 / Math.log(result + 150))/0.2; }
+        else if (result < 1743 && result >= 1000) { distScore = (1 / Math.log(result - 850))/0.5; }
+        else { distScore = (1 / Math.log(result - 1700)); }
+
+        callback(distScore)
+    })
 }
 
-// 좌표의 법정동 상세 주소 정보 요청 함수
-function searchDetailAddrFromCoords(coords, callback) {
-    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+function cctvFunction(latlng, callback) {
+    // 반경 500m안 cctv을 표시하고 cctv가 300대 이상이면 만점. 계산된 점수 콜백
+    getCCTV_toMouseEvent(latlng, (result) => {
+        document.querySelector("#cctvPcs").innerHTML = result + ' 개';
+        var cctvScore = Math.min(result/300, 1);
+
+        callback(cctvScore);
+    })
 }
 
-// 지도의 간략한 주소를 표출하는 함수
-function displayInfo(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-        var infoDiv = document.querySelector("#addr");
-
-        for(var i = 0; i < result.length; i++) {
-            // 행정동의 region_type 값은 'H' 이므로
-            if (result[i].region_type === 'H') {
-                infoDiv.innerHTML = result[i].address_name;
-                break;
+function arrestRateFunction(latlng, callback) {
+    getArrestRate_toMouseEvent(latlng, (result) => {
+        $.ajax({
+            url : "addr.do",
+            type : "get",
+            data : {
+                'addr' : result
+            },
+            dataType : "json",
+            success : function(result) {
+                callback(result.rate);
             }
-        } 
-    }
+        
+        });
+
+    })
 }
 
-// 지도의 상세 주소를 표출하는 함수
-function displayDetailInfo(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-        var infoDiv = document.querySelector(".detailAddr");
-
-        infoDiv.innerHTML = !! result[0].road_address ? "도로명 : " + result[0].road_address.address_name +
-                                                        "<br>지번 : " + result[0].address.address_name
-                                                        :
-                                                        "도로명 : -<br>지번  : -";
-    }
-}

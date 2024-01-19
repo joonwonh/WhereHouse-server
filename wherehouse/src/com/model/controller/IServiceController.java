@@ -35,6 +35,8 @@ public class IServiceController extends HttpServlet {
 			command = new InfoClosest();
 		} else if (com.equals("/cctv.do")) {
 			command = new InfoCCTV();
+		} else if (com.equals("/addr.do")) {
+			command = new InfoAddr();
 		}
 		
 		command.execute(request, response);	

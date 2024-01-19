@@ -30,8 +30,8 @@ public class PoliceOfficeDao {
 		return Instance;
 	}
 
-	public ArrayList<PoliceOfficeDto> getListPO() {
-		ArrayList<PoliceOfficeDto> dtos = new ArrayList<PoliceOfficeDto>();
+	public JsonArray getListPO() {
+		JsonArray jsonArray = new JsonArray();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
@@ -44,13 +44,14 @@ public class PoliceOfficeDao {
 			set = pstmt.executeQuery();
 
 			while (set.next()) {
-				PoliceOfficeDto dto = new PoliceOfficeDto();
-				dto.setAddress(set.getString("address"));
-				dto.setLatitude(set.getDouble("latitude"));
-				dto.setLongitude(set.getDouble("longitude"));
-
-				dtos.add(dto);
+				JsonObject json = new JsonObject();
+				json.addProperty("address", set.getString("address"));
+			    json.addProperty("latitude", set.getDouble("latitude"));
+			    json.addProperty("longitude", set.getDouble("longitude"));
+			    
+			    jsonArray.add(json);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -66,11 +67,11 @@ public class PoliceOfficeDao {
 			}
 		}
 
-		return dtos;
+		return jsonArray;
 	}
 	
-	public PoliceOfficeDto getClosestPO(double latitude, double longitude) {
-		PoliceOfficeDto dto = new PoliceOfficeDto();
+	public JsonObject getClosestPO(double latitude, double longitude) {
+		JsonObject json = new JsonObject();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
@@ -85,9 +86,9 @@ public class PoliceOfficeDao {
 			set = pstmt.executeQuery();
 			
 			if (set.next()) {
-				dto.setAddress(set.getString("address"));
-				dto.setLatitude(set.getDouble("latitude"));
-				dto.setLongitude(set.getDouble("longitude"));
+				json.addProperty("address", set.getString("address"));
+			    json.addProperty("latitude", set.getDouble("latitude"));
+			    json.addProperty("longitude", set.getDouble("longitude"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +105,7 @@ public class PoliceOfficeDao {
 			}
 		}
 		
-		return dto;
+		return json;
 	}
 
 }
