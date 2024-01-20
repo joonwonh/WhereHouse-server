@@ -2,6 +2,7 @@ package com.model.dto;
 
 public class RecServiceDto {
 
+	private int gu_id;
 	private String gu_name;
 	private int cvt_score;
 	private int safe_score;
@@ -16,6 +17,13 @@ public class RecServiceDto {
 	private int deposit_avg;
 	private int monthly_avg;
 	
+	
+	public int getGu_id() {
+		return gu_id;
+	}
+	public void setGu_id(int gu_id) {
+		this.gu_id = gu_id;
+	}
 	public String getGu_name() {
 		return gu_name;
 	}

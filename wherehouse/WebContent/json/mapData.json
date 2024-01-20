@@ -3825,9 +3825,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11740,
         "SIG_ENG_NM": "Gangdong-gu",
-        "SIG_KOR_NM": "∞≠µø±∏",
-        "avg_charter_rank": "1"
-      }
+        "SIG_KOR_NM": "Í∞ïÎèôÍµ¨"
+      },
+      "id": 2
     },
     {
       "type": "Feature",
@@ -10593,10 +10593,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11710,
         "SIG_ENG_NM": "Songpa-gu",
-        "SIG_KOR_NM": "º€∆ƒ±∏",
-        "avg_charter_rank": "1"
+        "SIG_KOR_NM": "ÏÜ°ÌååÍµ¨"
       },
-      "id": 1
+      "id": 18
     },
     {
       "type": "Feature",
@@ -16158,9 +16157,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11680,
         "SIG_ENG_NM": "Gangnam-gu",
-        "SIG_KOR_NM": "∞≠≥≤±∏"
+        "SIG_KOR_NM": "Í∞ïÎÇ®Íµ¨"
       },
-      "id": 2
+      "id": 1
     },
     {
       "type": "Feature",
@@ -23222,9 +23221,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11650,
         "SIG_ENG_NM": "Seocho-gu",
-        "SIG_KOR_NM": "º≠√ ±∏"
+        "SIG_KOR_NM": "ÏÑúÏ¥àÍµ¨"
       },
-      "id": 3
+      "id": 15
     },
     {
       "type": "Feature",
@@ -29302,9 +29301,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11620,
         "SIG_ENG_NM": "Gwanak-gu",
-        "SIG_KOR_NM": "∞¸æ«±∏"
+        "SIG_KOR_NM": "Í¥ÄÏïÖÍµ¨"
       },
-      "id": 4
+      "id": 5
     },
     {
       "type": "Feature",
@@ -34162,8 +34161,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11590,
         "SIG_ENG_NM": "Dongjak-gu",
-        "SIG_KOR_NM": "µø¿€±∏"
-      }
+        "SIG_KOR_NM": "ÎèôÏûëÍµ¨"
+      },
+      "id": 12
     },
     {
       "type": "Feature",
@@ -40257,8 +40257,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11560,
         "SIG_ENG_NM": "Yeongdeungpo-gu",
-        "SIG_KOR_NM": "øµµÓ∆˜±∏"
-      }
+        "SIG_KOR_NM": "ÏòÅÎì±Ìè¨Íµ¨"
+      },
+      "id": 20
     },
     {
       "type": "Feature",
@@ -45280,9 +45281,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11545,
         "SIG_ENG_NM": "Geumcheon-gu",
-        "SIG_KOR_NM": "±›√µ±∏"
+        "SIG_KOR_NM": "Í∏àÏ≤úÍµ¨"
       },
-      "id": 7
+      "id": 8
     },
     {
       "type": "Feature",
@@ -55160,8 +55161,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11530,
         "SIG_ENG_NM": "Guro-gu",
-        "SIG_KOR_NM": "±∏∑Œ±∏"
-      }
+        "SIG_KOR_NM": "Íµ¨Î°úÍµ¨"
+      },
+      "id": 7
     },
     {
       "type": "Feature",
@@ -66427,9 +66429,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11500,
         "SIG_ENG_NM": "Gangseo-gu",
-        "SIG_KOR_NM": "∞≠º≠±∏"
+        "SIG_KOR_NM": "Í∞ïÏÑúÍµ¨"
       },
-      "id": 9
+      "id": 4
     },
     {
       "type": "Feature",
@@ -74631,8 +74633,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11470,
         "SIG_ENG_NM": "Yangcheon-gu",
-        "SIG_KOR_NM": "æÁ√µ±∏"
-      }
+        "SIG_KOR_NM": "ÏñëÏ≤úÍµ¨"
+      },
+      "id": 19
     },
     {
       "type": "Feature",
@@ -79082,8 +79085,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11440,
         "SIG_ENG_NM": "Mapo-gu",
-        "SIG_KOR_NM": "∏∂∆˜±∏"
-      }
+        "SIG_KOR_NM": "ÎßàÌè¨Íµ¨"
+      },
+      "id": 13
     },
     {
       "type": "Feature",
@@ -86049,9 +86053,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11410,
         "SIG_ENG_NM": "Seodaemun-gu",
-        "SIG_KOR_NM": "º≠¥ÎπÆ±∏"
+        "SIG_KOR_NM": "ÏÑúÎåÄÎ¨∏Íµ¨"
       },
-      "id": 12
+      "id": 14
     },
     {
       "type": "Feature",
@@ -92289,9 +92293,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11380,
         "SIG_ENG_NM": "Eunpyeong-gu",
-        "SIG_KOR_NM": "¿∫∆Ú±∏"
+        "SIG_KOR_NM": "ÏùÄÌèâÍµ¨"
       },
-      "id": 13
+      "id": 22
     },
     {
       "type": "Feature",
@@ -97921,9 +97925,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11350,
         "SIG_ENG_NM": "Nowon-gu",
-        "SIG_KOR_NM": "≥Îø¯±∏"
+        "SIG_KOR_NM": "ÎÖ∏ÏõêÍµ¨"
       },
-      "id": 14
+      "id": 9
     },
     {
       "type": "Feature",
@@ -103425,9 +103429,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11320,
         "SIG_ENG_NM": "Dobong-gu",
-        "SIG_KOR_NM": "µµ∫¿±∏"
+        "SIG_KOR_NM": "ÎèÑÎ¥âÍµ¨"
       },
-      "id": 15
+      "id": 10
     },
     {
       "type": "Feature",
@@ -109477,9 +109481,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11305,
         "SIG_ENG_NM": "Gangbuk-gu",
-        "SIG_KOR_NM": "∞≠∫œ±∏"
+        "SIG_KOR_NM": "Í∞ïÎ∂ÅÍµ¨"
       },
-      "id": 16
+      "id": 3
     },
     {
       "type": "Feature",
@@ -117805,8 +117809,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11290,
         "SIG_ENG_NM": "Seongbuk-gu",
-        "SIG_KOR_NM": "º∫∫œ±∏"
-      }
+        "SIG_KOR_NM": "ÏÑ±Î∂ÅÍµ¨"
+      },
+      "id": 17
     },
     {
       "type": "Feature",
@@ -122636,8 +122641,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11260,
         "SIG_ENG_NM": "Jungnang-gu",
-        "SIG_KOR_NM": "¡ﬂ∂˚±∏"
-      }
+        "SIG_KOR_NM": "Ï§ëÎûëÍµ¨"
+      },
+      "id": 25
     },
     {
       "type": "Feature",
@@ -127015,8 +127021,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11230,
         "SIG_ENG_NM": "Dongdaemun-gu",
-        "SIG_KOR_NM": "µø¥ÎπÆ±∏"
-      }
+        "SIG_KOR_NM": "ÎèôÎåÄÎ¨∏Íµ¨"
+      },
+      "id": 11
     },
     {
       "type": "Feature",
@@ -129238,9 +129245,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11215,
         "SIG_ENG_NM": "Gwangjin-gu",
-        "SIG_KOR_NM": "±§¡¯±∏"
+        "SIG_KOR_NM": "Í¥ëÏßÑÍµ¨"
       },
-      "id": 20
+      "id": 6
     },
     {
       "type": "Feature",
@@ -132370,8 +132377,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11200,
         "SIG_ENG_NM": "Seongdong-gu",
-        "SIG_KOR_NM": "º∫µø±∏"
-      }
+        "SIG_KOR_NM": "ÏÑ±ÎèôÍµ¨"
+      },
+      "id": 16
     },
     {
       "type": "Feature",
@@ -136281,8 +136289,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11170,
         "SIG_ENG_NM": "Yongsan-gu",
-        "SIG_KOR_NM": "øÎªÍ±∏"
-      }
+        "SIG_KOR_NM": "Ïö©ÏÇ∞Íµ¨"
+      },
+      "id": 21
     },
     {
       "type": "Feature",
@@ -143968,8 +143977,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11140,
         "SIG_ENG_NM": "Jung-gu",
-        "SIG_KOR_NM": "¡ﬂ±∏"
-      }
+        "SIG_KOR_NM": "Ï§ëÍµ¨"
+      },
+      "id": 24
     },
     {
       "type": "Feature",
@@ -153311,8 +153321,9 @@ mapData = {
       "properties": {
         "SIG_CD": 11110,
         "SIG_ENG_NM": "Jongno-gu",
-        "SIG_KOR_NM": "¡æ∑Œ±∏"
-      }
+        "SIG_KOR_NM": "Ï¢ÖÎ°úÍµ¨"
+      },
+      "id": 23
     }
   ]
 }

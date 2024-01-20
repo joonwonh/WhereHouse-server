@@ -46,6 +46,7 @@ public class RecServiceDao {
 	        set = pstmt.executeQuery();
 			while (set.next()) {
 				RecServiceDto dto = new RecServiceDto();
+				dto.setGu_id(set.getInt("gu_id"));
 	            dto.setGu_name(set.getString("gu_name"));	
 	            dto.setCvt_score(set.getInt("cvt_score"));
 	            dto.setSafe_score(set.getInt("safe_score"));
@@ -95,6 +96,7 @@ public class RecServiceDao {
 	        set = pstmt.executeQuery();
 			while (set.next()) {
 				RecServiceDto dto = new RecServiceDto();
+				dto.setGu_id(set.getInt("gu_id"));
 	            dto.setGu_name(set.getString("gu_name"));	
 	            dto.setCvt_score(set.getInt("cvt_score"));
 	            dto.setSafe_score(set.getInt("safe_score"));
