@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/gu_main_map.css">
     <link rel="stylesheet" href="css/rec_info.css">
     <link rel="stylesheet" href="css/comp_modal.css">
-    <script src="js/house_rec.js"></script>
+    <script src="js/house_rec.js?ver=123"></script>
 </head>
 <body>
     <div id="map">
