@@ -1,39 +1,69 @@
-var guInfo = [];
+var guSpec = [];
+var guName = ["강동구", "송파구", "강남구", "서초구", "관악구",
+    "동작구", "영등포구", "금천구", "구로구", "강서구",
+    "양천구", "마포구", "서대문구", "은평구", "노원구",
+    "도봉구", "강북구", "성북구", "중랑구", "동대문구",
+    "광진구", "성동구", "용산구", "중구", "종로구"];
 
-//핫플레이스 캐러셀 데이터 초기화
-function guInfoInit() {
-    guInfo.push({ name: "강동구", place_name: ["천호동 로데오거리", "성내동 카페거리", "성내동 강풀만화거리"] });
-    guInfo.push({ name: "송파구", place_name: ["롯데월드 타워", "송리단길", "석촌호수"] });
-    guInfo.push({ name: "강남구", place_name: ["압구정동 로데오거리", "강남역 먹자골목", "코엑스 별마당 도서관"] });
-    guInfo.push({ name: "서초구", place_name: ["세빛섬", "예술의 전당", "양재천 카페거리"] });
-    guInfo.push({ name: "관악구", place_name: ["관악 별빛신사리", "낙성대 공원", "샤로수길"] });
-    guInfo.push({ name: "동작구", place_name: ["노량진 수산시장", "보라매공원", "신대방삼거리역 거리"] });
-    guInfo.push({ name: "영등포구", place_name: ["타임스퀘어", "여의도 한강공원", "더 현대 서울"] });
-    guInfo.push({ name: "금천구", place_name: ["호암산 숲길 공원", "가산 인크 커피", "금빛 공원"] });
-    guInfo.push({ name: "구로구", place_name: ["항동 푸른수목원", "구로 깔깔거리", "고척스카이돔"] });
-    guInfo.push({ name: "강서구", place_name: ["서울 식물원", "강서구청 먹자골목", "국립 항공 박물관"] });
-    guInfo.push({ name: "양천구", place_name: ["서서울 호수공원", "목동 로데오거리", "신정네거리역 거리"] });
-    guInfo.push({ name: "마포구", place_name: ["망원 한강공원", "합정 메세나폴리스", "홍대거리"] });
-    guInfo.push({ name: "서대문구", place_name: ["연희동거리", "신촌동거리", "디지털 미디어 시티"] });
-    guInfo.push({ name: "은평구", place_name: ["연신내 로데오거리", "불광천", "은평 한옥마을"] });
-    guInfo.push({ name: "노원구", place_name: ["노원역 문화의 거리 ", "노원 불빛 정원", "공릉동 국수거리"] });
-    guInfo.push({ name: "도봉구", place_name: ["쌍문역 쌍리단길", "창동역 포차거리", "서울 창포원"] });
-    guInfo.push({ name: "강북구", place_name: ["수유리 먹자골목", "강북구청 앞 거리", "우이천"] });
-    guInfo.push({ name: "성북구", place_name: ["성신여대 로데오거리", "석계역 포장마차", "성북천"] });
-    guInfo.push({ name: "중랑구", place_name: ["면목동 면리단길", "중랑천 벚꽃길", "상봉동 먹자골목"] });
-    guInfo.push({ name: "동대문구", place_name: ["청량리 먹자골목", "회기역 파전골목", "청량리 통닭골목"] });
-    guInfo.push({ name: "광진구", place_name: ["뚝섬 한강공원", "건대 맛의거리", "어린이대공원"] });
-    guInfo.push({ name: "성동구", place_name: ["서울숲", "뚝섬 한강공원", "마장동 먹자골목"] });
-    guInfo.push({ name: "용산구", place_name: ["한남동 카페거리", "이태원 거리", "남산서울타워"] });
-    guInfo.push({ name: "중구", place_name: ["명동거리", "신당 포차거리", "을지로 골목"] });
-    guInfo.push({ name: "종로구", place_name: ["경복궁", "인사동", "혜화 대학로"] });
+var map;
+var populationArea;
+var areas = [];
+var polygons = [];
+var recommendIdx = [];
+var opacity = 0.7;
+var isIncrease = true;
+var polygon_interval;
+
+/*
+function initGuSpec() {
+    guName.forEach(e => {
+        guSpec.push({
+            name: e,
+            charter: Math.floor(Math.random() * 10000) + 10000,
+            deposit: Math.floor(Math.random() * 1000) + 500,
+            monthly: Math.floor(Math.random() * 50) + 50,
+            safety: Math.floor(Math.random() * 10) + 1,
+            convenience: Math.floor(Math.random() * 10) + 1,
+            convenienceStore: Math.floor(Math.random() * 50) + 100,
+            cafe: Math.floor(Math.random() * 50) + 100,
+            restaurant: Math.floor(Math.random() * 50) + 100,
+            olive: Math.floor(Math.random() * 50) + 100,
+            daiso: Math.floor(Math.random() * 50) + 100,
+            polliceOffice: Math.floor(Math.random() * 50) + 100,
+            cctv: Math.floor(Math.random() * 50) + 100,
+            arrest: Math.floor(Math.random() * 50) + 50
+        });
+    })
+}*/
+
+function initGuSpecE(data) {
+    guName.forEach(e => {
+        guSpec.push({
+            name: e,
+            charter: Math.floor(Math.random() * 10000) + 10000,
+            deposit: Math.floor(Math.random() * 1000) + 500,
+            monthly: Math.floor(Math.random() * 50) + 50,
+            safety: Math.floor(Math.random() * 10) + 1,
+            convenience: Math.floor(Math.random() * 10) + 1,
+            convenienceStore: data.cvt_store, // 편의점
+            cafe: data.cafe, // 카페
+            restaurant: data.restourant,   // 음식점
+            olive: data.oliveYoung,    // 올리브영
+            daiso: data.daiso,    // 다이소
+            polliceOffice: data.police_office,    // 경찰서
+            cctv: data.cctv, // cctv
+            arrest: data.safe_score    // 검거율
+        });
+    })
+    console.log("guSpec 배열에 들어간 값들 : " + guSpec);
 }
+
 
 //카카오맵 커스텀 오버레이
 var customOverlay;
 
 window.onload = function () {
-    guInfoInit();
+    initGuSpecE();
     var container = document.getElementById("map");
     var options = {
         center: new kakao.maps.LatLng(37.5642135, 127.0016985),
@@ -43,20 +73,11 @@ window.onload = function () {
         disableDoubleClickZoom: true // 더블 클릭 확대 잠금
     };
 
-    var map = new kakao.maps.Map(container, options);
+    map = new kakao.maps.Map(container, options);
 
-
-    // 구 선택에 따른 이벤트
-    var selectGu = document.getElementById("gu_select");
-    selectGu.addEventListener("change", () => {
-        var selected_name = $("#gu_select option:selected").val();
-        initInfo(selected_name);
-    });
-
-    // json 파싱 및 전처리
+    //json 파싱 및 전처리
     var locate = JSON.parse(JSON.stringify(mapData));
     var feat = locate.features;
-    var areas = [];
     feat.forEach(element => {
         var geo = element.geometry;
         var coor = geo.coordinates;
@@ -64,80 +85,13 @@ window.onload = function () {
         var path = [];
         coor[0].forEach(point => {
             path.push(new kakao.maps.LatLng(point[1], point[0]));
-        });
+        })
         var area = { name, path };
         areas.push(area);
     });
 
     // 구 별 인구 밀집도 데이터 초기화
-    var populationArea = initPopulation();
-
-    // 화면에 다각형 생성
-    for (var i = 0, len = areas.length; i < len; i++) {
-        displayArea(areas[i], populationArea[i]);
-    }
-
-    function displayArea(area, population) {
-        var polygon = new kakao.maps.Polygon({
-            map: map,
-            path: area.path,
-            strokeWeight: 2,
-            strokeColor: population.color,
-            strokeOpacity: 0.8,
-            fillColor: population.color,
-            fillOpacity: 0.7
-        });
-
-        kakao.maps.event.addListener(polygon, 'mouseover', function () {
-            polygon.setOptions({ strokeWeight: 5, strokeColor: "rgba(255, 0, 0, 1)" });
-        });
-
-        kakao.maps.event.addListener(polygon, 'mouseout', function () {
-            polygon.setOptions({ strokeWeight: 2, strokeColor: population.color });
-            polygon.setOptions({ fillColor: population.color });
-        });
-
-        // 다각형에 click 이벤트를 등록, 이벤트 시 커스텀 오버레이 표시 
-        kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-            var content = '<div class="info">'
-                + '<div id="info_close_wrap">'
-                + '<img src="images/closeBtn.svg" alt="" srcset="" id="info_close_btn" onclick="infoClose()"></div>'
-                + '<div class="info_title">' + population.name + '</div><hr>'
-                + '<div class="info_rank">'
-                + '<div id="info_price_rank">'
-                + '<div class="info_content" id="info_charter">평균 전세금 : <span id="info_charter_rank">' + population.charter_avg_rank + '</span>위 / 25</div>'
-                + '<div class="info_content" id="info_deposit">평균 보증금 : <span id="info_deposit_rank">' + population.deposit_avg_rank + '</span>위 / 25</div>'
-                + '<div class="info_content" id="info_monthly">평균 월세금 : <span id="info_monthly_rank">' + population.monthly_avg_rank + '</span>위 / 25</div></div>'
-                + '<div id="info_score">'
-                + '<div class="info_content" id="info_convenience">생활 편의 : <span id="info_conv_rank">' + population.conv_rank + '</span>위 / 25</div>'
-                + '<div class="info_content" id="info_safety">생활 안전 : <span id="info_safety_rank">' + population.safe_rank + '</span>위 / 25</div>'
-                + '<div class="info_content" id="info_dense">인구 밀집도 : <span id="info_dense_rank">' + population.congest_rank + '</span>위 / 25</div></div></div>';
-
-            // 기존 커스텀 오버레이 지우기
-            if (customOverlay != null) {
-                infoClose();
-            }
-
-            for (var i = 0; i < selectGu.options.length; i++) {
-                if (selectGu.options[i].value === population.name) {
-                    selectGu.options[i].selected = true;
-                    initInfo(selectGu.options[i].value);
-                    break;
-                }
-            }
-
-            var latLng = { lat: mouseEvent.latLng.La, lng: mouseEvent.latLng.Ma };
-            localStorage.setItem("latLng", JSON.stringify(latLng));
-
-            customOverlay = new kakao.maps.CustomOverlay({
-                content: content,
-                map: map,
-                position: mouseEvent.latLng
-            });
-
-            customOverlay.setMap(map);
-        });
-    }
+    populationArea = initPopulation();
 
     // 패널 열고 닫기
     var info = document.querySelector("#information");
@@ -161,17 +115,32 @@ window.onload = function () {
         radio.addEventListener("change", (e) => {
             var current = e.currentTarget;
             if (current.getAttribute("id") === "btn_charter") {
-                document.getElementById("select_need").style.height = "17%";
-                document.getElementById("average-charter").style.display = "block";
-                document.getElementById("average-monthly").style.display = "none";
-                document.getElementById("hotPlace_wrap").style.top = "51%";
+                showCharter();
+                showFirstCharterFee();
+                showSecondCharterFee();
+                showThirdCharterFee();
             } else {
-                document.getElementById("select_need").style.height = "21%";
-                document.getElementById("average-charter").style.display = "none";
-                document.getElementById("average-monthly").style.display = "block";
-                document.getElementById("hotPlace_wrap").style.top = "55%";
+                showMonthly();
+                showFirstMonthlyFee();
+                showSecondMonthlyFee();
+                showThirdMonthlyFee();
             }
         })
+    });
+
+    // 슬라이드 바 변경 이벤트
+    var safety = document.getElementById("myRange_safety");
+    var y = document.getElementById("safety_f");
+    safety.addEventListener("change", function () {
+        y.innerHTML = this.value + "단계";
+        document.getElementById("descript_safety").innerText = "안전 " + this.value + "단계는 이러이러이러합니다."
+    });
+
+    var convenience = document.getElementById("myRange_convenience");
+    var c = document.getElementById("convenience_f");
+    convenience.addEventListener("change", function () {
+        c.innerHTML = this.value + "단계";
+        document.getElementById("descript_convenience").innerText = "편의 " + this.value + "단계는 이러이러이러합니다."
     });
 
     // 인구밀집도 인덱스 열고 닫기
@@ -193,8 +162,201 @@ window.onload = function () {
             shame_info.style.display = "block";
         }
     }
+
+    // 상세보기 모달창 띄우기
+    var compBtn = document.getElementById("compBtn");
+    compBtn.addEventListener("click", showComparison);
+
+    // 상세보기 모달창 닫기
+    var modalCloseBtn = document.getElementById("modalCloseBtn");
+    modalCloseBtn.addEventListener("click", function () {
+        var modal = document.querySelector(".modal");
+        modal.style.display = "none";
+        modal.style.zIndex = 0;
+    })
+
+
+    // 거주지 추천 결과에서 체크여부
+    var check_first = document.getElementById("check_first");
+    var check_second = document.getElementById("check_second");
+    var check_third = document.getElementById("check_third");
+    var check_first_info = document.getElementById("check_first_info");
+    var check_second_info = document.getElementById("check_second_info");
+    var check_third_info = document.getElementById("check_third_info");
+
+    check_first.addEventListener("change", function () {
+        check_first_info.checked = check_first.checked;
+    });
+    check_second.addEventListener("change", function () {
+        check_second_info.checked = check_second.checked;
+    });
+    check_third.addEventListener("change", function () {
+        check_third_info.checked = check_third.checked;
+    });
+    check_first_info.addEventListener("change", function () {
+        check_first.checked = check_first_info.checked;
+    });
+    check_second_info.addEventListener("change", function () {
+        check_second.checked = check_second_info.checked;
+    });
+    check_third_info.addEventListener("change", function () {
+        check_third.checked = check_third_info.checked;
+    });
+
+    // 모달창 이벤트
+    var btn_safety = document.getElementById("btn_safety");
+    var btn_conv = document.getElementById("btn_convenience");
+
+    btn_safety.addEventListener("click", () => selectModal(1));
+    btn_conv.addEventListener("click", () => selectModal(2));
+
+    // 모달창 안전시설 버튼
+    var pollice_content_btn = document.getElementById("pollice_content_btn");
+    var cctv_content_btn = document.getElementById("cctv_content_btn");
+    var arrest_content_btn = document.getElementById("arrest_content_btn");
+
+    pollice_content_btn.addEventListener("click", () => { initSafety(1); searchGu("safety", "pollice"); });
+    cctv_content_btn.addEventListener("click", () => { initSafety(2); searchGu("safety", "cctv"); });
+    arrest_content_btn.addEventListener("click", () => { initSafety(3); searchGu("safety", "arrest"); });
+
+    // 모달창 편의시설 버튼
+    var convStore_content_btn = document.getElementById("convStore_content_btn");
+    var restaurant_content_btn = document.getElementById("restaurant_content_btn");
+    var cafe_content_btn = document.getElementById("cafe_content_btn");
+    var olive_content_btn = document.getElementById("olive_content_btn");
+    var daiso_content_btn = document.getElementById("daiso_content_btn");
+
+    convStore_content_btn.addEventListener("click", () => { initConv(1); searchGu("conv", "convStore"); });
+    restaurant_content_btn.addEventListener("click", () => { initConv(2); searchGu("conv", "restaurant"); });
+    cafe_content_btn.addEventListener("click", () => { initConv(3); searchGu("conv", "cafe"); });
+    olive_content_btn.addEventListener("click", () => { initConv(4); searchGu("conv", "olive"); });
+    daiso_content_btn.addEventListener("click", () => { initConv(5); searchGu("conv", "daiso"); });
+
+}
+// window.onload 끝
+function initSafety(num) {
+    var pollice_content_btn = document.getElementById("pollice_content_btn");
+    var cctv_content_btn = document.getElementById("cctv_content_btn");
+    var arrest_content_btn = document.getElementById("arrest_content_btn");
+
+    pollice_content_btn.style.color = "#7b7b7b";
+    cctv_content_btn.style.color = "#7b7b7b";
+    arrest_content_btn.style.color = "#7b7b7b";
+
+    // 파출소
+    if (num === 1) {
+        pollice_content_btn.style.color = "#000";
+    } else if (num === 2) { //CCTV
+        cctv_content_btn.style.color = "#000";
+    } else { //검거율
+        arrest_content_btn.style.color = "#000";
+    }
 }
 
+function initConv(num) {
+    var convStore_content_btn = document.getElementById("convStore_content_btn");
+    var restaurant_content_btn = document.getElementById("restaurant_content_btn");
+    var cafe_content_btn = document.getElementById("cafe_content_btn");
+    var olive_content_btn = document.getElementById("olive_content_btn");
+    var daiso_content_btn = document.getElementById("daiso_content_btn");
+
+    convStore_content_btn.style.color = "#7b7b7b";
+    restaurant_content_btn.style.color = "#7b7b7b";
+    cafe_content_btn.style.color = "#7b7b7b";
+    olive_content_btn.style.color = "#7b7b7b";
+    daiso_content_btn.style.color = "#7b7b7b";
+
+    // 편의점
+    if (num === 1) {
+        convStore_content_btn.style.color = "#000";
+    } else if (num === 2) { //음식점
+        restaurant_content_btn.style.color = "#000";
+    } else if (num === 3) { //카페
+        cafe_content_btn.style.color = "#000";
+    } else if (num === 4) { //올리브영
+        olive_content_btn.style.color = "#000";
+    } else { //다이소
+        daiso_content_btn.style.color = "#000";
+    }
+}
+
+function selectModal(num) {
+    if (num === 1) {
+        initSafety(1);
+        searchGu("safety", "pollice");
+        document.getElementById("modal-select-conv").style.display = "none";
+        document.getElementById("modal-select-safety").style.display = "flex";
+        document.getElementById("btn_safety").style.color = "#000";
+        document.getElementById("btn_convenience").style.color = "#7b7b7b";
+    } else {
+        initConv(1);
+        searchGu("conv", "convStore");
+        document.getElementById("modal-select-conv").style.display = "flex";
+        document.getElementById("modal-select-safety").style.display = "none";
+        document.getElementById("btn_safety").style.color = "#7b7b7b";
+        document.getElementById("btn_convenience").style.color = "#000";
+    }
+}
+
+
+function displayArea(area, population, isRecommend) {
+    var polygon = new kakao.maps.Polygon({
+        map: map,
+        path: area.path,
+        strokeWeight: 2,
+        strokeColor: isRecommend ? population.color : "rgba(0,0,0,0.3)",
+        strokeOpacity: 0.8,
+        fillColor: isRecommend ? population.color : "rgba(255,255,255,0.1)",
+        fillOpacity: 0.7
+    });
+
+    polygons.push(polygon);
+
+    if (isRecommend) {
+        kakao.maps.event.addListener(polygon, 'mouseover', function () {
+            polygon.setOptions({ strokeWeight: 5, strokeColor: "rgba(255, 0, 0, 1)" });
+        });
+
+        kakao.maps.event.addListener(polygon, 'mouseout', function () {
+            polygon.setOptions({ strokeWeight: 2, strokeColor: isRecommend ? population.color : "rgb(0,0,0)" });
+            polygon.setOptions({ fillColor: isRecommend ? population.color : "none" });
+        });
+
+        // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다 
+        kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+            var content = '<div class="info">'
+                + '<div id="info_close_wrap">'
+                + '<img src="images/closeBtn.svg" alt="" srcset="" id="info_close_btn" onclick="infoClose()"></div>'
+                + '<div class="info_title">' + population.name + '</div><hr>'
+                + '<div class="info_rank">'
+                + '<div id="info_price_rank">'
+                + '<div class="info_content" id="info_charter">평균 전세금 : <span id="info_charter_rank">' + population.charter_avg_rank + '</span>위 / 25</div>'
+                + '<div class="info_content" id="info_deposit">평균 보증금 : <span id="info_deposit_rank">' + population.deposit_avg_rank + '</span>위 / 25</div>'
+                + '<div class="info_content" id="info_monthly">평균 월세금 : <span id="info_monthly_rank">' + population.monthly_avg_rank + '</span>위 / 25</div></div>'
+                + '<div id="info_score">'
+                + '<div class="info_content" id="info_convenience">생활 편의 : <span id="info_conv_rank">' + population.conv_rank + '</span>위 / 25</div>'
+                + '<div class="info_content" id="info_safety">생활 안전 : <span id="info_safety_rank">' + population.safe_rank + '</span>위 / 25</div>'
+                + '<div class="info_content" id="info_dense">인구 밀집도 : <span id="info_dense_rank">' + population.congest_rank + '</span>위 / 25</div></div></div>';
+
+            // 기존 커스텀 오버레이 지우기
+            if (customOverlay != null) {
+                infoClose();
+            }
+
+            var latLng = { lat: mouseEvent.latLng.La, lng: mouseEvent.latLng.Ma };
+            localStorage.setItem("latLng", JSON.stringify(latLng));
+
+
+            customOverlay = new kakao.maps.CustomOverlay({
+                content: content,
+                map: map,
+                position: mouseEvent.latLng
+            });
+
+            customOverlay.setMap(map);
+        });
+    }
+}
 /**
  * 커스텀 오버레이 정보창 닫기
  */
@@ -202,60 +364,420 @@ function infoClose() {
     customOverlay.setMap(null);
 }
 
-/**
- * 지역구 선택 및 변경 시 정보를 다시 뿌려주는 함수
- */
-function initInfo(selected_name) {
-    if (customOverlay != null) {
-        infoClose();
+// 전세 선택 시 보여줄 화면
+function showCharter() {
+    document.getElementById("charterInput").style.display = "block";
+    document.getElementById("monthlyInput").style.display = "none";
+    document.querySelector(".select_need").style.height = "150px";
+}
+
+// 월세 선택 시 보여줄 화면
+function showMonthly() {
+    document.getElementById("charterInput").style.display = "none";
+    document.getElementById("monthlyInput").style.display = "block";
+    document.querySelector(".select_need").style.height = "200px";
+}
+
+// 추천 결과 페이지 전환
+function showRecommend() {
+    document.getElementById("user-input").style.display = "block";
+    document.getElementById("recommend_result_page").style.display = "none";
+
+    document.getElementById("recommend_first").style.display = "blcok";
+    document.getElementById("recommend_second").style.display = "blcok";
+    document.getElementById("recommend_third").style.display = "blcok";
+
+    document.getElementById("recommend_first_info").style.display = "none";
+    document.getElementById("recommend_second_info").style.display = "none";
+    document.getElementById("recommend_third_info").style.display = "none";
+}
+
+function showResult() {
+    document.getElementById("recommend_first").style.display = "block";
+    document.getElementById("recommend_first_info").style.display = "none";
+    document.getElementById("recommend_second").style.display = "block";
+    document.getElementById("recommend_second_info").style.display = "none";
+    document.getElementById("recommend_third").style.display = "block";
+    document.getElementById("recommend_third_info").style.display = "none";
+
+    document.getElementById("user-input").style.display = "none";
+    document.getElementById("recommend_result_page").style.display = "block";
+
+
+    // 거주지 추천 ajax to servlet
+    const charter_avg = $('#charterInput input[name="charterDeposit"]').val();
+    const monthly_avg = $('#monthlyInput input[name="monthlyMonth"]').val();
+
+    console.log("전세금 입력값 : " + charter_avg);
+    console.log("월세금 입력값 : " + monthly_avg);
+
+    $.ajax({
+        url: 'RecServiceController/monthly',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            monthly_avg: monthly_avg
+        }),
+        success: function (data) {
+            displayMonthly(data);
+            showMap(data);
+            initGuSpecE(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('에러 발생:', textStatus, errorThrown);
+        }
+    });
+
+    $.ajax({
+        url: 'RecServiceController/charter',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            charter_avg: charter_avg
+        }),
+        success: function (data) {
+            displayCharter(data);
+            showMap(data);
+            initGuSpecE(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('에러 발생:', textStatus, errorThrown);
+        }
+    });
+
+
+    // 거주지 추천 결과 데이터 보여주기
+    var orders = ["first", "second", "third"];
+
+    function displayCharter(data) {
+        console.log("전세 함수 실행");
+        for (var i = 0; i < data.length; i++) {
+            var recommend_result = "recommend_" + orders[i] + "_result";
+            document.getElementById(recommend_result).innerText = data[i].gu_name;
+            console.log(data[i].gu_name);
+
+            var recommend_detail = recommend_result + "_detail";
+            document.getElementById(recommend_detail).innerText = data[i].gu_name;
+
+            var select_charter = orders[i] + "_charter_fee";
+            document.getElementById(select_charter).innerText = data[i].charter_avg;
+
+            var select_deposit = orders[i] + "_deposit_fee";
+            document.getElementById(select_deposit).innerText = data[i].deposit_avg;
+
+            var select_monthly = orders[i] + "_monthly_fee";
+            document.getElementById(select_monthly).innerText = data[i].monthly_avg;
+
+            var safety_value = "safety_" + orders[i] + "_value";
+            document.getElementById(safety_value).innerText = "\u00a0" + data[i].safe_score;
+
+            var conv_value = "conv_" + orders[i] + "_value";
+            document.getElementById(conv_value).innerText = "\u00a0" + data[i].cvt_score;
+
+            var safety_graph = "safety_" + orders[i] + "_graph";
+            document.getElementById(safety_graph).style.width = data[i].safe_score * 2 - 10 + "px";
+
+            var conv_graph = "conv_" + orders[i] + "_graph";
+            document.getElementById(conv_graph).style.width = data[i].cvt_score * 2 - 10 + "px";
+        }
     }
-    var div_score = document.getElementById("average-score");
-    var div_hPlace = document.getElementById("hotPlace_wrap");
-    var select_need = document.getElementById("select_need");
 
-    var charter_fee = document.getElementById("charter-deposit-fee");
-    var deposit_fee = document.getElementById("monthly-deposit-fee");
-    var monthly_fee = document.getElementById("monthly-month-fee");
+    function displayMonthly(data) {
+        console.log("월세 함수 실행");
+        for (var i = 0; i < data.length; i++) {
+            var recommend_result = "recommend_" + orders[i] + "_result";
+            document.getElementById(recommend_result).innerText = data[i].gu_name;
+            console.log(data[i].gu_name);
 
-    // 전세/월세 가격 표시
-    charter_fee.innerText = Math.round(Math.random() * 1000 + 10000);
-    deposit_fee.innerText = Math.round(Math.random() * 1000 + 500);
-    monthly_fee.innerText = Math.round(Math.random() * 50 + 30);
-    if (selected_name === "default") {
-        div_score.style.display = "none";
-        div_hPlace.style.display = "none";
-        select_need.style.display = "none";
-    } else {
-        div_score.style.display = "block";
-        div_hPlace.style.display = "block";
-        select_need.style.display = "block";
+            var recommend_detail = recommend_result + "_detail";
+            document.getElementById(recommend_detail).innerText = data[i].gu_name;
 
-        //그래프 그리기
-        var safety_barChart = document.getElementById("safety_barChart");
-        var conv_barChart = document.getElementById("convenience_barChart");
+            var select_charter = orders[i] + "_charter_fee";
+            document.getElementById(select_charter).innerText = data[i].charter_avg;
 
-        var tmp1 = (Math.random() * 70 + 0);
-        var tmp2 = (Math.random() * 70 + 0);
+            var select_deposit = orders[i] + "_deposit_fee";
+            document.getElementById(select_deposit).innerText = data[i].deposit_avg;
 
-        document.getElementById("safety_value").innerText = Math.round(tmp1*10/7);
-        document.getElementById("convenience_value").innerText = Math.round(tmp2*10/7);
-        safety_barChart.style.height = (tmp1 + 15) + "px";
-        conv_barChart.style.height = (tmp2 + 15) + "px";
+            var select_monthly = orders[i] + "_monthly_fee";
+            document.getElementById(select_monthly).innerText = data[i].monthly_avg;
+
+            var safety_value = "safety_" + orders[i] + "_value";
+            document.getElementById(safety_value).innerText = "\u00a0" + data[i].safe_score;
+
+            var conv_value = "conv_" + orders[i] + "_value";
+            document.getElementById(conv_value).innerText = "\u00a0" + data[i].cvt_score;
+
+            var safety_graph = "safety_" + orders[i] + "_graph";
+            document.getElementById(safety_graph).style.width = data[i].safe_score * 2 - 10 + "px";
+
+            var conv_graph = "conv_" + orders[i] + "_graph";
+            document.getElementById(conv_graph).style.width = data[i].cvt_score * 2 - 10 + "px";
+        }
     }
 
-    var imgPath = "images/hotPlace/" + selected_name;
 
-    for (var i = 0; i < guInfo.length; i++) {
-        if (guInfo[i].name === selected_name) {
-            for (var j = 1; j <= 3; j++) {
-                document.getElementById("carousel-img" + j).src = imgPath + "/img" + j + ".jpg";
-                document.getElementById("carousel-caption" + j).innerText = guInfo[i].place_name[j - 1];
+    // 추천 지역 다시 그리기
+    function showMap(data) {
+        var rand = [];
+        recommendIdx = [];
+        clearInterval(polygon_interval);
+
+        polygons.forEach(polygon => {
+            polygon.setMap(null);
+        })
+
+        polygons = []; //다각형 초기화
+
+        for (var i = 0; i < 3; i++) {
+            var num = data[i].gu_id;
+            if (rand.indexOf(num) == -1) {
+                rand.push(num);
+                recommendIdx.push(num);
             }
-            break;
+        }
+        mapMatch(rand);
+    }
+
+    function mapMatch(rand) {
+        var randIdx = 0;
+        for (var i = 0; i < areas.length; i++) {
+            if (rand.indexOf(i) != -1) {
+                displayArea(areas[i], populationArea[i], true);
+                randIdx++;
+            } else {
+                displayArea(areas[i], populationArea[i], false);
+            }
+        }
+        polygon_interval = setInterval(intervalFunc, 500);
+    }
+}
+
+function intervalFunc() {
+    if (polygons[recommendIdx[0]].Eb[0].strokeColor == "none") {
+        polygons[recommendIdx[0]].setOptions({ strokeColor: "rgba(255,0,0,1)" });
+        polygons[recommendIdx[1]].setOptions({ strokeColor: "rgba(255,0,0,1)" });
+        polygons[recommendIdx[2]].setOptions({ strokeColor: "rgba(255,0,0,1)" });
+    } else {
+        polygons[recommendIdx[0]].setOptions({ strokeColor: "none" });
+        polygons[recommendIdx[1]].setOptions({ strokeColor: "none" });
+        polygons[recommendIdx[2]].setOptions({ strokeColor: "none" });
+    }
+}
+
+
+// 첫번째 추천결과창
+function showDetailFirst() {
+    document.getElementById("recommend_first").style.display = "none";
+    document.getElementById("recommend_first_info").style.display = "block";
+}
+function hideDetailFirst() {
+    document.getElementById("recommend_first").style.display = "block";
+    document.getElementById("recommend_first_info").style.display = "none";
+}
+function showFirstCharterFee() {
+    document.getElementById("select_first_charter").style.display = "block";
+    document.getElementById("select_first_monthly").style.display = "none";
+}
+function showFirstMonthlyFee() {
+    document.getElementById("select_first_charter").style.display = "none";
+    document.getElementById("select_first_monthly").style.display = "block";
+}
+
+// 두번째 추천결과창
+function showDetailSecond() {
+    document.getElementById("recommend_second").style.display = "none";
+    document.getElementById("recommend_second_info").style.display = "block";
+}
+function hideDetailSecond() {
+    document.getElementById("recommend_second").style.display = "block";
+    document.getElementById("recommend_second_info").style.display = "none";
+}
+function showSecondCharterFee() {
+    document.getElementById("select_second_charter").style.display = "block";
+    document.getElementById("select_second_monthly").style.display = "none";
+}
+function showSecondMonthlyFee() {
+    document.getElementById("select_second_charter").style.display = "none";
+    document.getElementById("select_second_monthly").style.display = "block";
+}
+
+// 세번째 추천결과창
+function showDetailThird() {
+    document.getElementById("recommend_third").style.display = "none";
+    document.getElementById("recommend_third_info").style.display = "block";
+}
+function hideDetailThird() {
+    document.getElementById("recommend_third").style.display = "block";
+    document.getElementById("recommend_third_info").style.display = "none";
+}
+function showThirdCharterFee() {
+    document.getElementById("select_third_charter").style.display = "block";
+    document.getElementById("select_third_monthly").style.display = "none";
+}
+function showThirdMonthlyFee() {
+    document.getElementById("select_third_charter").style.display = "none";
+    document.getElementById("select_third_monthly").style.display = "block";
+}
+
+
+// 상세비교창 띄우기
+function showComparison(selMenu) {
+    var check_first = document.getElementById("check_first");
+    var check_second = document.getElementById("check_second");
+    var check_third = document.getElementById("check_third");
+
+    var isChecked = [check_first.checked, check_second.checked, check_third.checked];
+    var cnt = 0;
+
+    isChecked.forEach(e => {
+        if (e) {
+            cnt++;
+        }
+    });
+    var increaseLeft = 100 / cnt;
+
+    //선택된 구 개수에 따라서 그래프
+    if (cnt == 0) {
+        alert("1개 이상의 구를 선택해주세요");
+        return;
+    } else if (cnt == 1) {
+        $(".graph_bar").each((index, element) => {
+            element.style.left = "48.7%";
+        });
+    } else if (cnt == 2) {
+        $(".graph_bar").each((index, element) => {
+            element.style.left = "47.5%";
+        });
+    } else {
+        $(".graph_bar").each((index, element) => {
+            element.style.left = "46.5%";
+        });
+    }
+
+
+    var recommend_first_name = $("#recommend_first_result").text();
+    var recommend_second_name = $("#recommend_second_result").text();
+    var recommend_third_name = $("#recommend_third_result").text();
+    var recommend_names = [recommend_first_name, recommend_second_name, recommend_third_name];
+
+    var orders = ["first", "second", "third"];
+
+    // 체크박스 선택에 따른 동적 화면 변경
+    var preLeft = -increaseLeft;
+    for (var i = 0; i < 3; i++) {
+        var wraps = document.querySelectorAll("." + orders[i] + "_wrap");
+
+        if (isChecked[i]) {
+            preLeft += increaseLeft;
+            $("." + orders[i] + "_wrap").each((index, div) => {
+                div.style.width = increaseLeft + "%";
+                div.style.left = preLeft + "%";
+                div.style.display = "block";
+            });
+
+            $(".label_gu" + (i + 1)).each((index, element) => {
+                element.innerText = recommend_names[i];
+                element.style.width = "100%";
+                element.display = "block";
+            });
+        } else {
+            $("." + orders[i] + "_wrap").each((index, div) => {
+                div.style.width = "0%";
+                div.style.display = "none";
+            });
+
+            $(".label_gu" + (i + 1)).each((index, element) => {
+                element.innerText = "";
+                element.style.width = "0%";
+                element.display = "none";
+            });
+
+        }
+    }
+
+    var modal = document.querySelector(".modal");
+    modal.style.display = "flex";
+    modal.style.zIndex = 2;
+    selectModal(1);
+    initConv(1);
+    initSafety(1);
+    searchGu("safety", "pollice");
+}
+
+function searchGu(selMenu, selContent) {
+    var check_first = document.getElementById("check_first");
+    var check_second = document.getElementById("check_second");
+    var check_third = document.getElementById("check_third");
+
+    var recommend_first_name = $("#recommend_first_result").text();
+    var recommend_second_name = $("#recommend_second_result").text();
+    var recommend_third_name = $("#recommend_third_result").text();
+
+    for (var i = 0; i < guSpec.length; i++) {
+        if (check_first.checked && guSpec[i].name === recommend_first_name) {
+            graphInit(guSpec[i], 1, selMenu, selContent);
+            continue;
+        }
+        if (check_second.checked && guSpec[i].name === recommend_second_name) {
+            graphInit(guSpec[i], 2, selMenu, selContent);
+            continue;
+        }
+        if (check_third.checked && guSpec[i].name === recommend_third_name) {
+            graphInit(guSpec[i], 3, selMenu, selContent);
+            continue;
         }
     }
 }
 
+function graphInit(spec, num, selMenu, selContent) {
+    var selColor = "#000";
+    if (selMenu === "safety") {
+        if (selContent === "pollice") {
+            selColor = "#33BBC5";
+            document.getElementById("content_graph_title").innerText = "파출소";
+            document.getElementById("content_bar" + num).style.height = spec.polliceOffice + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.polliceOffice;
+        } else if (selContent === "cctv") {
+            selColor = "#F6635C";
+            document.getElementById("content_graph_title").innerText = "CCTV";
+            document.getElementById("content_bar" + num).style.height = spec.cctv + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.cctv;
+        } else {
+            selColor = "#85E6C5";
+            document.getElementById("content_graph_title").innerText = "검거율";
+            document.getElementById("content_bar" + num).style.height = spec.arrest + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.arrest;
+        }
+    } else {
+        if (selContent === "convStore") {
+            selColor = "#CDB2DB";
+            document.getElementById("content_graph_title").innerText = "편의점";
+            document.getElementById("content_bar" + num).style.height = spec.convenienceStore + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.convenienceStore;
+        } else if (selContent === "restaurant") {
+            selColor = "#FFC8DD";
+            document.getElementById("content_graph_title").innerText = "음식점";
+            document.getElementById("content_bar" + num).style.height = spec.restaurant + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.restaurant;
+        } else if (selContent === "cafe") {
+            selColor = "#FFAFCD";
+            document.getElementById("content_graph_title").innerText = "카페";
+            document.getElementById("content_bar" + num).style.height = spec.cafe + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.cafe;
+        } else if (selContent === "olive") {
+            selColor = "#A3D2FF";
+            document.getElementById("content_graph_title").innerText = "올리브영";
+            document.getElementById("content_bar" + num).style.height = spec.olive + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.olive;
+        } else {
+            selColor = "#BCE0FD";
+            document.getElementById("content_graph_title").innerText = "다이소";
+            document.getElementById("content_bar" + num).style.height = spec.daiso + 100 + "px";
+            document.getElementById("content_value" + num).innerText = spec.daiso;
+        }
+    }
+    document.getElementById("content_bar" + num).style.backgroundColor = selColor;
+}
 
 /**
  * 인구밀집도 시각화를 위한 임의 데이터 생성 함수
@@ -265,7 +787,7 @@ function initPopulation() {
     var populationArea = [];
     populationArea.push({ name: "강동구", population: 18 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 9, deposit_avg_rank: 6, monthly_avg_rank: 14, conv_rank: 17, safe_rank: 19, congest_rank: 8 });
     populationArea.push({ name: "송파구", population: 19 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 3, deposit_avg_rank: 1, monthly_avg_rank: 3, conv_rank: 2, safe_rank: 24, congest_rank: 7 });
-    populationArea.push({ name: "강남구", population: 6 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 2, deposit_avg_rank: 3, monthly_avg_rank: 1, conv_rank: 1, safe_rank: 7, congest_rank: 20 });
+    populationArea.push({ name: "강남구", population: 6 * 40000 + 10000, color: "rgba(0,0,255,1)", charter_avg_rank: 2, deposit_avg_rank: 3, monthly_avg_rank: 1, conv_rank: 1, safe_rank: 7, congest_rank: 20 });
     populationArea.push({ name: "서초구", population: 2 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 1, deposit_avg_rank: 2, monthly_avg_rank: 2, conv_rank: 7, safe_rank: 3, congest_rank: 24 });
     populationArea.push({ name: "관악구", population: 13 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 17, deposit_avg_rank: 7, monthly_avg_rank: 21, conv_rank: 14, safe_rank: 18, congest_rank: 13 });
     populationArea.push({ name: "동작구", population: 23 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 11, deposit_avg_rank: 10, monthly_avg_rank: 17, conv_rank: 11, safe_rank: 22, congest_rank: 3 });
