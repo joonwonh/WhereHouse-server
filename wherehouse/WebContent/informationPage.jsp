@@ -14,7 +14,7 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c3c68c349cd485fe2feeb1800479027&libraries=services,drawing"></script>
     <!-- 이모티콘 용 -->
     <script src="https://kit.fontawesome.com/eafa49c7a2.js" crossorigin="anonymous"></script>
-    <!--  <script src="./json/mapData.json" type="text/javascript"></script>  -->
+    <script src="./json/mapData.json" type="text/javascript"></script> 
 
     <link rel="stylesheet" href="./css/information.css">
 <title>상세 페이지</title>
@@ -98,6 +98,7 @@
     
     <script src="./js/map.js"></script>
     <script src="./js/panel.js"></script>
+    <script type="module" src="./js/polygonView.js"></script>
     <script type="module" src="./js/marker.js"></script>
     <script type="module" src="./js/circle.js"></script>
     <script type="module" src="./js/graph.js"></script>

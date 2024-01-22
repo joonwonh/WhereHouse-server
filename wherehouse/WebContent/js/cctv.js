@@ -32,7 +32,8 @@ function getCCTV_toMouseEvent(latlng, callback) {
                     title : '설치된 CCTV 수 : ' + cctv.cameraCount, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시
                     image : markerImage, // 마커 이미지 
                     opacity : 0.6, // 마커 투명도
-                    clickable : false // 마커 클릭 가능 여부
+                    clickable : false, // 마커 클릭 가능 여부
+                    zIndex : 1
                 });
                 cctvCount += parseInt(cctv.cameraCount);
                 markers.push(marker);

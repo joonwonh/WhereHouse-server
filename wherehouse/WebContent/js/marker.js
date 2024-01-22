@@ -4,7 +4,7 @@
 var marker = new kakao.maps.Marker({ 
     // 지도 중심좌표에 마커를 생성
     position: map.getCenter(),
-    zIndex: 2
+    zIndex: 3
 });
 
 function marker_toMouseEvent(latlng) {

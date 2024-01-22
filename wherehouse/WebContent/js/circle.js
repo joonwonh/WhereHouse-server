@@ -9,7 +9,8 @@ var circle = new kakao.maps.Circle({
     strokeOpacity: 0.7, // 선의 불투명도
     strokeStyle: 'dashed', // 선의 스타일
     fillColor: '#0B5ED7', // 채우기 색깔
-    fillOpacity: 0.1  // 채우기 불투명도
+    fillOpacity: 0.1,  // 채우기 불투명도
+    zIndex : 1
 });
 
 function circle_toMouseEvent(latlng) {

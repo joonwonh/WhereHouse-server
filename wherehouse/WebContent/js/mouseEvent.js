@@ -1,12 +1,13 @@
 /**
  * [이재서] 마우스 이벤트
  */
+import { displayArea } from "./polygonView.js";
 import { marker_toMouseEvent } from "./marker.js";
 import { circle_toMouseEvent } from "./circle.js";
 import { moveGraph } from "./graph.js";
 import { getLength_toMouseEvent } from "./policeOffice.js";
 import { getCCTV_toMouseEvent } from "./cctv.js";
-import { getArrestRate_toMouseEvent } from "./getAddress.js";
+import { getAddr_toMouseEvent } from "./getAddress.js";
 import { saftyScore } from "./score.js";
 
 var saftyWeight = { d : 60,
@@ -18,13 +19,16 @@ var saftyWeight = { d : 60,
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 클릭한 위도, 경도 정보
     var latlng = mouseEvent.latLng
+    
+    // 클릭한 좌표가 해당하는 자치구 표시
+    viewGu(latlng);
 
     //핀포인트 마커 표시
     marker_toMouseEvent(latlng);
 
     //500m 서클 표시
     circle_toMouseEvent(latlng);
-
+    
     // 화면 이동
     map.panTo(latlng);
 
@@ -64,7 +68,7 @@ function cctvFunction(latlng, callback) {
 }
 
 function arrestRateFunction(latlng, callback) {
-    getArrestRate_toMouseEvent(latlng, (result) => {
+    getAddr_toMouseEvent(latlng, (result) => {
         $.ajax({
             url : "addr.do",
             type : "get",
@@ -81,3 +85,8 @@ function arrestRateFunction(latlng, callback) {
     })
 }
 
+function viewGu(latlng) {
+    getAddr_toMouseEvent(latlng, (result) => {
+        displayArea(result);
+    })
+}

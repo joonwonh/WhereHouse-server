@@ -16,7 +16,7 @@ function displayDetailInfo(result) {
                                                         "도로명 : -<br>지번  : -";
 }
 
-function getArrestRate_toMouseEvent(latlng, callback) {
+function getAddr_toMouseEvent(latlng, callback) {
     searchDetailAddrFromCoords(latlng, (result) => {
         displayDetailInfo(result);
 
@@ -24,4 +24,4 @@ function getArrestRate_toMouseEvent(latlng, callback) {
     })
 }
 
-export {getArrestRate_toMouseEvent}
+export {getAddr_toMouseEvent}
