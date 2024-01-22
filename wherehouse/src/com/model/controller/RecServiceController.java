@@ -36,18 +36,18 @@ public class RecServiceController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
 		String uri = request.getRequestURI();
-		String ctx = request.getContextPath();
+		String ctx = request.getContextPath() + request.getServletPath();
 		String com = uri.substring(ctx.length());
 		
 		System.out.println(com);
         
-		if(com.equals("/RecServiceController/charter"))	{
+		if(com.equals("/charter.do"))	{
         RecCommand command = new RecService();
         command.execute(request, response);
 		}
-		if(com.equals("/RecServiceController/monthly"))	{
+		if(com.equals("/monthly.do"))	{
 	        RecCommand command = new RecServiceMonthly();
 	        command.execute(request, response);
-			}
+		}
 	}	
 }

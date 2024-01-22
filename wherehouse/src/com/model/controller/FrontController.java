@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.model.command.InfoCommand;
 import com.model.command.InfoPoliceOffice;
+import com.model.command.RecCommand;
+import com.model.command.RecService;
+import com.model.command.RecServiceMonthly;
 import com.model.dao.InfoDao;
 import com.model.json.ReadJSON;
 
@@ -33,6 +36,10 @@ public class FrontController extends HttpServlet {
 		if (com.equals("/policeOffice.do") || com.equals("/dist.do") || com.equals("/cctv.do") || com.equals("/addr.do")) {
 			viewPage = "/information"+com;
 		}
+		else if(com.equals("/charter.do") || com.equals("/monthly.do")) {
+			viewPage = "/RecServiceController"+com;
+		}
+		
 
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}

@@ -413,7 +413,7 @@ function showResult() {
     console.log("편의 점수 입력값 : " + cvt_score);
 
     $.ajax({
-        url: 'RecServiceController/monthly',
+        url: 'RecServiceController/monthly.do',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -431,7 +431,7 @@ function showResult() {
     });
 
     $.ajax({
-        url: 'RecServiceController/charter',
+        url: 'RecServiceController/charter.do',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
