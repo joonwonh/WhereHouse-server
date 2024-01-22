@@ -40,14 +40,15 @@ public class RecServiceMonthly implements RecCommand {
             RecServiceDto dto = gson.fromJson(jsonData, RecServiceDto.class);
             
             int monthly = dto.getMonthly_avg();
-
             System.out.println(monthly);
+            int safe_score = dto.getSafe_score();
+            int cvt_score = dto.getCvt_score();
 
             ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 
             try {
                     if(monthly != 0) {
-                        dtos = dao.chooseMonthlyRec(monthly);
+                        dtos = dao.chooseMonthlyRec(monthly, safe_score, cvt_score);
                         System.out.println("월세 실행");
                     }
                 

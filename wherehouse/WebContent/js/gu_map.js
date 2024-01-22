@@ -1,34 +1,5 @@
 var guInfo = [];
 
-//핫플레이스 캐러셀 데이터 초기화
-function guInfoInit() {
-    guInfo.push({ name: "강동구", place_name: ["천호동 로데오거리", "성내동 카페거리", "성내동 강풀만화거리"], charter: 6767, deposit: 3254, monthly: 43, safe_score: 69, conv_score: 43 });
-    guInfo.push({ name: "송파구", place_name: ["롯데월드 타워", "송리단길", "석촌호수"], charter: 7734, deposit: 4302, monthly: 55, safe_score: 65, conv_score: 81 });
-    guInfo.push({ name: "강남구", place_name: ["압구정동 로데오거리", "강남역 먹자골목", "코엑스 별마당 도서관"], charter: 9421, deposit: 3751, monthly: 69, safe_score: 74, conv_score: 90 });
-    guInfo.push({ name: "서초구", place_name: ["세빛섬", "예술의 전당", "양재천 카페거리"], charter: 9435, deposit: 4205, monthly: 58, safe_score: 80, conv_score: 58 });
-    guInfo.push({ name: "관악구", place_name: ["관악 별빛신사리", "낙성대 공원", "샤로수길"], charter: 5804, deposit: 3242, monthly: 39, safe_score: 69, conv_score: 45 });
-    guInfo.push({ name: "동작구", place_name: ["노량진 수산시장", "보라매공원", "신대방삼거리역 거리"], charter: 6415, deposit: 2826, monthly: 41, safe_score: 67, conv_score: 47 });
-    guInfo.push({ name: "영등포구", place_name: ["타임스퀘어", "여의도 한강공원", "더 현대 서울"], charter: 7198, deposit: 3451, monthly: 47, safe_score: 72, conv_score: 71 });
-    guInfo.push({ name: "금천구", place_name: ["호암산 숲길 공원", "가산 인크 커피", "금빛 공원"], charter: 6067, deposit: 2277, monthly: 41, safe_score: 71, conv_score: 36 });
-    guInfo.push({ name: "구로구", place_name: ["항동 푸른수목원", "구로 깔깔거리", "고척스카이돔"], charter: 4988, deposit: 2172, monthly: 38, safe_score: 70, conv_score: 46 });
-    guInfo.push({ name: "강서구", place_name: ["서울 식물원", "강서구청 먹자골목", "국립 항공 박물관"], charter: 6313, deposit: 2733, monthly: 49, safe_score: 66, conv_score: 66 });
-    guInfo.push({ name: "양천구", place_name: ["서서울 호수공원", "목동 로데오거리", "신정네거리역 거리"], charter: 6099, deposit: 2443, monthly: 39, safe_score: 64, conv_score: 34 });
-    guInfo.push({ name: "마포구", place_name: ["망원 한강공원", "합정 메세나폴리스", "홍대거리"], charter: 7162, deposit: 2752, monthly: 53, safe_score: 73, conv_score: 77 });
-    guInfo.push({ name: "서대문구", place_name: ["연희동거리", "신촌동거리", "디지털 미디어 시티"], charter: 5799, deposit: 2300, monthly: 47, safe_score: 70, conv_score: 37 });
-    guInfo.push({ name: "은평구", place_name: ["연신내 로데오거리", "불광천", "은평 한옥마을"], charter: 5240, deposit: 2349, monthly: 43, safe_score: 73, conv_score: 40 });
-    guInfo.push({ name: "노원구", place_name: ["노원역 문화의 거리 ", "노원 불빛 정원", "공릉동 국수거리"], charter: 4607, deposit: 1487, monthly: 37, safe_score: 70, conv_score: 38 });
-    guInfo.push({ name: "도봉구", place_name: ["쌍문역 쌍리단길", "창동역 포차거리", "서울 창포원"], charter: 4176, deposit: 1835, monthly: 42, safe_score: 70, conv_score: 23 });
-    guInfo.push({ name: "강북구", place_name: ["수유리 먹자골목", "강북구청 앞 거리", "우이천"], charter: 4255, deposit: 1512, monthly: 40, safe_score: 76, conv_score: 30 });
-    guInfo.push({ name: "성북구", place_name: ["성신여대 로데오거리", "석계역 포장마차", "성북천"], charter: 5506, deposit: 2059, monthly: 40, safe_score: 75, conv_score: 44 });
-    guInfo.push({ name: "중랑구", place_name: ["면목동 면리단길", "중랑천 벚꽃길", "상봉동 먹자골목"], charter: 5372, deposit: 3449, monthly: 38, safe_score: 69, conv_score: 36 });
-    guInfo.push({ name: "동대문구", place_name: ["청량리 먹자골목", "회기역 파전골목", "청량리 통닭골목"], charter: 6184, deposit: 1865, monthly: 47, safe_score: 71, conv_score: 54 });
-    guInfo.push({ name: "광진구", place_name: ["뚝섬 한강공원", "건대 맛의거리", "어린이대공원"], charter: 6727, deposit: 2858, monthly: 47, safe_score: 67, conv_score: 48 });
-    guInfo.push({ name: "성동구", place_name: ["서울숲", "뚝섬 한강공원", "마장동 먹자골목"], charter: 7449, deposit: 2657, monthly: 46, safe_score: 74, conv_score: 45 });
-    guInfo.push({ name: "용산구", place_name: ["한남동 카페거리", "이태원 거리", "남산서울타워"], charter: 7219, deposit: 2917, monthly: 50, safe_score: 79, conv_score: 43 });
-    guInfo.push({ name: "중구", place_name: ["명동거리", "신당 포차거리", "을지로 골목"], charter: 7277, deposit: 2452, monthly: 54, safe_score: 86, conv_score: 79 });
-    guInfo.push({ name: "종로구", place_name: ["경복궁", "인사동", "혜화 대학로"], charter: 6266, deposit: 2193, monthly: 51, safe_score: 93, conv_score: 56 });
-}
-
 //카카오맵 커스텀 오버레이
 var customOverlay;
 
@@ -218,9 +189,14 @@ function initInfo(selected_name) {
     var monthly_fee = document.getElementById("monthly-month-fee");
 
     // 전세/월세 가격 표시
-    charter_fee.innerText = Math.round(Math.random() * 1000 + 10000);
-    deposit_fee.innerText = Math.round(Math.random() * 1000 + 500);
-    monthly_fee.innerText = Math.round(Math.random() * 50 + 30);
+    
+    for (var i = 0; i < guInfo.length; i++) {
+        if (guInfo[i].name === selected_name) {
+            charter_fee.innerText = guInfo[i].charter;
+            deposit_fee.innerText = guInfo[i].deposit;
+            monthly_fee.innerText = guInfo[i].monthly;
+        }
+    }
     if (selected_name === "default") {
         div_score.style.display = "none";
         div_hPlace.style.display = "none";
@@ -234,13 +210,14 @@ function initInfo(selected_name) {
         var safety_barChart = document.getElementById("safety_barChart");
         var conv_barChart = document.getElementById("convenience_barChart");
 
-        var tmp1 = (Math.random() * 70 + 0);
-        var tmp2 = (Math.random() * 70 + 0);
-
-        document.getElementById("safety_value").innerText = Math.round(tmp1*10/7);
-        document.getElementById("convenience_value").innerText = Math.round(tmp2*10/7);
-        safety_barChart.style.height = (tmp1 + 15) + "px";
-        conv_barChart.style.height = (tmp2 + 15) + "px";
+        for (var i = 0; i < guInfo.length; i++) {
+            if (guInfo[i].name === selected_name) {
+                document.getElementById("safety_value").innerText = guInfo[i].safe_score;
+                document.getElementById("convenience_value").innerText = guInfo[i].conv_score;
+                safety_barChart.style.height = guInfo[i].safe_score + "px";
+                conv_barChart.style.height = guInfo[i].conv_score + "px";
+            }
+        }
     }
 
     var imgPath = "images/hotPlace/" + selected_name;
@@ -317,4 +294,33 @@ function initPopulation() {
         }
     })
     return populationArea;
+}
+
+//핫플레이스 캐러셀 데이터 초기화
+function guInfoInit() {
+    guInfo.push({ name: "강동구", place_name: ["천호동 로데오거리", "성내동 카페거리", "성내동 강풀만화거리"], charter: 6767, deposit: 3254, monthly: 43, safe_score: 69, conv_score: 43 });
+    guInfo.push({ name: "송파구", place_name: ["롯데월드 타워", "송리단길", "석촌호수"], charter: 7734, deposit: 4302, monthly: 55, safe_score: 65, conv_score: 81 });
+    guInfo.push({ name: "강남구", place_name: ["압구정동 로데오거리", "강남역 먹자골목", "코엑스 별마당 도서관"], charter: 9421, deposit: 3751, monthly: 69, safe_score: 74, conv_score: 90 });
+    guInfo.push({ name: "서초구", place_name: ["세빛섬", "예술의 전당", "양재천 카페거리"], charter: 9435, deposit: 4205, monthly: 58, safe_score: 80, conv_score: 58 });
+    guInfo.push({ name: "관악구", place_name: ["관악 별빛신사리", "낙성대 공원", "샤로수길"], charter: 5804, deposit: 3242, monthly: 39, safe_score: 69, conv_score: 45 });
+    guInfo.push({ name: "동작구", place_name: ["노량진 수산시장", "보라매공원", "신대방삼거리역 거리"], charter: 6415, deposit: 2826, monthly: 41, safe_score: 67, conv_score: 47 });
+    guInfo.push({ name: "영등포구", place_name: ["타임스퀘어", "여의도 한강공원", "더 현대 서울"], charter: 7198, deposit: 3451, monthly: 47, safe_score: 72, conv_score: 71 });
+    guInfo.push({ name: "금천구", place_name: ["호암산 숲길 공원", "가산 인크 커피", "금빛 공원"], charter: 6067, deposit: 2277, monthly: 41, safe_score: 71, conv_score: 36 });
+    guInfo.push({ name: "구로구", place_name: ["항동 푸른수목원", "구로 깔깔거리", "고척스카이돔"], charter: 4988, deposit: 2172, monthly: 38, safe_score: 70, conv_score: 46 });
+    guInfo.push({ name: "강서구", place_name: ["서울 식물원", "강서구청 먹자골목", "국립 항공 박물관"], charter: 6313, deposit: 2733, monthly: 49, safe_score: 66, conv_score: 66 });
+    guInfo.push({ name: "양천구", place_name: ["서서울 호수공원", "목동 로데오거리", "신정네거리역 거리"], charter: 6099, deposit: 2443, monthly: 39, safe_score: 64, conv_score: 34 });
+    guInfo.push({ name: "마포구", place_name: ["망원 한강공원", "합정 메세나폴리스", "홍대거리"], charter: 7162, deposit: 2752, monthly: 53, safe_score: 73, conv_score: 77 });
+    guInfo.push({ name: "서대문구", place_name: ["연희동거리", "신촌동거리", "디지털 미디어 시티"], charter: 5799, deposit: 2300, monthly: 47, safe_score: 70, conv_score: 37 });
+    guInfo.push({ name: "은평구", place_name: ["연신내 로데오거리", "불광천", "은평 한옥마을"], charter: 5240, deposit: 2349, monthly: 43, safe_score: 73, conv_score: 40 });
+    guInfo.push({ name: "노원구", place_name: ["노원역 문화의 거리 ", "노원 불빛 정원", "공릉동 국수거리"], charter: 4607, deposit: 1487, monthly: 37, safe_score: 70, conv_score: 38 });
+    guInfo.push({ name: "도봉구", place_name: ["쌍문역 쌍리단길", "창동역 포차거리", "서울 창포원"], charter: 4176, deposit: 1835, monthly: 42, safe_score: 70, conv_score: 23 });
+    guInfo.push({ name: "강북구", place_name: ["수유리 먹자골목", "강북구청 앞 거리", "우이천"], charter: 4255, deposit: 1512, monthly: 40, safe_score: 76, conv_score: 30 });
+    guInfo.push({ name: "성북구", place_name: ["성신여대 로데오거리", "석계역 포장마차", "성북천"], charter: 5506, deposit: 2059, monthly: 40, safe_score: 75, conv_score: 44 });
+    guInfo.push({ name: "중랑구", place_name: ["면목동 면리단길", "중랑천 벚꽃길", "상봉동 먹자골목"], charter: 5372, deposit: 3449, monthly: 38, safe_score: 69, conv_score: 36 });
+    guInfo.push({ name: "동대문구", place_name: ["청량리 먹자골목", "회기역 파전골목", "청량리 통닭골목"], charter: 6184, deposit: 1865, monthly: 47, safe_score: 71, conv_score: 54 });
+    guInfo.push({ name: "광진구", place_name: ["뚝섬 한강공원", "건대 맛의거리", "어린이대공원"], charter: 6727, deposit: 2858, monthly: 47, safe_score: 67, conv_score: 48 });
+    guInfo.push({ name: "성동구", place_name: ["서울숲", "뚝섬 한강공원", "마장동 먹자골목"], charter: 7449, deposit: 2657, monthly: 46, safe_score: 74, conv_score: 45 });
+    guInfo.push({ name: "용산구", place_name: ["한남동 카페거리", "이태원 거리", "남산서울타워"], charter: 7219, deposit: 2917, monthly: 50, safe_score: 79, conv_score: 43 });
+    guInfo.push({ name: "중구", place_name: ["명동거리", "신당 포차거리", "을지로 골목"], charter: 7277, deposit: 2452, monthly: 54, safe_score: 86, conv_score: 79 });
+    guInfo.push({ name: "종로구", place_name: ["경복궁", "인사동", "혜화 대학로"], charter: 6266, deposit: 2193, monthly: 51, safe_score: 93, conv_score: 56 });
 }

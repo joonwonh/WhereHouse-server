@@ -41,12 +41,14 @@ public class RecService implements RecCommand {
             
             int charter = dto.getCharter_avg();
             System.out.println(charter);
+            int safe_score = dto.getSafe_score();
+            int cvt_score = dto.getCvt_score();
 
             ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 
             try {
                     if (charter != 0) {
-                        dtos = dao.chooseCharterRec(charter);
+                        dtos = dao.chooseCharterRec(charter, safe_score, cvt_score);
                         System.out.println("전세 실행");
                     }
                 

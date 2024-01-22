@@ -118,14 +118,26 @@ window.onload = function () {
     var y = document.getElementById("safety_f");
     safety.addEventListener("change", function () {
         y.innerHTML = this.value + "단계";
-        document.getElementById("descript_safety").innerText = "안전 " + this.value + "단계는 이러이러이러합니다."
+        var yText = document.getElementById("descript_safety");
+        yText.innerHTML = '<a href="./description.html#first_page" target="_blank">점수 산정 방식 보러 가기</a>';
+        yText.querySelector('a').style.textDecoration = "none";
+        yText.querySelector('a').style.color = "rgba(11, 94, 215, 1)";
+        
+        yText.querySelector('a').addEventListener("mouseover", function() {
+            this.style.color = "#4690ff";
+        });
+
+        // 마우스가 벗어날 때의 이벤트 처리
+        yText.querySelector('a').addEventListener("mouseout", function() {
+            this.style.color = "rgba(11, 94, 215, 1)";
+        });
     });
 
     var convenience = document.getElementById("myRange_convenience");
     var c = document.getElementById("convenience_f");
     convenience.addEventListener("change", function () {
         c.innerHTML = this.value + "단계";
-        document.getElementById("descript_convenience").innerText = "편의 " + this.value + "단계는 이러이러이러합니다."
+        //document.getElementById("descript_convenience").innerText = "편의 " + this.value + "단계는 이러이러이러합니다."
     });
 
     // 인구밀집도 인덱스 열고 닫기
@@ -392,16 +404,22 @@ function showResult() {
     // 거주지 추천 ajax to servlet
     const charter_avg = $('#charterInput input[name="charterDeposit"]').val();
     const monthly_avg = $('#monthlyInput input[name="monthlyMonth"]').val();
+    const safe_score = $('#myRange_safety').val();
+    const cvt_score = $('#myRange_convenience').val();
 
     console.log("전세금 입력값 : " + charter_avg);
     console.log("월세금 입력값 : " + monthly_avg);
+    console.log("안전 점수 입력값 : " + safe_score);
+    console.log("편의 점수 입력값 : " + cvt_score);
 
     $.ajax({
         url: 'RecServiceController/monthly',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            monthly_avg: monthly_avg
+            monthly_avg: monthly_avg,
+            safe_score: safe_score,
+            cvt_score: cvt_score
         }),
         success: function (data) {
             displayMonthly(data);
@@ -417,7 +435,9 @@ function showResult() {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            charter_avg: charter_avg
+            charter_avg: charter_avg,
+            safe_score: safe_score,
+            cvt_score: cvt_score
         }),
         success: function (data) {
             displayCharter(data);

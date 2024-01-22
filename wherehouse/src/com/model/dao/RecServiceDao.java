@@ -31,7 +31,7 @@ public class RecServiceDao {
 		return Instance;
 	}
 	
-	public ArrayList<RecServiceDto> chooseCharterRec(int inputData) {
+	public ArrayList<RecServiceDto> chooseCharterRec(int inputData, int safe, int cvt) {
 		ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -39,8 +39,17 @@ public class RecServiceDao {
 		
 		try {
 			con = dataFactory.getConnection();
-
-			String query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3";
+			String query = "";
+			if(cvt>safe)	{
+				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3 order by cvt_score desc";
+			}
+			else if(cvt<safe)	{
+				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3 order by safe_score desc";
+			}
+			else if(cvt == safe)	{
+				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3";
+			}
+			
 			pstmt = con.prepareStatement(query);
 	        pstmt.setInt(1, inputData);
 	        set = pstmt.executeQuery();
@@ -81,7 +90,7 @@ public class RecServiceDao {
 		return dtos;
 	}
 	
-	public ArrayList<RecServiceDto> chooseMonthlyRec(int inputData) {
+	public ArrayList<RecServiceDto> chooseMonthlyRec(int inputData, int safe, int cvt) {
 		ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -90,7 +99,16 @@ public class RecServiceDao {
 		try {
 			con = dataFactory.getConnection();
 
-			String query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3";
+			String query = "";
+			if(cvt>safe)	{
+				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3 order by cvt_score desc";
+			}
+			else if(cvt<safe)	{
+				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3 order by safe_score desc";
+			}
+			else if(cvt == safe)	{
+				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3";
+			}
 			pstmt = con.prepareStatement(query);
 	        pstmt.setInt(1, inputData);
 	        set = pstmt.executeQuery();

@@ -42,16 +42,12 @@ public class RecServiceController extends HttpServlet {
 		System.out.println(com);
         
 		if(com.equals("/RecServiceController/charter"))	{
-			 System.out.println("controller chrater start");
         RecCommand command = new RecService();
         command.execute(request, response);
-        System.out.println("controller chrater start");
 		}
 		if(com.equals("/RecServiceController/monthly"))	{
-			System.out.println("controller monthly start");
 	        RecCommand command = new RecServiceMonthly();
 	        command.execute(request, response);
-	        System.out.println("controller monthly start");
 			}
 	}	
 }
