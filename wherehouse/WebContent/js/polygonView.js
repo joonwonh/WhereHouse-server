@@ -1,3 +1,6 @@
+/**
+ * [이재서] 폴리곤 기능
+ */
 var selectedArea;
 var locate = JSON.parse(JSON.stringify(mapData));
 var feat = locate.features;

@@ -1,4 +1,4 @@
-package com.model.controller;
+package com.model.frontcontroller;
 
 import java.io.IOException;
 

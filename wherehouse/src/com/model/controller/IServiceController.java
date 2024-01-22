@@ -47,7 +47,7 @@ public class IServiceController extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {	
 		InfoDao dao = InfoDao.getInstance();
-		//¼­¹ö°¡ È£ÃâµÉ ¶§ DB¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö Ã¼Å©
+		//DBì²´í¬ í›„ í…Œì´ë¸”ì´ ë¹„ì–´ìˆìœ¼ë©´ setDB
 		if (!dao.checkDB("policeOffice")) {dao.setDBPO(ReadJSON.readGeoJson("C:\\Users\\admin\\git\\WhereHouse2\\wherehouse\\WebContent\\json\\policeOffice.geojson"));}
 		if (!dao.checkDB("cctv")) {dao.setDBCCTV(ReadJSON.readJsonArray("C:\\Users\\admin\\git\\WhereHouse2\\wherehouse\\WebContent\\json\\SeoulCCTV.json"));}
 	}
