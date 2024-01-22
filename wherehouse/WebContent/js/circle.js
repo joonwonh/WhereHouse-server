@@ -18,4 +18,4 @@ function circle_toMouseEvent(latlng) {
     circle.setPosition(latlng);
 }
 
-export {circle_toMouseEvent}
+export {circle_toMouseEvent, circle}

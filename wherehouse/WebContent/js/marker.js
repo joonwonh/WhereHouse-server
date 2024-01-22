@@ -12,4 +12,4 @@ function marker_toMouseEvent(latlng) {
     marker.setPosition(latlng);
 }
 
-export {marker_toMouseEvent}
+export {marker_toMouseEvent, marker}

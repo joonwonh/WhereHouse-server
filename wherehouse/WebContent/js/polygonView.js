@@ -16,8 +16,6 @@ feat.forEach(element => {
     areas[name] = path;
 });
 
-console.log(areas);
-
 function displayArea(area) {
     if (selectedArea) {selectedArea.setMap(null)}
 
@@ -30,4 +28,4 @@ function displayArea(area) {
     });
 }
 
-export { displayArea }
+export { displayArea, selectedArea }

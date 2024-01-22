@@ -1,9 +1,9 @@
 /**
  * [이재서] 마우스 이벤트
  */
-import { displayArea } from "./polygonView.js";
-import { marker_toMouseEvent } from "./marker.js";
-import { circle_toMouseEvent } from "./circle.js";
+import { displayArea, selectedArea } from "./polygonView.js";
+import { marker_toMouseEvent, marker } from "./marker.js";
+import { circle_toMouseEvent, circle } from "./circle.js";
 import { moveGraph } from "./graph.js";
 import { getLength_toMouseEvent } from "./policeOffice.js";
 import { getCCTV_toMouseEvent } from "./cctv.js";
@@ -19,15 +19,20 @@ var saftyWeight = { d : 60,
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 클릭한 위도, 경도 정보
     var latlng = mouseEvent.latLng
+    var level = map.getLevel();
+
+    if (level > 2) {
+        //500m 서클 표시
+        circle_toMouseEvent(latlng);
+    }
     
-    // 클릭한 좌표가 해당하는 자치구 표시
-    viewGu(latlng);
+    if (level > 3) {
+        // 클릭한 좌표가 해당하는 자치구 표시
+        viewGu(latlng)
+    }
 
     //핀포인트 마커 표시
     marker_toMouseEvent(latlng);
-
-    //500m 서클 표시
-    circle_toMouseEvent(latlng);
     
     // 화면 이동
     map.panTo(latlng);
@@ -40,6 +45,25 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         moveGraph(safty, value);
     });
 
+});
+
+kakao.maps.event.addListener(map, 'zoom_changed', function() {
+    var level = map.getLevel();
+
+    if (level > 2) {
+        circle.setMap(map);
+        circle.setPosition(marker.getPosition());
+    }
+    else {
+        circle.setMap(null);
+    }
+
+    if (level > 3) {
+        selectedArea.setMap(map);
+    }
+    else {
+        selectedArea.setMap(null);
+    }
 });
 
 //=======================================================================================================
