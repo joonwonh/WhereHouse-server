@@ -93,19 +93,16 @@ function cctvFunction(latlng, callback) {
 
 function arrestRateFunction(latlng, callback) {
     getAddr_toMouseEvent(latlng, (result) => {
-        $.ajax({
-            url : "addr.do",
-            type : "get",
-            data : {
-                'addr' : result
+        fetch("addr.do?addr=" + encodeURIComponent(result), {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
             },
-            dataType : "json",
-            success : function(result) {
+        })
+            .then(response => response.json())
+            .then(result => {
                 callback(result.rate);
-            }
-        
-        });
-
+            });
     })
 }
 

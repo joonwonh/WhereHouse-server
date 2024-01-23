@@ -1,9 +1,9 @@
-var total = document.querySelector("#total"),
-    safty = document.querySelector("#safty"),
-    conv = document.querySelector("#conv"),
-    infoDiv = document.querySelector('#infoDiv'),
-    checkBtn = document.querySelector('#check_btn'),
-    selected = document.querySelector('#preference');
+// var total = document.querySelector("#total"),
+//     safty = document.querySelector("#safty"),
+//     conv = document.querySelector("#conv"),
+//     infoDiv = document.querySelector('#infoDiv'),
+//     checkBtn = document.querySelector('#check_btn'),
+//     selected = document.querySelector('#preference');
 
 
 // checkBtn.addEventListener('click',totalScore);
