@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhereHouse</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?ver=123">
     <link rel="icon" href="images/home_icon.png">
     <script src="js/main.js"></script>
 </head>
@@ -42,6 +42,14 @@
                 </div>
                 <div class="menu_txt">
                     상세 지도
+                </div>
+            </div>
+            <div id="menu_board">
+                <div id="menu_board_icon">
+                    <img src="images/board_icon.png" alt="">
+                </div>
+                <div class="menu_txt">
+                    게시판
                 </div>
             </div>
         </div>

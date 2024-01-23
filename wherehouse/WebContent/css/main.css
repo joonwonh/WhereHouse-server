@@ -196,6 +196,39 @@ section {
     transform: scale(1.1);
 }
 
+/* 게시판 선택 스타일 */
+#menu_board {
+    width: 88px;
+    height: 90px;
+    position: absolute;
+    left: 0px;
+    top: 360px;
+}
+
+#menu_board_icon {
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#menu_board_icon img {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    left: 16.5px;
+    top: 5.5px;
+    border-radius: 45px;
+}
+
+#menu_board_icon:hover img {
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
 #iframe_section {
     width: 1832px;
     height: 945px;

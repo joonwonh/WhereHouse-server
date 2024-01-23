@@ -161,6 +161,12 @@
                         추천 결과 확인
                     </div>
                 </div>
+                
+                            <div>&nbsp;</div>
+            <div style="margin-left: 35px;">
+                <a style="color: rgb(150, 150, 150);">*거주지 추천은 10평 이하 기준입니다.</a>
+            </div>
+                
             </div>
             <div id="recommend_result_page">
                 <div class="house_recommend">
