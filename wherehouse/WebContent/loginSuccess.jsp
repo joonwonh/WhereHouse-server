@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% if(session.getAttribute("validMem") == null) {%>
+	<jsp:forward page="login.jsp"/>
+<% }
+	
+	String name = (String) session.getAttribute("name");
+	String id = (String)session.getAttribute("id");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,26 +38,30 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-top bg-light border-bottom">
             <div class="container-fluid">
-                <a id="logo" class="navbar-brand ms-4 py-3" href="index.html">Where House</a>
+                <a id="logo" class="navbar-brand ms-4 py-3" href="loginSuccess.jsp">Where House</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end me-4" id="navbarScroll">
                     <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 300px;">
-                         <li class="nav-item dropdown">
+						<li class="nav-item dropdown">
                             <a class=" nav-link dropdown-toggle me-5" id="nav_btn_house_rec" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                로그인 /회원가입
+                                <%=name %> 님
                             </a>
                             <ul class="dropdown-menu me-5 dropdown-menu-end text-end nav_btn_house_rec_dropdown" id="">
-                                <li><a class="dropdown-item nav_choose nav_item" href="login.jsp">로그인</a>
+                                <li><a style="cursor: pointer;" class="dropdown-item nav_choose nav_item" onclick="javascript:window.location='modify.jsp'">정보수정</a>
                                 </li>
-                                <li><a class="dropdown-item nav_choose nav_item" href="join.jsp">회원가입</a>
-                                </li>
+                                <form action="logout.jsp" method="get">
+                                    <li><a class="dropdown-item nav_choose nav_item" ><input
+                                                type="submit" value="로그 아웃"  style="border: none; padding: 0;"></a>
+                                    </li>
+                                </form>
                             </ul>
                         </li>
-                    
+                        
+                        
                         <li class="nav-item dropdown">
                             <a class=" nav-link dropdown-toggle me-5" id="nav_btn_house_rec" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
