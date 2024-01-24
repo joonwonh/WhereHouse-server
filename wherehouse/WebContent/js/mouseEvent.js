@@ -9,6 +9,7 @@ import { getLength_toMouseEvent } from "./policeOffice.js";
 import { getCCTV_toMouseEvent } from "./cctv.js";
 import { getAddr_toMouseEvent } from "./getAddress.js";
 import { saftyScore } from "./score.js";
+import { amenity_toMouseEvent } from "./amenity.js";
 
 var saftyWeight = { d : 60,
     c : 30,
@@ -37,14 +38,34 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 화면 이동
     map.panTo(latlng);
 
+    var promises = [];
     //안전성 점수 시각화 그래프
-    saftyScore([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
-        var safty = document.querySelector("#safty");
-        var value = results[0]*saftyWeight.d + results[1]*saftyWeight.c + results[2]*saftyWeight.r;
+    promises.push(new Promise(function(resolve) {
+        saftyScore([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
+            var safty = document.querySelector("#safty");
+            var value = results[0]*saftyWeight.d + results[1]*saftyWeight.c + results[2]*saftyWeight.r;
 
-        moveGraph(safty, value);
+            moveGraph(safty, value);
+            resolve(value)
+        });
+    }));
+    //편의성 점수 시각화 그래프
+    promises.push(new Promise(function(resolve) {
+        amenity_toMouseEvent(latlng, (result) => {
+            var conv = document.querySelector("#conv");
+
+            moveGraph(conv, result);
+            resolve(result);
+        });
+    }));
+
+    //종합 점수 시각화 그래프
+    Promise.all(promises).then(function(results) {
+        var total = document.querySelector("#total");
+        var value = (results[0]+results[1])/2;
+
+        moveGraph(total, value);
     });
-
 });
 
 kakao.maps.event.addListener(map, 'zoom_changed', function() {

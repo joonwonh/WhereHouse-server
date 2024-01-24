@@ -40,11 +40,11 @@
                 </li>
                 <li id="amenity">
                     <div style="margin: 0 auto; width: 90%; line-height: 150%; font-size: 1.3rem;">인근 편의시설</div>
-                    <div class="each" id="each1" style="color: #3a80e9;">-</div>
-                    <div class="each" id="each2" style="color: #3a80e9;">-</div>
-                    <div class="each" id="each3" style="color: #3a80e9;">-</div>
-                    <div class="each" id="each4" style="color: #3a80e9;">-</div>
-                    <div class="each" id="each5" style="color: #3a80e9;">-</div>
+                    <div class="each-menu" id="each1" style="color: #3a80e9;">-</div>
+                    <div class="each-menu" id="each2" style="color: #3a80e9;">-</div>
+                    <div class="each-menu" id="each3" style="color: #3a80e9;">-</div>
+                    <div class="each-menu" id="each4" style="color: #3a80e9;">-</div>
+                    <div class="each-menu" id="each5" style="color: #3a80e9;">-</div>
                 </li>
                 <li id="pinImgs">
                     <img src="./images/pin_icon.png" alt="">
@@ -104,6 +104,7 @@
     <script type="module" src="./js/graph.js"></script>
     <script type="module" src="./js/policeOffice.js"></script>
     <script type="module" src="./js/cctv.js"></script>
+    <script type="module" src="./js/amenity.js"></script>
     <script type="module" src="./js/score.js"></script>
     <script type="module" src="./js/mouseEvent.js"></script>
 </body>
