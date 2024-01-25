@@ -25,7 +25,7 @@
 	
 	<script language="javascript">
 		alert("정보 수정되었습니다.");
-		document.location.href="loginSucess.jsp"
+		document.location.href="loginSuccess.jsp"
 	</script>
 <%
 	} else {

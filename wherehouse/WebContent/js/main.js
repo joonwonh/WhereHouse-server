@@ -2,6 +2,7 @@ var menu_home;
 var menu_suggest_icon;
 var menu_gu_icon;
 var menu_detail_icon;
+var menu_board_icon;
 var iframeSection;
 
 window.onload = function () {
@@ -9,6 +10,7 @@ window.onload = function () {
     menu_suggest_icon = document.getElementById("menu_suggest_icon");
     menu_gu_icon = document.getElementById("menu_gu_icon");
     menu_detail_icon = document.getElementById("menu_detail_icon");
+    menu_board_icon = document.getElementById("menu_board_icon");
     iframeSection = document.getElementById("iframe_section");
     // iframe 초기 값 설정
     initIframe();
@@ -20,11 +22,13 @@ window.onload = function () {
     menu_suggest_icon.addEventListener("click", () => clickMenu(1));
     menu_gu_icon.addEventListener("click", () => clickMenu(2));
     menu_detail_icon.addEventListener("click", () => clickMenu(3));
+    menu_board_icon.addEventListener("click", () => clickMenu(4));
 
     function clickMenu(sel) {
         menu_gu_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
         menu_detail_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
         menu_suggest_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
+        menu_board_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
 
         if (sel === 1) {
             menu_suggest_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
@@ -35,6 +39,9 @@ window.onload = function () {
         } else if (sel === 3) {
             menu_detail_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
             iframeSection.src = "informationPage.jsp";
+        } else if (sel === 4) {
+            menu_board_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
+            iframeSection.src = "list.jsp";
         }
     }
 }
@@ -45,6 +52,7 @@ function initIframe() {
     menu_gu_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
     menu_detail_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
     menu_suggest_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
+    menu_board_icon.style.backgroundColor = "rgba(11, 94, 215, 1)";
 
     if (iframe_target === "house_rec") {
         menu_suggest_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
@@ -53,6 +61,8 @@ function initIframe() {
     } else if (iframe_target === "detail_map") {
         menu_detail_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
         iframe_target = "informationPage";
+    } else if (iframe_target === "list") {
+        menu_gu_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
     }
     iframeSection.src = iframe_target + ".jsp";
     console.log(iframe_target);
