@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./../images/home_icon.png">
+    <link rel="icon" href="images/home_icon.png">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
         <header>
             <div id="logo">
                 <div class="mt-5 mb-5 pt-3"></div>
-                <a id="logo_text" href="../index.html">Where House</a>
+                <a id="logo_text" href="index.html">Where House</a>
             </div>
         </header>
 

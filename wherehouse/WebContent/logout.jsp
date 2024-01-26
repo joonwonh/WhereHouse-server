@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%
-	session.invalidate();
-%>
 <script language="javascript">
 		alert("로그아웃 되었습니다.");
+		document.location.href="index.html"
 </script>
 <%
-response.sendRedirect("index.html");
+	session.invalidate();
 %>
 <!DOCTYPE html>
 <html>

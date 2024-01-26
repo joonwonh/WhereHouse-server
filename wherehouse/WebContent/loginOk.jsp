@@ -21,7 +21,7 @@
 %>
 	<script language="javascript">
 		alert("비밀번호가 틀립니다");
-		histroy.go(-1);
+		history.go(-1);
 	</script>
 <%
 	} else if(checkNum == 1){			// id와 패스워드 모두 동일하면 dto 내 객체 저장.

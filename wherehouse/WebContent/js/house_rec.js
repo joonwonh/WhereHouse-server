@@ -51,7 +51,7 @@ window.onload = function () {
     initGuSpec();
     var container = document.getElementById("map");
     var options = {
-        center: new kakao.maps.LatLng(37.5642135, 127.0016985),
+        center: new kakao.maps.LatLng(37.5612135, 126.8716985),
         level: 8,
         minLevel: 8,
         maxLevel: 8, // 5
@@ -86,7 +86,7 @@ window.onload = function () {
 
     function panelFunc() {
         if (info.style.left == "0px") {
-            info.style.left = "-333px";
+            info.style.left = "-666px";
             func.innerText = "▶";
         } else {
             info.style.left = "0px";
@@ -390,12 +390,12 @@ function showRecommend() {
 }
 
 function showResult() {
-    document.getElementById("recommend_first").style.display = "block";
-    document.getElementById("recommend_first_info").style.display = "none";
-    document.getElementById("recommend_second").style.display = "block";
-    document.getElementById("recommend_second_info").style.display = "none";
-    document.getElementById("recommend_third").style.display = "block";
-    document.getElementById("recommend_third_info").style.display = "none";
+    document.getElementById("recommend_first").style.display = "none";
+    document.getElementById("recommend_first_info").style.display = "block";
+    document.getElementById("recommend_second").style.display = "none";
+    document.getElementById("recommend_second_info").style.display = "block";
+    document.getElementById("recommend_third").style.display = "none";
+    document.getElementById("recommend_third_info").style.display = "block";
 
     document.getElementById("user-input").style.display = "none";
     document.getElementById("recommend_result_page").style.display = "block";
@@ -770,7 +770,7 @@ function graphInit(spec, num, selMenu, selContent) {
         } else if (selContent === "olive") {
             selColor = "#A3D2FF";
             document.getElementById("content_graph_title").innerText = "올리브영";
-            document.getElementById("content_bar" + num).style.height = spec.olive * 10 + "px";
+            document.getElementById("content_bar" + num).style.height = spec.olive * 15 + "px";
             document.getElementById("content_value" + num).innerText = spec.olive;
         } else {
             selColor = "#BCE0FD";

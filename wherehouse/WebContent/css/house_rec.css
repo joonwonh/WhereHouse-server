@@ -25,7 +25,7 @@ body {
     transition: 500ms;
 }
 
-/* 사이드 버튼 */
+/* �궗�씠�뱶 踰꾪듉 */
 #btn {
     position: absolute;
     width: 33px;
@@ -36,7 +36,7 @@ body {
     text-align: center;
     line-height: 40px;
     border-radius: 7px;
-    left: 326px;
+    left: 661px;
     top: 450px;
     box-shadow: 3px 3px 7px 3px rgba(0, 0, 0, 0.3);
 }
@@ -45,7 +45,7 @@ body {
     cursor: pointer;
 }
 
-/* 사이드 바 */
+/* �궗�씠�뱶 諛� */
 #side-bar {
     position: absolute;
     /* border: 2px solid #0B5ED7; */
@@ -56,7 +56,18 @@ body {
     box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* 주거지 추천 */
+#side-bar-second {
+    position: absolute;
+    /* border: 2px solid #0B5ED7; */
+    background: white;
+    left: 333px;
+    width: 333px;
+    height: 945px;
+    overflow: auto;
+    box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 二쇨굅吏� 異붿쿇 */
 .house_recommend {
     background: #4690ff;
     color: #e9f2ff;
@@ -70,7 +81,7 @@ body {
     box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* 전세/월세 선택 */
+/* �쟾�꽭/�썡�꽭 �꽑�깮 */
 #char_month_hr  {
     margin-bottom: 10px;
 }
@@ -90,7 +101,7 @@ body {
     font-size: 20px;
 }
 
-/* 전세 월세 선택 창 */
+/* �쟾�꽭 �썡�꽭 �꽑�깮 李� */
 #check_need {
     display: flex;
     font-size: 17px;
@@ -144,7 +155,7 @@ body {
     text-align: right;
 }
 
-/* 치안/편의 선택 */
+/* 移섏븞/�렪�쓽 �꽑�깮 */
 .safety_convenience {
     width: 300px;
     border: rgba(11, 94, 215, 0.50) 2px solid;
@@ -180,7 +191,7 @@ body {
 }
 
 
-/* 추천결과 확인 버튼 */
+/* 異붿쿇寃곌낵 �솗�씤 踰꾪듉 */
 #recommend_result,
 #recommend_comparison {
     width: 190px;
@@ -250,7 +261,7 @@ body {
     cursor: pointer;
 }
 
-/* 결과 창 */
+/* 寃곌낵 李� */
 .rec_result_div   {
     width: 100px;
 }
@@ -343,7 +354,7 @@ body {
 }
 
 
-/* 추천 결과 전세, 월세금 스타일 */
+/* 異붿쿇 寃곌낵 �쟾�꽭, �썡�꽭湲� �뒪���씪 */
 .select_price {
     text-align: center;
 }
@@ -377,7 +388,7 @@ body {
     left: 110px;
 }
 
-/* 안정성 편의성 텍스트*/
+/* �븞�젙�꽦 �렪�쓽�꽦 �뀓�뒪�듃*/
 #average-score-inner-text {
     position: absolute;
     margin: 0;
@@ -400,7 +411,7 @@ body {
     height: 100%;
 }
 
-/* 안전, 편의 슬라이드바 설명 */
+/* �븞�쟾, �렪�쓽 �뒳�씪�씠�뱶諛� �꽕紐� */
 #descript_convenience,
 #descript_safety {
     padding-left: 15%;
@@ -408,7 +419,38 @@ body {
     color: #888686;
 }
 
-/* 버튼 css */
+/* 추천결과 지역구 선택시 정보 보여줌 */
+.select-gu-info {
+    width: 310px;
+    border: rgba(11, 94, 215, 0.50) 2px solid;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: 12px;
+    margin-right: 10px;
+    text-align: center;
+    height: 830px;
+    line-height: 50px;
+}
+
+.select-gu-info p {
+    font-size: 20px;
+}
+
+#chartContainer {
+    width: 50%;    /* or any other percentage or pixel value */
+    height: 400px; /* or any other pixel value */
+    margin: 0 auto; /* center the container */
+    position: absolute;
+    left: 333px;
+
+}
+
+
+
+
+
+
+/* 踰꾪듉 css */
 .btn {
     display: inline-block;
     padding: 6px 12px;
@@ -845,8 +887,8 @@ input[type="button"].btn-block {
     width: 100%;
 }
 
-/* 버튼 그룹 관련 */
-/* btn-group 관련 추가 */
+/* 踰꾪듉 洹몃９ 愿��젴 */
+/* btn-group 愿��젴 異붽� */
 .btn-lg,
 .btn-group-lg>.btn {
     padding: 0.5rem 1rem;

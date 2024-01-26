@@ -13,12 +13,12 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c3c68c349cd485fe2feeb1800479027">
     </script>
     <script src="https://kit.fontawesome.com/09b067fdc5.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/house_rec.css">
+    <link rel="stylesheet" href="css/house_rec.css?ver=123">
     <link rel="stylesheet" href="css//rec_graph.css?ver=123">
     <link rel="stylesheet" href="css/gu_main_map.css">
     <link rel="stylesheet" href="css/rec_info.css">
     <link rel="stylesheet" href="css/comp_modal.css">
-    <script src="js/house_rec.js?ver=123"></script>
+    <script src="js/house_rec.js"></script>
 </head>
 <body>
     <div id="map">
@@ -306,8 +306,43 @@
                     </div>
                 </div>
             </div>
-            <!-- <div id="logo-img"><img src="/images/home_icon.png" alt=""></div> -->
         </aside>
+        
+                <!-- 선택된 지역구 왜 추천하는지에 대한 정보 -->
+        <aside id="side-bar-second">
+            <!-- 사용자 입력창 -->
+            <div id="user-input">
+                <div class="house_recommend">
+                    선택된 지역구 이름
+                </div>
+                <div class="select-gu-info">
+                    <p>동대문구가 왜 추천되었을까요?</p>
+                    <hr class="gu_name_hr" id="char_month_hr">
+
+                    동대문구의 안전 순위는 25개 구 중<br>
+                    --번 째입니다.<br>
+                    동대문구의 편의 순위는 25개 구 중<br>
+                    --번 째입니다.<br>
+                    
+                    지하철역<br>
+                    
+                    1호선 : ( 청량리역, 제기역, 신설동역, 제기역 ) 
+                    				2호선 (용두역, 신답역)
+                    				
+                 행정동
+                    
+                    
+                    
+                    
+                    <br><br><br><br><br>
+
+                    <동대문구의 총평><br>
+                    집값도 낮고 편의성과 안전성도 평균 이상!<br>
+                    그러나 인구 밀집도가 높은게 함정..
+                </div>
+
+        </aside>
+        
     </div>
     <div id="population-shame-bar">
         <div id="population-shame-text">인구 밀집도 수치</div>
