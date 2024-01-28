@@ -25,6 +25,15 @@ body {
     transition: 500ms;
 }
 
+#chart_information {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    transition: 500ms;
+}
+
 /* �궗�씠�뱶 踰꾪듉 */
 #btn {
     position: absolute;
@@ -36,9 +45,10 @@ body {
     text-align: center;
     line-height: 40px;
     border-radius: 7px;
-    left: 661px;
+    left: 328px;
     top: 450px;
     box-shadow: 3px 3px 7px 3px rgba(0, 0, 0, 0.3);
+    transition: 500ms;
 }
 
 #btn:hover {
@@ -60,11 +70,13 @@ body {
     position: absolute;
     /* border: 2px solid #0B5ED7; */
     background: white;
-    left: 333px;
+    /* left: 333px; */
     width: 333px;
     height: 945px;
     overflow: auto;
     box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    transition: 500ms;
 }
 
 /* 二쇨굅吏� 異붿쿇 */
@@ -82,9 +94,10 @@ body {
 }
 
 /* �쟾�꽭/�썡�꽭 �꽑�깮 */
-#char_month_hr  {
+#char_month_hr {
     margin-bottom: 10px;
 }
+
 .select_need {
     width: 300px;
     border: rgba(11, 94, 215, 0.50) 2px solid;
@@ -262,7 +275,7 @@ body {
 }
 
 /* 寃곌낵 李� */
-.rec_result_div   {
+.rec_result_div {
     width: 100px;
 }
 
@@ -341,6 +354,12 @@ body {
     font-size: 17px;
 }
 
+#chart-start-hr {
+    background: rgba(11, 94, 215, 0.50);
+    height: 2px;
+    border: 0;
+}
+
 .gu_name_hr {
     background: rgba(11, 94, 215, 0.50);
     height: 2px;
@@ -350,6 +369,22 @@ body {
 .price_hr {
     background: rgba(11, 94, 215, 0.50);
     height: 0.1px;
+    border: 0;
+}
+
+#rank-hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background: rgba(11, 93, 215, 0.178);
+    height: 2px;
+    border: 0;
+}
+
+.chart-hr {
+    margin-top: 15px;
+    margin-bottom: 7px;
+    background: rgba(11, 93, 215, 0.178);
+    height: 2px;
     border: 0;
 }
 
@@ -428,25 +463,44 @@ body {
     margin-left: 12px;
     margin-right: 10px;
     text-align: center;
-    height: 830px;
+    height: 850px;
     line-height: 50px;
 }
 
 .select-gu-info p {
-    font-size: 20px;
+    font-size: 30px;
 }
 
-#chartContainer {
-    width: 50%;    /* or any other percentage or pixel value */
-    height: 400px; /* or any other pixel value */
-    margin: 0 auto; /* center the container */
-    position: absolute;
-    left: 333px;
-
+.chart_name,
+.chart_rank {
+    font-size: 1.2rem;
+    color: #0B5ED7;
 }
 
+.chart-info {
+    border: 0px solid rgba(171, 58, 58, 0.669);
+    width: 300px;
+    height: 150px;
+    margin-left: 4px;
+}
 
+#recommend_first_result,
+#recommend_first_result_detail,
+#recommend_second_result,
+#recommend_second_result_detail,
+#recommend_third_result,
+#recommend_third_result_detail {
+    cursor: pointer;
+}
 
+#recommend_first_result:hover,
+#recommend_first_result_detail:hover,
+#recommend_second_result:hover,
+#recommend_second_result_detail:hover,
+#recommend_third_result:hover,
+#recommend_third_result_detail:hover {
+    color: #0B5ED7;
+}
 
 
 

@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="css/gu_main_map.css">
     <link rel="stylesheet" href="css/rec_info.css">
     <link rel="stylesheet" href="css/comp_modal.css">
-    <script src="js/house_rec.js"></script>
+    <script src="js/house_rec.js?ver=123"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div id="map">
@@ -178,7 +179,7 @@
                 <div id="recommend_first">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            1. <span id="recommend_first_result"></span>
+                            1. <span id="recommend_first_result">-</span>
                         </div>
                         <input type="checkbox" name="first" value="first" id="check_first">
                         <span id="recommend_first_btn" onclick="showDetailFirst()">▼</span>
@@ -187,7 +188,7 @@
                 <div id="recommend_first_info">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            1. <span id="recommend_first_result_detail"></span>
+                            1. <span id="recommend_first_result_detail">-</span>
                         </div>
                         <input type="checkbox" name="first" value="first" id="check_first_info">
                         <span id="recommend_first_btn" onclick="hideDetailFirst()">▲</span>
@@ -220,7 +221,7 @@
                 <div id="recommend_second">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            2. <span id="recommend_second_result"></span>
+                            2. <span id="recommend_second_result">-</span>
                         </div>
                         <input type="checkbox" name="second" value="second" id="check_second">
                         <span id="recommend_second_btn" onclick="showDetailSecond()">▼</span>
@@ -229,7 +230,7 @@
                 <div id="recommend_second_info">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            2. <span id="recommend_second_result_detail"></span>
+                            2. <span id="recommend_second_result_detail">-</span>
                         </div>
                         <input type="checkbox" name="second" value="second" id="check_second_info">
                         <span id="recommend_second_btn" onclick="hideDetailSecond()">▲</span>
@@ -261,7 +262,7 @@
                 <div id="recommend_third">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            3. <span id="recommend_third_result"></span>
+                            3. <span id="recommend_third_result">-</span>
                         </div>
                         <input type="checkbox" name="third" value="third" id="check_third">
                         <span id="recommend_third_btn" onclick="showDetailThird()">▼</span>
@@ -270,7 +271,7 @@
                 <div id="recommend_third_info">
                     <div class="recommend_inner_text">
                         <div class="rec_result_div">
-                            3. <span id="recommend_third_result_detail"></span>
+                            3. <span id="recommend_third_result_detail">-</span>
                         </div>
                         <input type="checkbox" name="third" value="third" id="check_third_info">
                         <span id="recommend_third_btn" onclick="hideDetailThird()">▲</span>
@@ -307,43 +308,76 @@
                 </div>
             </div>
         </aside>
-        
+    </div>    
                 <!-- 선택된 지역구 왜 추천하는지에 대한 정보 -->
+    <section id="chart_information">
+        <!-- 선택된 지역구 왜 추천하는지에 대한 정보 -->
         <aside id="side-bar-second">
-            <!-- 사용자 입력창 -->
-            <div id="user-input">
-                <div class="house_recommend">
-                    선택된 지역구 이름
+            <div class="house_recommend">
+                <span class="chart_name" style="color: white;">동대문구</span>
+            </div>
+            <div class="select-gu-info">
+                <div class="btn-group check_chart_info" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" name="chartType" class="btn-check" id="btn_safe" autocomplete="off"
+                    checked>
+                    <label for="btn_safe" class="btn btn-outline-primary">안전 정보</label>
+                    <div style="width: 40px;"></div>
+                    <input type="radio" name="chartType" class="btn-check" id="btn_conv" autocomplete="off"
+                        >
+                    <label for="btn_conv" class="btn btn-outline-primary">편의 정보</label>
                 </div>
-                <div class="select-gu-info">
-                    <p>동대문구가 왜 추천되었을까요?</p>
-                    <hr class="gu_name_hr" id="char_month_hr">
+                <hr id="chart-start-hr">
+                
+                <div id="safe-info">
+                    <span class="chart_name">동대문구</span>의 안전 순위는 25개 구 중<br>
+                    <span id="chart_safe_rank" class="chart_rank">1</span>번 째입니다.<br>
+                    <hr id="rank-hr">
+                                            
+                    <div class="chart-info">
+                        <canvas id="policeOfficeChart"></canvas>
+                    </div>
+                    <hr class="chart-hr">
+                    
+                    
+                    <div class="chart-info">
+                        <canvas id="cctvChart"></canvas>
+                    </div>
+                    <hr class="chart-hr">
 
-                    동대문구의 안전 순위는 25개 구 중<br>
-                    --번 째입니다.<br>
-                    동대문구의 편의 순위는 25개 구 중<br>
-                    --번 째입니다.<br>
-                    
-                    지하철역<br>
-                    
-                    1호선 : ( 청량리역, 제기역, 신설동역, 제기역 ) 
-                    				2호선 (용두역, 신답역)
-                    				
-                 행정동
-                    
-                    
-                    
-                    
-                    <br><br><br><br><br>
-
-                    <동대문구의 총평><br>
-                    집값도 낮고 편의성과 안전성도 평균 이상!<br>
-                    그러나 인구 밀집도가 높은게 함정..
+                    <div class="chart-info">
+                        <canvas id="arrestChart"></canvas>
+                    </div>
+                    <hr class="chart-hr">
                 </div>
 
+                <div id="conv-info">
+                    <span class="chart_name">동대문구</span>의 편의 순위는 25개 구 중<br>
+                    <span id="chart_conv_rank" class="chart_rank">2</span>번 째입니다.<br>
+                    <hr id="rank-hr">
+                                            
+                    <div class="chart-info">
+                        <canvas id="restaurantChart"></canvas>
+                    </div>
+                    <hr class="chart-hr">
+                
+                    
+                    <div class="chart-info">
+                        <canvas id="convStoreChart"></canvas>
+                    </div>
+                    <hr class="chart-hr">
+
+                    <div class="chart-info">
+                        <canvas id="cafeChart"></canvas>
+                    </div>
+                    <hr class="chart-hr">
+                </div>
+                <h3 style="color: #0B5ED7;"><<span class="chart_name" style="font-size:1.2rem;">동대문구</span>의 총평></h3>
+                집값도 낮고 편의성과 안전성도 평균 이상!<br>
+                그러나 인구 밀집도가 높은게 함정..
+            </div>
         </aside>
-        
-    </div>
+    </section>
+    
     <div id="population-shame-bar">
         <div id="population-shame-text">인구 밀집도 수치</div>
         <div id="population-shame-btn">-</div>

@@ -80,16 +80,27 @@ window.onload = function () {
 
     // 패널 열고 닫기
     var info = document.querySelector("#information");
+    var chart_info = document.querySelector("#chart_information");
     var func = document.querySelector("#btn");
 
     func.addEventListener("click", panelFunc);
 
     function panelFunc() {
-        if (info.style.left == "0px") {
-            info.style.left = "-666px";
+        if (chart_info.style.left == "0px") {
+            info.style.left = "-333px";
+            chart_info.style.left = "-333px";
             func.innerText = "▶";
-        } else {
+        }
+        else if (func.style.left == "662px") {
+            func.style.left = "328px";
+            info.style.left = "-333px";
+            chart_info.style.left = "-333px";
+            func.innerText = "▶";
+        }
+        else {
+            chart_info.style.left = "333px";
             info.style.left = "0px";
+            func.style.left = "662px";
             func.innerText = "◀";
         }
     }
@@ -122,13 +133,13 @@ window.onload = function () {
         yText.innerHTML = '<a href="./description.html#first_page" target="_blank">점수 산정 방식 보러 가기</a>';
         yText.querySelector('a').style.textDecoration = "none";
         yText.querySelector('a').style.color = "rgba(11, 94, 215, 1)";
-        
-        yText.querySelector('a').addEventListener("mouseover", function() {
+
+        yText.querySelector('a').addEventListener("mouseover", function () {
             this.style.color = "#4690ff";
         });
 
         // 마우스가 벗어날 때의 이벤트 처리
-        yText.querySelector('a').addEventListener("mouseout", function() {
+        yText.querySelector('a').addEventListener("mouseout", function () {
             this.style.color = "rgba(11, 94, 215, 1)";
         });
     });
@@ -228,6 +239,23 @@ window.onload = function () {
     cafe_content_btn.addEventListener("click", () => { initConv(3); searchGu("conv", "cafe"); });
     olive_content_btn.addEventListener("click", () => { initConv(4); searchGu("conv", "olive"); });
     daiso_content_btn.addEventListener("click", () => { initConv(5); searchGu("conv", "daiso"); });
+
+    // 초기 로딩 시 안전 정보 표시, 편의 정보 숨김
+    document.getElementById('safe-info').style.display = 'block';
+    document.getElementById('conv-info').style.display = 'none';
+
+    // 안전 정보 버튼 클릭 시
+    document.getElementById('btn_safe').addEventListener('click', function () {
+        document.getElementById('safe-info').style.display = 'block';
+        document.getElementById('conv-info').style.display = 'none';
+    });
+
+    // 편의 정보 버튼 클릭 시
+    document.getElementById('btn_conv').addEventListener('click', function () {
+        document.getElementById('safe-info').style.display = 'none';
+        document.getElementById('conv-info').style.display = 'block';
+    });
+
 
 }
 // window.onload 끝
@@ -365,14 +393,19 @@ function infoClose() {
 function showCharter() {
     document.getElementById("charterInput").style.display = "block";
     document.getElementById("monthlyInput").style.display = "none";
-    document.querySelector(".select_need").style.height = "150px";
+    document.querySelector(".select_need").style.height = "180px";
+    
+	document.querySelector('input[name="monthlyDeposit"]').value = "";
+    document.querySelector('input[name="monthlyMonth"]').value = "";
 }
 
 // 월세 선택 시 보여줄 화면
 function showMonthly() {
     document.getElementById("charterInput").style.display = "none";
     document.getElementById("monthlyInput").style.display = "block";
-    document.querySelector(".select_need").style.height = "200px";
+    document.querySelector(".select_need").style.height = "230px";
+    
+	document.querySelector('input[name="charterDeposit"]').value = "";
 }
 
 // 추천 결과 페이지 전환
@@ -380,9 +413,9 @@ function showRecommend() {
     document.getElementById("user-input").style.display = "block";
     document.getElementById("recommend_result_page").style.display = "none";
 
-    document.getElementById("recommend_first").style.display = "blcok";
-    document.getElementById("recommend_second").style.display = "blcok";
-    document.getElementById("recommend_third").style.display = "blcok";
+    document.getElementById("recommend_first").style.display = "block";
+    document.getElementById("recommend_second").style.display = "block";
+    document.getElementById("recommend_third").style.display = "block";
 
     document.getElementById("recommend_first_info").style.display = "none";
     document.getElementById("recommend_second_info").style.display = "none";
@@ -399,6 +432,17 @@ function showResult() {
 
     document.getElementById("user-input").style.display = "none";
     document.getElementById("recommend_result_page").style.display = "block";
+
+    var chart_info = document.querySelector("#chart_information");
+    var func = document.querySelector("#btn");
+
+    chart_info.style.zIndex = "1";
+    chart_info.style.left = "333px";
+
+    if (chart_info.style.left === '333px') {
+        func.style.left = "662px";
+        func.innerText = "◀";
+    }
 
 
     // 거주지 추천 ajax to servlet
@@ -424,6 +468,8 @@ function showResult() {
         success: function (data) {
             displayMonthly(data);
             showMap(data);
+            chart(data);
+            chart_update(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('에러 발생:', textStatus, errorThrown);
@@ -442,12 +488,13 @@ function showResult() {
         success: function (data) {
             displayCharter(data);
             showMap(data);
+            chart(data);
+            chart_update(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('에러 발생:', textStatus, errorThrown);
         }
     });
-
 
     // 거주지 추천 결과 데이터 보여주기
     var orders = ["first", "second", "third"];
@@ -459,8 +506,23 @@ function showResult() {
             document.getElementById(recommend_result).innerText = data[i].gu_name;
             console.log(data[i].gu_name);
 
+            var chart_name = document.querySelectorAll(".chart_name");
+            for (var j = 0; j < chart_name.length; j++) {
+                chart_name[j].innerText = data[0].gu_name;
+            }
+
+            var chart_safe_rank = document.getElementById("chart_safe_rank");
+            var chart_conv_rank = document.getElementById("chart_conv_rank");
+            for (var j = 0; j < populationArea.length; j++) {
+                if (data[0].gu_name == populationArea[j].name) {
+                    chart_safe_rank.innerText = populationArea[j].safe_rank;
+                    chart_conv_rank.innerText = populationArea[j].conv_rank;
+                }
+            }
+
             var recommend_detail = recommend_result + "_detail";
             document.getElementById(recommend_detail).innerText = data[i].gu_name;
+
 
             var select_charter = orders[i] + "_charter_fee";
             document.getElementById(select_charter).innerText = data[i].charter_avg;
@@ -492,6 +554,20 @@ function showResult() {
             document.getElementById(recommend_result).innerText = data[i].gu_name;
             console.log(data[i].gu_name);
 
+            var chart_name = document.querySelectorAll(".chart_name");
+            for (var j = 0; j < chart_name.length; j++) {
+                chart_name[j].innerText = data[0].gu_name;
+            }
+
+            var chart_safe_rank = document.getElementById("chart_safe_rank");
+            var chart_conv_rank = document.getElementById("chart_conv_rank");
+            for (var j = 0; j < populationArea.length; j++) {
+                if (data[0].gu_name == populationArea[j].name) {
+                    chart_safe_rank.innerText = populationArea[j].safe_rank;
+                    chart_conv_rank.innerText = populationArea[j].conv_rank;
+                }
+            }
+
             var recommend_detail = recommend_result + "_detail";
             document.getElementById(recommend_detail).innerText = data[i].gu_name;
 
@@ -517,6 +593,142 @@ function showResult() {
             document.getElementById(conv_graph).style.width = data[i].cvt_score * 2 - 10 + "px";
         }
     }
+function chart(data) {
+    if (data && data.length > 0) {
+        updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, data[0].police_office], ['#0b5dd7ac', '#0b5dd7']);
+        updateChart('cctvChart', ['구 평균 CCTV', 'CCTV'], [3719, data[0].cctv], ['rgba(248, 45, 45, 0.697)', 'rgba(248, 45, 45)']);
+        updateChart('arrestChart', ['구 평균 검거율', '검거율'], [72, data[0].safe_score], ['rgba(69, 69, 69, 0.719)', 'rgba(69, 69, 69)']);
+        updateChart('restaurantChart', ['구 평균 음식점', '음식점'], [4957, data[0].restourant], ['rgba(0, 189, 0, 0.687)', 'rgba(0, 189, 0)']);
+        updateChart('convStoreChart', ['구 평균 편의점', '편의점'], [341, data[0].cvt_store], ['rgba(238, 130, 238, 0.683)', 'rgba(238, 130, 238)']);
+        updateChart('cafeChart', ['구 평균 카페', '카페'], [940, data[0].cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
+    }
+}
+
+function updateChart(chartId, labels, data, backgroundColor) {
+    var chartData = {
+        labels: labels,
+        datasets: [{
+            label: labels[1],
+            data: data,
+            backgroundColor: backgroundColor,
+        }]
+    };
+
+    var existingChart = window[chartId + 'Instance'];
+
+    if (existingChart) {
+        existingChart.data = chartData;
+        existingChart.update();
+    } else {
+        var chartElement = document.getElementById(chartId);
+        window[chartId + 'Instance'] = new Chart(chartElement.getContext('2d'), {
+            type: 'bar',
+            data: chartData,
+            options: {
+                maxBarThickness: 40
+            }
+        });
+    }
+}
+
+    // 추천 구 클릭시 해당 구에 맞는 
+
+    var first_rec = document.getElementById("recommend_first_result");
+    var first_rec_detail = document.getElementById("recommend_first_result_detail");
+    var second_rec = document.getElementById("recommend_second_result");
+    var second_rec_detail = document.getElementById("recommend_second_result_detail");
+    var third_rec = document.getElementById("recommend_third_result");
+    var third_rec_detail = document.getElementById("recommend_third_result_detail");
+    var chart_name = document.querySelectorAll(".chart_name");
+    var chart_safe_rank = document.getElementById("chart_safe_rank");
+    var chart_conv_rank = document.getElementById("chart_conv_rank");
+
+    first_rec.addEventListener("click", first_gu_name);
+    first_rec_detail.addEventListener("click", first_gu_name);
+    second_rec.addEventListener("click", second_gu_name);
+    second_rec_detail.addEventListener("click", second_gu_name);
+    third_rec.addEventListener("click", third_gu_name);
+    third_rec_detail.addEventListener("click", third_gu_name);
+
+    function chart_update(data) {
+    for(var i=0; i<data.length; i++)	{
+    console.log("chart_update함수 실행 : " + data[i]);
+    }
+    	
+        // first_gu_name(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
+        // console.log(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
+        // second_gu_name(data[1].gu_name, data[1].police_office, data[1].cctv, data[1].safe_score, data[1].restourant, data[1].cafe, data[1].cvt_store);
+        // third_gu_name(data[2].gu_name, data[2].police_office, data[2].cctv, data[2].safe_score, data[2].restourant, data[2].cafe, data[2].cvt_store);
+        if(first_rec.addEventListener("click", first_gu_name) || first_rec_detail.addEventListener("click", first_gu_name)) {
+            first_gu_name(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
+        }else if(second_rec.addEventListener("click", second_gu_name) || second_rec_detail.addEventListener("click", second_gu_name))   {
+            second_gu_name(data[1].gu_name, data[1].police_office, data[1].cctv, data[1].safe_score, data[1].restourant, data[1].cafe, data[1].cvt_store);
+        }else if(third_rec.addEventListener("click", third_gu_name) || third_rec_detail.addEventListener("click", third_gu_name))   {
+            third_gu_name(data[2].gu_name, data[2].police_office, data[2].cctv, data[2].safe_score, data[2].restourant, data[2].cafe, data[2].cvt_store);
+        }
+    }
+    function first_gu_name(gu_name, police_office, cctv, safe_score, restourant, cafe, cvt_store) {
+        for (var j = 0; j < chart_name.length; j++) {
+            chart_name[j].innerText = gu_name;
+        }
+
+        for (var j = 0; j < populationArea.length; j++) {
+            if (gu_name == populationArea[j].name) {
+                chart_safe_rank.innerText = populationArea[j].safe_rank;
+                chart_conv_rank.innerText = populationArea[j].conv_rank;
+            }
+        }
+
+        updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, police_office], ['#0b5dd7ac', '#0b5dd7']);
+        updateChart('cctvChart', ['구 평균 CCTV', 'CCTV'], [3719, cctv], ['rgba(248, 45, 45, 0.697)', 'rgba(248, 45, 45)']);
+        updateChart('arrestChart', ['구 평균 검거율', '검거율'], [72, safe_score], ['rgba(69, 69, 69, 0.719)', 'rgba(69, 69, 69)']);
+        updateChart('restaurantChart', ['구 평균 음식점', '음식점'], [4957, restourant], ['rgba(0, 189, 0, 0.687)', 'rgba(0, 189, 0)']);
+        updateChart('convStoreChart', ['구 평균 편의점', '편의점'], [341, cvt_store], ['rgba(238, 130, 238, 0.683)', 'rgba(238, 130, 238)']);
+        updateChart('cafeChart', ['구 평균 카페', '카페'], [940, cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
+    }
+
+    function second_gu_name(gu_name, police_office, cctv, safe_score, restourant, cafe, cvt_store) {
+        for (var j = 0; j < chart_name.length; j++) {
+            chart_name[j].innerText = gu_name;
+        }
+
+        for (var j = 0; j < populationArea.length; j++) {
+            if (gu_name == populationArea[j].name) {
+                chart_safe_rank.innerText = populationArea[j].safe_rank;
+                chart_conv_rank.innerText = populationArea[j].conv_rank;
+            }
+        }
+
+        updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, police_office], ['#0b5dd7ac', '#0b5dd7']);
+        updateChart('cctvChart', ['구 평균 CCTV', 'CCTV'], [3719, cctv], ['rgba(248, 45, 45, 0.697)', 'rgba(248, 45, 45)']);
+        updateChart('arrestChart', ['구 평균 검거율', '검거율'], [72, safe_score], ['rgba(69, 69, 69, 0.719)', 'rgba(69, 69, 69)']);
+        updateChart('restaurantChart', ['구 평균 음식점', '음식점'], [4957, restourant], ['rgba(0, 189, 0, 0.687)', 'rgba(0, 189, 0)']);
+        updateChart('convStoreChart', ['구 평균 편의점', '편의점'], [341, cvt_store], ['rgba(238, 130, 238, 0.683)', 'rgba(238, 130, 238)']);
+        updateChart('cafeChart', ['구 평균 카페', '카페'], [940, cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
+    }
+
+    function third_gu_name(gu_name, police_office, cctv, safe_score, restourant, cafe, cvt_store) {
+        for (var j = 0; j < chart_name.length; j++) {
+            chart_name[j].innerText = gu_name;
+        }
+
+        for (var j = 0; j < populationArea.length; j++) {
+            if (gu_name == populationArea[j].name) {
+                chart_safe_rank.innerText = populationArea[j].safe_rank;
+                chart_conv_rank.innerText = populationArea[j].conv_rank;
+            }
+        }
+
+        updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, police_office], ['#0b5dd7ac', '#0b5dd7']);
+        updateChart('cctvChart', ['구 평균 CCTV', 'CCTV'], [3719, cctv], ['rgba(248, 45, 45, 0.697)', 'rgba(248, 45, 45)']);
+        updateChart('arrestChart', ['구 평균 검거율', '검거율'], [72, safe_score], ['rgba(69, 69, 69, 0.719)', 'rgba(69, 69, 69)']);
+        updateChart('restaurantChart', ['구 평균 음식점', '음식점'], [4957, restourant], ['rgba(0, 189, 0, 0.687)', 'rgba(0, 189, 0)']);
+        updateChart('convStoreChart', ['구 평균 편의점', '편의점'], [341, cvt_store], ['rgba(238, 130, 238, 0.683)', 'rgba(238, 130, 238)']);
+        updateChart('cafeChart', ['구 평균 카페', '카페'], [940, cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
+    }
+
+
+
 
 
     // 추천 지역 다시 그리기
