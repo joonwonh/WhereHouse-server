@@ -79,7 +79,7 @@ public class InfoDao {
 						double lat = jsonObject.getAsJsonPrimitive("lat").getAsDouble();
 						double lng = jsonObject.getAsJsonPrimitive("lng").getAsDouble();
 
-						if (address.contains("¼­¿ï")) {
+						if (address.contains("ì„œìš¸")) {
 							String query = "insert into policeoffice values (?,?,?)";
 							pstmt = con.prepareStatement(query);
 							pstmt.setString(1, address);
@@ -108,7 +108,6 @@ public class InfoDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println("#µðºñ »ðÀÔ ¿Ï·á!");
 	}
 
 	public void setDBCCTV(JsonArray json) {
@@ -158,6 +157,5 @@ public class InfoDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println("#µðºñ »ðÀÔ ¿Ï·á!");
 	}
 }
