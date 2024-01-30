@@ -40,18 +40,21 @@ public class RecServiceDao {
 		try {
 			con = dataFactory.getConnection();
 			String query = "";
-			if(cvt>safe)	{
-				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3 order by cvt_score desc";
+			if(safe>cvt)	{
+				query = "SELECT * FROM(SELECT * FROM gu_info WHERE charter_avg <= ? ORDER BY safe_score DESC, charter_avg DESC) WHERE ROWNUM <= 3";
 			}
-			else if(cvt<safe)	{
-				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3 order by safe_score desc";
+			else if(safe<cvt)	{
+				query = "SELECT * FROM(SELECT * FROM gu_info WHERE charter_avg <= ? ORDER BY cvt_score DESC, charter_avg DESC) WHERE ROWNUM <= 3";
 			}
 			else if(cvt == safe)	{
-				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(charter_avg - ?)) WHERE ROWNUM <= 3";
+				query = "SELECT * FROM (SELECT * FROM gu_info WHERE charter_avg <= ?  ORDER BY CASE WHEN ?*10 < 50 THEN charter_avg ELSE cvt_score  END DESC, charter_avg DESC) WHERE ROWNUM <= 3";
 			}
 			
 			pstmt = con.prepareStatement(query);
 	        pstmt.setInt(1, inputData);
+	        if(cvt == safe)	{
+	        	pstmt.setInt(3, safe);	
+	        }
 	        set = pstmt.executeQuery();
 			while (set.next()) {
 				RecServiceDto dto = new RecServiceDto();
@@ -90,27 +93,34 @@ public class RecServiceDao {
 		return dtos;
 	}
 	
-	public ArrayList<RecServiceDto> chooseMonthlyRec(int inputData, int safe, int cvt) {
+	public ArrayList<RecServiceDto> chooseMonthlyRec(int deposit, int monthly, int safe, int cvt) {
 		ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
-		
+		System.out.println("deposit" +deposit);
+		System.out.println("monthly" +monthly);
+		System.out.println("safe" +safe);
+		System.out.println("cvt" +cvt);
 		try {
 			con = dataFactory.getConnection();
 
 			String query = "";
-			if(cvt>safe)	{
-				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3 order by cvt_score desc";
+			if(safe>cvt)	{
+				query = "SELECT * FROM(SELECT * FROM gu_info WHERE monthly_avg <= ? AND deposit_avg <=? ORDER BY safe_score DESC, monthly_avg DESC) WHERE ROWNUM <= 3";
 			}
-			else if(cvt<safe)	{
-				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3 order by safe_score desc";
+			else if(safe<cvt)	{
+				query = "SELECT * FROM(SELECT * FROM gu_info WHERE monthly_avg <= ? AND deposit_avg <=? ORDER BY cvt_score DESC, monthly_avg DESC) WHERE ROWNUM <= 3";
 			}
 			else if(cvt == safe)	{
-				query = "SELECT * FROM ( SELECT * FROM gu_info ORDER BY ABS(monthly_avg - ?), deposit_avg) WHERE ROWNUM <= 3";
+				query = "SELECT * FROM(SELECT * FROM gu_info WHERE monthly_avg <= ? AND deposit_avg <=? ORDER BY CASE WHEN ?*10 < 50 THEN monthly_avg ELSE cvt_score END DESC, monthly_avg DESC) WHERE ROWNUM <= 3";
 			}
 			pstmt = con.prepareStatement(query);
-	        pstmt.setInt(1, inputData);
+	        pstmt.setInt(1, monthly);
+	        pstmt.setInt(2, deposit);
+	        if(cvt == safe)	{
+	        	pstmt.setInt(3, safe);	
+	        }
 	        set = pstmt.executeQuery();
 			while (set.next()) {
 				RecServiceDto dto = new RecServiceDto();

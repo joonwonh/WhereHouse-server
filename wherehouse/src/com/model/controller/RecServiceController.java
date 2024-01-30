@@ -32,7 +32,6 @@ public class RecServiceController extends HttpServlet {
 	}
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("actiondo½ÇÇà");
         request.setCharacterEncoding("UTF-8");
 
 		String uri = request.getRequestURI();

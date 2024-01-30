@@ -39,6 +39,8 @@ public class RecServiceMonthly implements RecCommand {
             Gson gson = new Gson();
             RecServiceDto dto = gson.fromJson(jsonData, RecServiceDto.class);
             
+            int deposit = dto.getDeposit_avg();
+            System.out.println(deposit);
             int monthly = dto.getMonthly_avg();
             System.out.println(monthly);
             int safe_score = dto.getSafe_score();
@@ -48,7 +50,7 @@ public class RecServiceMonthly implements RecCommand {
 
             try {
                     if(monthly != 0) {
-                        dtos = dao.chooseMonthlyRec(monthly, safe_score, cvt_score);
+                        dtos = dao.chooseMonthlyRec(deposit, monthly, safe_score, cvt_score);
                         System.out.println("월세 실행");
                     }
                 

@@ -117,7 +117,7 @@
                         <div id="charterInput">
                             <div>
                                 전세금(최대):
-                                <input type="text" name="charterDeposit" placeholder="" class="inputPrice"> 만원
+                                <input type="text" name="charterDeposit" placeholder="14000 ~ 30000" class="inputPrice"> 만원
                             </div>
                         </div>
 
@@ -125,11 +125,11 @@
                         <div id="monthlyInput">
                             <div>
                                 보증금(최대):
-                                <input type="text" name="monthlyDeposit" placeholder="" class="inputPrice"> 만원
+                                <input type="text" name="monthlyDeposit" placeholder="1800 ~ 4500" class="inputPrice"> 만원
                             </div>
                             <div>
                                 월세금(최대):
-                                <input type="text" name="monthlyMonth" placeholder="" class="inputPrice"> 만원
+                                <input type="text" name="monthlyMonth" placeholder="38 ~ 70" class="inputPrice"> 만원
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
 
                 <!-- 추천 결과 확인 -->
                 <div id="recommend_result">
-                    <div id="recommend_result_btn" onclick="showResult()">
+                    <div id="recommend_result_btn" onclick="resultCheck()">
                         <input type="button" disabled>
                         추천 결과 확인
                     </div>
