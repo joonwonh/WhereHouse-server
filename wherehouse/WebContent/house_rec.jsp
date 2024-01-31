@@ -13,12 +13,12 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c3c68c349cd485fe2feeb1800479027">
     </script>
     <script src="https://kit.fontawesome.com/09b067fdc5.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/house_rec.css?ver=123">
+    <link rel="stylesheet" href="css/house_rec.css">
     <link rel="stylesheet" href="css//rec_graph.css?ver=123">
     <link rel="stylesheet" href="css/gu_main_map.css">
     <link rel="stylesheet" href="css/rec_info.css">
     <link rel="stylesheet" href="css/comp_modal.css">
-    <script src="js/house_rec.js?ver=123"></script>
+    <script src="js/house_rec.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -372,8 +372,9 @@
                     <hr class="chart-hr">
                 </div>
                 <h3 style="color: #0B5ED7;"><<span class="chart_name" style="font-size:1.2rem;">동대문구</span>의 총평></h3>
-                집값도 낮고 편의성과 안전성도 평균 이상!<br>
-                그러나 인구 밀집도가 높은게 함정..
+					<span id="gu_review">강남3구답게 가격은 높은편 ! 하지만 <br>
+					인구밀집도도 낮고 안전 편의 점수도 높아 <br>
+					살기 좋은 지역이다</span>
             </div>
         </aside>
     </section>

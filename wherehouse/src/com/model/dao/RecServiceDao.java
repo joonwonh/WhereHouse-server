@@ -47,13 +47,13 @@ public class RecServiceDao {
 				query = "SELECT * FROM(SELECT * FROM gu_info WHERE charter_avg <= ? ORDER BY cvt_score DESC, charter_avg DESC) WHERE ROWNUM <= 3";
 			}
 			else if(cvt == safe)	{
-				query = "SELECT * FROM (SELECT * FROM gu_info WHERE charter_avg <= ?  ORDER BY CASE WHEN ?*10 < 50 THEN charter_avg ELSE cvt_score  END DESC, charter_avg DESC) WHERE ROWNUM <= 3";
+				query = "SELECT * FROM (SELECT * FROM gu_info WHERE charter_avg <= ?  ORDER BY CASE WHEN (?+1)*10 < 60 THEN charter_avg ELSE cvt_score  END DESC, charter_avg DESC) WHERE ROWNUM <= 3";
 			}
 			
 			pstmt = con.prepareStatement(query);
 	        pstmt.setInt(1, inputData);
 	        if(cvt == safe)	{
-	        	pstmt.setInt(3, safe);	
+	        	pstmt.setInt(2, safe);	
 	        }
 	        set = pstmt.executeQuery();
 			while (set.next()) {

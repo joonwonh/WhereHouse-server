@@ -394,8 +394,8 @@ function showCharter() {
     document.getElementById("charterInput").style.display = "block";
     document.getElementById("monthlyInput").style.display = "none";
     document.querySelector(".select_need").style.height = "180px";
-    
-	document.querySelector('input[name="monthlyDeposit"]').value = "";
+
+    document.querySelector('input[name="monthlyDeposit"]').value = "";
     document.querySelector('input[name="monthlyMonth"]').value = "";
 }
 
@@ -404,8 +404,8 @@ function showMonthly() {
     document.getElementById("charterInput").style.display = "none";
     document.getElementById("monthlyInput").style.display = "block";
     document.querySelector(".select_need").style.height = "230px";
-    
-	document.querySelector('input[name="charterDeposit"]').value = "";
+
+    document.querySelector('input[name="charterDeposit"]').value = "";
 }
 
 // 추천 결과 페이지 전환
@@ -500,7 +500,7 @@ function showResult() {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-        	deposit_avg: deposit_avg,
+            deposit_avg: deposit_avg,
             monthly_avg: monthly_avg,
             safe_score: safe_score,
             cvt_score: cvt_score
@@ -553,12 +553,18 @@ function showResult() {
 
             var chart_safe_rank = document.getElementById("chart_safe_rank");
             var chart_conv_rank = document.getElementById("chart_conv_rank");
+            var gu_info_review = document.getElementById("gu_review");
             for (var j = 0; j < populationArea.length; j++) {
                 if (data[0].gu_name == populationArea[j].name) {
                     chart_safe_rank.innerText = populationArea[j].safe_rank;
                     chart_conv_rank.innerText = populationArea[j].conv_rank;
+                    gu_info_review.innerText = populationArea[j].gu_review;
                 }
             }
+
+
+
+
 
             var recommend_detail = recommend_result + "_detail";
             document.getElementById(recommend_detail).innerText = data[i].gu_name;
@@ -601,10 +607,12 @@ function showResult() {
 
             var chart_safe_rank = document.getElementById("chart_safe_rank");
             var chart_conv_rank = document.getElementById("chart_conv_rank");
+            var gu_info_review = document.getElementById("gu_review");
             for (var j = 0; j < populationArea.length; j++) {
                 if (data[0].gu_name == populationArea[j].name) {
                     chart_safe_rank.innerText = populationArea[j].safe_rank;
                     chart_conv_rank.innerText = populationArea[j].conv_rank;
+                    gu_info_review.innerText = populationArea[j].gu_review;
                 }
             }
 
@@ -633,43 +641,43 @@ function showResult() {
             document.getElementById(conv_graph).style.width = data[i].cvt_score * 2 - 10 + "px";
         }
     }
-function chart(data) {
-    if (data && data.length > 0) {
-        updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, data[0].police_office], ['#0b5dd7ac', '#0b5dd7']);
-        updateChart('cctvChart', ['구 평균 CCTV', 'CCTV'], [3719, data[0].cctv], ['rgba(248, 45, 45, 0.697)', 'rgba(248, 45, 45)']);
-        updateChart('arrestChart', ['구 평균 검거율', '검거율'], [72, data[0].safe_score], ['rgba(69, 69, 69, 0.719)', 'rgba(69, 69, 69)']);
-        updateChart('restaurantChart', ['구 평균 음식점', '음식점'], [4957, data[0].restourant], ['rgba(0, 189, 0, 0.687)', 'rgba(0, 189, 0)']);
-        updateChart('convStoreChart', ['구 평균 편의점', '편의점'], [341, data[0].cvt_store], ['rgba(238, 130, 238, 0.683)', 'rgba(238, 130, 238)']);
-        updateChart('cafeChart', ['구 평균 카페', '카페'], [940, data[0].cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
+    function chart(data) {
+        if (data && data.length > 0) {
+            updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, data[0].police_office], ['#0b5dd7ac', '#0b5dd7']);
+            updateChart('cctvChart', ['구 평균 CCTV', 'CCTV'], [3719, data[0].cctv], ['rgba(248, 45, 45, 0.697)', 'rgba(248, 45, 45)']);
+            updateChart('arrestChart', ['구 평균 검거율', '검거율'], [72, data[0].safe_score], ['rgba(69, 69, 69, 0.719)', 'rgba(69, 69, 69)']);
+            updateChart('restaurantChart', ['구 평균 음식점', '음식점'], [4957, data[0].restourant], ['rgba(0, 189, 0, 0.687)', 'rgba(0, 189, 0)']);
+            updateChart('convStoreChart', ['구 평균 편의점', '편의점'], [341, data[0].cvt_store], ['rgba(238, 130, 238, 0.683)', 'rgba(238, 130, 238)']);
+            updateChart('cafeChart', ['구 평균 카페', '카페'], [940, data[0].cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
+        }
     }
-}
 
-function updateChart(chartId, labels, data, backgroundColor) {
-    var chartData = {
-        labels: labels,
-        datasets: [{
-            label: labels[1],
-            data: data,
-            backgroundColor: backgroundColor,
-        }]
-    };
+    function updateChart(chartId, labels, data, backgroundColor) {
+        var chartData = {
+            labels: labels,
+            datasets: [{
+                label: labels[1],
+                data: data,
+                backgroundColor: backgroundColor,
+            }]
+        };
 
-    var existingChart = window[chartId + 'Instance'];
+        var existingChart = window[chartId + 'Instance'];
 
-    if (existingChart) {
-        existingChart.data = chartData;
-        existingChart.update();
-    } else {
-        var chartElement = document.getElementById(chartId);
-        window[chartId + 'Instance'] = new Chart(chartElement.getContext('2d'), {
-            type: 'bar',
-            data: chartData,
-            options: {
-                maxBarThickness: 40
-            }
-        });
+        if (existingChart) {
+            existingChart.data = chartData;
+            existingChart.update();
+        } else {
+            var chartElement = document.getElementById(chartId);
+            window[chartId + 'Instance'] = new Chart(chartElement.getContext('2d'), {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    maxBarThickness: 40
+                }
+            });
+        }
     }
-}
 
     var first_rec = document.getElementById("recommend_first_result");
     var first_rec_detail = document.getElementById("recommend_first_result_detail");
@@ -680,37 +688,38 @@ function updateChart(chartId, labels, data, backgroundColor) {
     var chart_name = document.querySelectorAll(".chart_name");
     var chart_safe_rank = document.getElementById("chart_safe_rank");
     var chart_conv_rank = document.getElementById("chart_conv_rank");
+    var gu_info_review = document.getElementById("gu_review");
 
     function chart_update(data) {
-	    for(var i=0; i<data.length; i++)	{
-	    console.log("chart_update함수 실행 : " + data[i]);
-	    }
-    	
-	    first_rec.addEventListener("click", function() {
-	        first_gu_name(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
-	    });
+        for (var i = 0; i < data.length; i++) {
+            console.log("chart_update함수 실행 : " + data[i]);
+        }
 
-	    first_rec_detail.addEventListener("click", function() {
-	        first_gu_name(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
-	    });
+        first_rec.addEventListener("click", function () {
+            first_gu_name(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
+        });
 
-	    second_rec.addEventListener("click", function() {
-	        second_gu_name(data[1].gu_name, data[1].police_office, data[1].cctv, data[1].safe_score, data[1].restourant, data[1].cafe, data[1].cvt_store);
-	    });
+        first_rec_detail.addEventListener("click", function () {
+            first_gu_name(data[0].gu_name, data[0].police_office, data[0].cctv, data[0].safe_score, data[0].restourant, data[0].cafe, data[0].cvt_store);
+        });
 
-	    second_rec_detail.addEventListener("click", function() {
-	        second_gu_name(data[1].gu_name, data[1].police_office, data[1].cctv, data[1].safe_score, data[1].restourant, data[1].cafe, data[1].cvt_store);
-	    });
+        second_rec.addEventListener("click", function () {
+            second_gu_name(data[1].gu_name, data[1].police_office, data[1].cctv, data[1].safe_score, data[1].restourant, data[1].cafe, data[1].cvt_store);
+        });
 
-	    third_rec.addEventListener("click", function() {
-	        third_gu_name(data[2].gu_name, data[2].police_office, data[2].cctv, data[2].safe_score, data[2].restourant, data[2].cafe, data[2].cvt_store);
-	    });
+        second_rec_detail.addEventListener("click", function () {
+            second_gu_name(data[1].gu_name, data[1].police_office, data[1].cctv, data[1].safe_score, data[1].restourant, data[1].cafe, data[1].cvt_store);
+        });
 
-	    third_rec_detail.addEventListener("click", function() {
-	        third_gu_name(data[2].gu_name, data[2].police_office, data[2].cctv, data[2].safe_score, data[2].restourant, data[2].cafe, data[2].cvt_store);
-	    });
+        third_rec.addEventListener("click", function () {
+            third_gu_name(data[2].gu_name, data[2].police_office, data[2].cctv, data[2].safe_score, data[2].restourant, data[2].cafe, data[2].cvt_store);
+        });
+
+        third_rec_detail.addEventListener("click", function () {
+            third_gu_name(data[2].gu_name, data[2].police_office, data[2].cctv, data[2].safe_score, data[2].restourant, data[2].cafe, data[2].cvt_store);
+        });
     }
-    
+
     function first_gu_name(gu_name, police_office, cctv, safe_score, restourant, cafe, cvt_store) {
         for (var j = 0; j < chart_name.length; j++) {
             chart_name[j].innerText = gu_name;
@@ -720,6 +729,7 @@ function updateChart(chartId, labels, data, backgroundColor) {
             if (gu_name == populationArea[j].name) {
                 chart_safe_rank.innerText = populationArea[j].safe_rank;
                 chart_conv_rank.innerText = populationArea[j].conv_rank;
+                gu_info_review.innerText = populationArea[j].gu_review;
             }
         }
 
@@ -740,6 +750,7 @@ function updateChart(chartId, labels, data, backgroundColor) {
             if (gu_name == populationArea[j].name) {
                 chart_safe_rank.innerText = populationArea[j].safe_rank;
                 chart_conv_rank.innerText = populationArea[j].conv_rank;
+                gu_info_review.innerText = populationArea[j].gu_review;
             }
         }
 
@@ -760,6 +771,7 @@ function updateChart(chartId, labels, data, backgroundColor) {
             if (gu_name == populationArea[j].name) {
                 chart_safe_rank.innerText = populationArea[j].safe_rank;
                 chart_conv_rank.innerText = populationArea[j].conv_rank;
+                gu_info_review.innerText = populationArea[j].gu_review;
             }
         }
 
@@ -1040,31 +1052,31 @@ function graphInit(spec, num, selMenu, selContent) {
  */
 function initPopulation() {
     var populationArea = [];
-    populationArea.push({ name: "강동구", population: 18 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 11, deposit_avg_rank: 6, monthly_avg_rank: 14, conv_rank: 17, safe_rank: 19, congest_rank: 8 });
-    populationArea.push({ name: "송파구", population: 19 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 8, deposit_avg_rank: 1, monthly_avg_rank: 3, conv_rank: 2, safe_rank: 24, congest_rank: 7 });
-    populationArea.push({ name: "강남구", population: 6 * 40000 + 10000, color: "rgba(0,0,255,1)", charter_avg_rank: 2, deposit_avg_rank: 3, monthly_avg_rank: 1, conv_rank: 1, safe_rank: 7, congest_rank: 20 });
-    populationArea.push({ name: "서초구", population: 2 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 1, deposit_avg_rank: 2, monthly_avg_rank: 2, conv_rank: 7, safe_rank: 3, congest_rank: 24 });
-    populationArea.push({ name: "관악구", population: 13 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 13, deposit_avg_rank: 7, monthly_avg_rank: 21, conv_rank: 14, safe_rank: 18, congest_rank: 13 });
-    populationArea.push({ name: "동작구", population: 23 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 10, deposit_avg_rank: 10, monthly_avg_rank: 17, conv_rank: 11, safe_rank: 22, congest_rank: 3 });
-    populationArea.push({ name: "영등포구", population: 12 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 4, deposit_avg_rank: 4, monthly_avg_rank: 9, conv_rank: 5, safe_rank: 11, congest_rank: 14 });
-    populationArea.push({ name: "금천구", population: 17 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 17, deposit_avg_rank: 18, monthly_avg_rank: 18, conv_rank: 21, safe_rank: 13, congest_rank: 9 });
-    populationArea.push({ name: "구로구", population: 21 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 20, deposit_avg_rank: 20, monthly_avg_rank: 24, conv_rank: 12, safe_rank: 14, congest_rank: 5 });
-    populationArea.push({ name: "강서구", population: 7 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 12, deposit_avg_rank: 12, monthly_avg_rank: 8, conv_rank: 6, safe_rank: 23, congest_rank: 19 });
-    populationArea.push({ name: "양천구", population: 25 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 16, deposit_avg_rank: 15, monthly_avg_rank: 22, conv_rank: 23, safe_rank: 25, congest_rank: 1 });
-    populationArea.push({ name: "마포구", population: 10 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 9, deposit_avg_rank: 11, monthly_avg_rank: 5, conv_rank: 4, safe_rank: 9, congest_rank: 16 });
-    populationArea.push({ name: "서대문구", population: 16 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 21, deposit_avg_rank: 17, monthly_avg_rank: 11, conv_rank: 20, safe_rank: 16, congest_rank: 10 });
-    populationArea.push({ name: "은평구", population: 11 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 19, deposit_avg_rank: 16, monthly_avg_rank: 15, conv_rank: 18, safe_rank: 10, congest_rank: 15 });
-    populationArea.push({ name: "노원구", population: 8 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 25, deposit_avg_rank: 25, monthly_avg_rank: 25, conv_rank: 19, safe_rank: 15, congest_rank: 18 });
-    populationArea.push({ name: "도봉구", population: 9 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 22, deposit_avg_rank: 23, monthly_avg_rank: 16, conv_rank: 25, safe_rank: 17, congest_rank: 17 });
-    populationArea.push({ name: "강북구", population: 4 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 24, deposit_avg_rank: 24, monthly_avg_rank: 20, conv_rank: 24, safe_rank: 5, congest_rank: 22 });
-    populationArea.push({ name: "성북구", population: 15 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 18, deposit_avg_rank: 21, monthly_avg_rank: 19, conv_rank: 15, safe_rank: 6, congest_rank: 11 });
-    populationArea.push({ name: "중랑구", population: 22 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 15, deposit_avg_rank: 5, monthly_avg_rank: 23, conv_rank: 22, safe_rank: 20, congest_rank: 4 });
-    populationArea.push({ name: "동대문구", population: 24 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 14, deposit_avg_rank: 22, monthly_avg_rank: 12, conv_rank: 9, safe_rank: 12, congest_rank: 2 });
-    populationArea.push({ name: "광진구", population: 20 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 3, deposit_avg_rank: 9, monthly_avg_rank: 10, conv_rank: 10, safe_rank: 21, congest_rank: 6 });
-    populationArea.push({ name: "성동구", population: 14 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 5, deposit_avg_rank: 13, monthly_avg_rank: 13, conv_rank: 13, safe_rank: 8, congest_rank: 12 });
-    populationArea.push({ name: "용산구", population: 3 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 6, deposit_avg_rank: 8, monthly_avg_rank: 7, conv_rank: 16, safe_rank: 4, congest_rank: 23 });
-    populationArea.push({ name: "중구", population: 5 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 7, deposit_avg_rank: 14, monthly_avg_rank: 4, conv_rank: 3, safe_rank: 2, congest_rank: 21 });
-    populationArea.push({ name: "종로구", population: 1 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 23, deposit_avg_rank: 19, monthly_avg_rank: 6, conv_rank: 8, safe_rank: 1, congest_rank: 25 });
+    populationArea.push({ name: "강동구", population: 18 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 9, deposit_avg_rank: 6, monthly_avg_rank: 14, conv_rank: 17, safe_rank: 19, congest_rank: 8, gu_review: "집값은 평균선인데\n안전성과 편의성이 다소 낮네.." });
+    populationArea.push({ name: "송파구", population: 19 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 3, deposit_avg_rank: 1, monthly_avg_rank: 3, conv_rank: 4, safe_rank: 24, congest_rank: 7, gu_review: "강남 3구답게 높은 집값 + 좋은 편의성\n그러나 안전성은 조금 낮네?" });
+    populationArea.push({ name: "강남구", population: 6 * 40000 + 10000, color: "rgba(0,0,255,1)", charter_avg_rank: 2, deposit_avg_rank: 3, monthly_avg_rank: 1, conv_rank: 1, safe_rank: 7, congest_rank: 20, gu_review: "종합적으로 전부 최상위권!\n그러나 집값도 최상위권.." });
+    populationArea.push({ name: "서초구", population: 2 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 1, deposit_avg_rank: 2, monthly_avg_rank: 2, conv_rank: 7, safe_rank: 3, congest_rank: 24, gu_review: "전체적으로 살기 굉장히 좋은 동네\n하지만 그만큼 집값도.." });
+    populationArea.push({ name: "관악구", population: 13 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 17, deposit_avg_rank: 7, monthly_avg_rank: 21, conv_rank: 10, safe_rank: 18, congest_rank: 13, gu_review: "집값이 너무 괜찮다 여기?!\n그러나 안전성은 보장할 수 없다.." });
+    populationArea.push({ name: "동작구", population: 23 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 11, deposit_avg_rank: 10, monthly_avg_rank: 17, conv_rank: 21, safe_rank: 22, congest_rank: 3, gu_review: "가격면에서는 괜찮지만 \n안전성과 편의성이 조금 부족하네.." });
+    populationArea.push({ name: "영등포구", population: 12 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 7, deposit_avg_rank: 4, monthly_avg_rank: 9, conv_rank: 5, safe_rank: 11, congest_rank: 14, gu_review: "집값이 다소 높게 형성되어 있지만\n편의시설이 많은 편. 안전성도 not bad!" });
+    populationArea.push({ name: "금천구", population: 17 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 16, deposit_avg_rank: 18, monthly_avg_rank: 18, conv_rank: 23, safe_rank: 13, congest_rank: 9, gu_review: "편의성이 중요해! X\n집값이 중요해! O" });
+    populationArea.push({ name: "구로구", population: 21 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 22, deposit_avg_rank: 20, monthly_avg_rank: 24, conv_rank: 14, safe_rank: 14, congest_rank: 5, gu_review: "집값 너무 괜찮고 편의 안전 모두 평균!\n그러나 밀집도가 약간 높은것이 함정.." });
+    populationArea.push({ name: "강서구", population: 7 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 12, deposit_avg_rank: 12, monthly_avg_rank: 8, conv_rank: 7, safe_rank: 23, congest_rank: 19, gu_review: "집값 평균! 편의성 good! 밀집도 good!\n안전성 (not)good!" });
+    populationArea.push({ name: "양천구", population: 25 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 15, deposit_avg_rank: 15, monthly_avg_rank: 22, conv_rank: 24, safe_rank: 25, congest_rank: 1, gu_review: "편의성과 안전성 밀집도 모두 좋지 않은\n점수지만 집값은 괜찮은 동네" });
+    populationArea.push({ name: "마포구", population: 10 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 8, deposit_avg_rank: 11, monthly_avg_rank: 5, conv_rank: 1, safe_rank: 9, congest_rank: 16, gu_review: "집값은 살짝 높지만 서울 핫플레이스가\n몰려있는 뛰어난 편의성!" });
+    populationArea.push({ name: "서대문구", population: 16 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 18, deposit_avg_rank: 17, monthly_avg_rank: 11, conv_rank: 11, safe_rank: 16, congest_rank: 10, gu_review: "모든 것이 평균이라고 할 수 있죠\n대학거리도 많아서 놀기 좋은 동네!" });
+    populationArea.push({ name: "은평구", population: 11 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 21, deposit_avg_rank: 16, monthly_avg_rank: 15, conv_rank: 17, safe_rank: 10, congest_rank: 15, gu_review: "정말 모든 것이 딱 평균!\n집값이 조금 싼편인게 장점?!" });
+    populationArea.push({ name: "노원구", population: 8 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 23, deposit_avg_rank: 25, monthly_avg_rank: 25, conv_rank: 21, safe_rank: 15, congest_rank: 18, gu_review: "장점 : 집값이 싸다\n단점 : 집값만 싸다" });
+    populationArea.push({ name: "도봉구", population: 9 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 25, deposit_avg_rank: 23, monthly_avg_rank: 16, conv_rank: 25, safe_rank: 17, congest_rank: 17, gu_review: "집값이 엄청 싼 지역이지만\n편의성이 너무 떨어진다.." });
+    populationArea.push({ name: "강북구", population: 4 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 24, deposit_avg_rank: 24, monthly_avg_rank: 20, conv_rank: 20, safe_rank: 5, congest_rank: 22, gu_review: "안전성도 괜찮고 집값도 괜찮네\n하지만 편의성이 조금 부족.." });
+    populationArea.push({ name: "성북구", population: 15 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 19, deposit_avg_rank: 21, monthly_avg_rank: 19, conv_rank: 16, safe_rank: 6, congest_rank: 11, gu_review: "안전성도 상위권이고 집값도 싸다!\n편의성도 이정도면 괜찮은데..?" });
+    populationArea.push({ name: "중랑구", population: 22 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 20, deposit_avg_rank: 5, monthly_avg_rank: 23, conv_rank: 19, safe_rank: 20, congest_rank: 4, gu_review: "집값 싸지만 낮은 편의성과 안전성\n밀집도도 꽤 높다.." });
+    populationArea.push({ name: "동대문구", population: 24 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 14, deposit_avg_rank: 22, monthly_avg_rank: 12, conv_rank: 13, safe_rank: 12, congest_rank: 2, gu_review: "집값도 낮고 편의성과 안전성도 평균!\n그러나 인구 밀집도가 높은게 함정.." });
+    populationArea.push({ name: "광진구", population: 20 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 10, deposit_avg_rank: 9, monthly_avg_rank: 10, conv_rank: 11, safe_rank: 21, congest_rank: 6, gu_review: "편의성은 다소 높지만 안전성이 낮은 편..\n평균 집값도 만만치 않다" });
+    populationArea.push({ name: "성동구", population: 14 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 4, deposit_avg_rank: 13, monthly_avg_rank: 13, conv_rank: 14, safe_rank: 8, congest_rank: 12, gu_review: "모든 수치 평균이상! 하지만\n한강근처이니 집값은 이정도는 뭐.." });
+    populationArea.push({ name: "용산구", population: 3 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 6, deposit_avg_rank: 8, monthly_avg_rank: 7, conv_rank: 9, safe_rank: 4, congest_rank: 23, gu_review: "집값이 낮진 않지만 전체적인 벨런스 good\n밀집도도 낮고 밑에는 한강이?!" });
+    populationArea.push({ name: "중구", population: 5 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 5, deposit_avg_rank: 14, monthly_avg_rank: 4, conv_rank: 6, safe_rank: 2, congest_rank: 21, gu_review: "편의성과 안전성 모두 최상위권 !\n인구 밀집도도 낮지만 집값이 다소 높은 편.." });
+    populationArea.push({ name: "종로구", population: 1 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 13, deposit_avg_rank: 19, monthly_avg_rank: 6, conv_rank: 3, safe_rank: 1, congest_rank: 25, gu_review: "안전 1등 ! 가격도 착한 지역 !\n밀집도도 최하! 위치도 너무 좋다.." });
 
     var max = populationArea[0].population;
     var min = populationArea[0].population;

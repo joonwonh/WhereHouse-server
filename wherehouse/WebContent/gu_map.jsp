@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/gu_main_map.css">
     <link rel="stylesheet" href="css/gu_map_graph.css">
     <link rel="stylesheet" href="css/gu_map_info.css">
-    <script src="js/gu_map.js?ver=123"></script>
+    <script src="js/gu_map.js"></script>
 </head>
 <body>
     <div id="map">
