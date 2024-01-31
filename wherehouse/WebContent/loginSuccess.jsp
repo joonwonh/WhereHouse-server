@@ -45,32 +45,13 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end me-4" id="navbarScroll">
                     <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 300px;">
-						<li class="nav-item dropdown">
-                            <a class=" nav-link dropdown-toggle me-5" id="nav_btn_house_rec" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <%=name %> 님
-                            </a>
-                            <ul class="dropdown-menu me-5 dropdown-menu-end text-end nav_btn_house_rec_dropdown" id="">
-                                <li><a style="cursor: pointer;" class="dropdown-item nav_choose nav_item" onclick="javascript:window.location='modify.jsp'">정보수정</a>
-                                </li>
-                                <form action="logout.jsp" method="get">
-                                    <li><a class="dropdown-item nav_choose nav_item" ><input
-                                                type="submit" value="로그 아웃"  style="border: none; padding: 0;"></a>
-                                    </li>
-                                </form>
-                            </ul>
-                        </li>
+
                         
                         
-                        <li class="nav-item dropdown">
-                            <a class=" nav-link dropdown-toggle me-5" id="nav_btn_house_rec" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item ">
+                            <a class=" nav-link me-5" id="nav_btn_house_rec" href="main.jsp" role="button">
                                 거주지 추천
                             </a>
-                            <ul class="dropdown-menu me-5 dropdown-menu-end text-end nav_btn_house_rec_dropdown" id="">
-                                <li><a class="dropdown-item nav_choose nav_item" href="main.jsp">직접 입력 추천</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle me-5" id="nav_btn_gu_map" href="#" role="button"
@@ -107,6 +88,21 @@
                                 <li><a class="dropdown-item nav_choose" href="description.html#fifth_page">인구
                                         밀집도
                                         관련</a></li>
+                            </ul>
+                        </li>
+                        						<li class="nav-item dropdown">
+                            <a class=" nav-link dropdown-toggle me-5" id="nav_btn_house_rec" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <%=name %> 님
+                            </a>
+                            <ul class="dropdown-menu me-5 dropdown-menu-end text-end nav_btn_house_rec_dropdown" id="">
+                                <li><a style="cursor: pointer;" class="dropdown-item nav_choose nav_item" onclick="javascript:window.location='modify.jsp'">정보수정</a>
+                                </li>
+                                <form action="logout.jsp" method="get">
+                                    <li><a class="dropdown-item nav_choose nav_item" ><input
+                                                type="submit" value="로그 아웃"  style="border: none; padding: 0;"></a>
+                                    </li>
+                                </form>
                             </ul>
                         </li>
                     </ul>
@@ -247,7 +243,7 @@
                 <div id="first_rec_intro">
                     <div class="row">
                         <div class="col-md-8 mb-5 img_content" id="">
-                            <img src="./images/intro3.png" id=""
+                            <img src="./images/intro6.png" id=""
                                 class="w-100 rounded-4 border border-secondary border-opacity-50 ani_left_to_right"
                                 alt="">
                         </div>
@@ -264,7 +260,7 @@
                 <div id="second_rec_intro">
                     <div class="row">
                         <div class="col-md-8 mb-5 img_content" id="">
-                            <img src="./images/intro4.png" id=""
+                            <img src="./images/intro11.png" id=""
                                 class="w-100 rounded-4 border border-secondary border-opacity-50 ani_left_to_right"
                                 alt="">
                         </div>
@@ -284,7 +280,7 @@
                 <div id="third_rec_intro">
                     <div class="row">
                         <div class="col-md-8 mb-5 img_content" id="">
-                            <img src="./images/intro5.png" id=""
+                            <img src="./images/intro8.png" id=""
                                 class="w-100 rounded-4 border border-secondary border-opacity-50 ani_left_to_right"
                                 alt="">
                         </div>
@@ -380,7 +376,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 mb-5 img_content" id="">
-                            <img src="./images/intro2.png" id=""
+                            <img src="./images/intro9.png" id=""
                                 class="w-100 rounded-4 border border-secondary border-opacity-50 ani_left_to_right"
                                 alt="">
                         </div>
@@ -401,7 +397,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 mb-5 img_content" id="">
-                            <img src="./images/intro7.png" id=""
+                            <img src="./images/intro10.png" id=""
                                 class="w-100 rounded-4 border border-secondary border-opacity-50 ani_left_to_right"
                                 alt="">
                         </div>

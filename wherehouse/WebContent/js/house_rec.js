@@ -436,8 +436,8 @@ function resultCheck() {
         if (input_charter.value == "") {
             alert("입력되지 않은 정보가 있습니다.");
         }
-        else if (input_charter.value < 14000 || input_charter.value > 30000) {
-            alert("전세금의 입력 상하한선은 14000 ~ 30000 입니다.");
+        else if (input_charter.value < 15000 || input_charter.value > 30000) {
+            alert("전세금의 입력 상하한선은 15000 ~ 30000 입니다.");
         }
         else {
             showResult();
@@ -447,11 +447,11 @@ function resultCheck() {
         if (input_deposit.value == "" && input_monthly.value == "") {
             alert("입력되지 않은 정보가 있습니다.");
         }
-        else if (input_deposit.value < 1800 || input_deposit.value > 4500) {
-            alert("보증금의 입력 상하한선은 1800 ~ 4500 입니다.");
+        else if (input_deposit.value < 2100 || input_deposit.value > 4500) {
+            alert("보증금의 입력 상하한선은 2100 ~ 4500 입니다.");
         }
-        else if (input_monthly.value < 38 || input_monthly.value > 70) {
-            alert("월세금의 입력 상하한선은 38 ~ 70 입니다.");
+        else if (input_monthly.value < 40 || input_monthly.value > 70) {
+            alert("월세금의 입력 상하한선은 40 ~ 70 입니다.");
         }
         else {
             showResult();
