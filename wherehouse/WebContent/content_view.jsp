@@ -11,7 +11,7 @@
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 				<title>게시글 수정 페이지</title>
 				<script language="JavaScript" src="./js/Contentview.js"></script>
-				<link href="./contentView.css" rel="stylesheet">
+				<link href="css/contentView.css" rel="stylesheet">
 			</head>
 
 			<body>

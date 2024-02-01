@@ -39,6 +39,11 @@ public class FrontController extends HttpServlet {
 		else if(com.equals("/charter.do") || com.equals("/monthly.do")) {
 			viewPage = "/RecServiceController"+com;
 		}
+		else if(com.equals("/list.do") || com.equals("/write.do") || com.equals("/reply.do") ||      
+	             com.equals("/content.do")|| com.equals("/modify.do") || com.equals("/delete.do")){      
+
+	         viewPage = "/ModelController"+com;
+	      }
 		
 
 		request.getRequestDispatcher(viewPage).forward(request, response);

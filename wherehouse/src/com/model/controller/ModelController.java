@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.command.*;
-import com.model.dto.PagenationDto;
+//import com.model.dto.PagenationDto;
 
 /**
  * Servlet implementation class FrontController
@@ -22,7 +22,7 @@ public class ModelController extends HttpServlet {
 //	@Override
 //	public void init() {
 //		
-//		/* 초기 값으로 전체 테이블 리스트를 페이지 네이션으로 조회할 수 있도록 함, 이후 게시글 수정 및 삭제,  */
+//		/* 珥덇린 媛믪쑝濡� �쟾泥� �뀒�씠釉� 由ъ뒪�듃瑜� �럹�씠吏� �꽕�씠�뀡�쑝濡� 議고쉶�븷 �닔 �엳�룄濡� �븿, �씠�썑 寃뚯떆湲� �닔�젙 諛� �궘�젣,  */
 //		BoardListCommand Blc = BoardListCommand.getInstance();
 //		Blc.LoadBoardList();
 //		
@@ -65,7 +65,7 @@ public class ModelController extends HttpServlet {
 		
 		if(com.equals("/list.do")) {	
 			
-			command = new BListCommand_rename();
+			command = new BListCommand();
 			command.execute(request, response);
 			nextpage = "/list.jsp";
 		
@@ -94,7 +94,7 @@ public class ModelController extends HttpServlet {
 			command.execute(request, response);
 			nextpage = "/list.do";
 			
-		} else if(com.equals("/reply_view.do")) {		/* 현재는 안 씀, content_view.jsp 페이지에서 댓글 사용하기 때문  */
+		} else if(com.equals("/reply_view.do")) {		/* �쁽�옱�뒗 �븞 ��, content_view.jsp �럹�씠吏��뿉�꽌 �뙎湲� �궗�슜�븯湲� �븣臾�  */
 			
 			command = new BReplyViewCommand();
 			command.execute(request, response);

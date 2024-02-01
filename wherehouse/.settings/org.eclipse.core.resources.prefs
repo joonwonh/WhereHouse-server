@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//WebContent/css/house_rec.css=UTF-8
 encoding//WebContent/css/main.css=UTF-8
 encoding//WebContent/css/rec_graph.css=UTF-8
+encoding//src/com/model/controller/ModelController.java=UTF-8
+encoding//src/com/model/dao/MemberDao.java=UTF-8
