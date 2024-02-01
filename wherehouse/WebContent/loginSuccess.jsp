@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% if(session.getAttribute("validMem") == null) {%>
-	<jsp:forward page="login.jsp"/>
+   <jsp:forward page="index.jsp"/>
 <% }
-	
-	String name = (String) session.getAttribute("name");
-	String id = (String)session.getAttribute("id");
+   
+   String name = (String) session.getAttribute("name");
+   String id = (String)session.getAttribute("id");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,12 +33,12 @@
 </head>
 
 <body class="bg-light">
-
+  
     <!-- 네비 바 -->
     <header>
         <nav class="navbar navbar-expand-lg fixed-top bg-light border-bottom">
             <div class="container-fluid">
-                <a id="logo" class="navbar-brand ms-4 py-3" href="loginSuccess.jsp">Where House</a>
+                <a id="logo" class="navbar-brand ms-4 py-3" href="index.jsp">Where House</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -90,7 +90,7 @@
                                         관련</a></li>
                             </ul>
                         </li>
-                        						<li class="nav-item dropdown">
+                                          <li class="nav-item dropdown">
                             <a class=" nav-link dropdown-toggle me-5" id="nav_btn_house_rec" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <%=name %> 님

@@ -16,7 +16,7 @@ window.onload = function () {
     initIframe();
 
     menu_home.addEventListener("click", function () {
-        window.open("index.html", "_parent");
+        window.open("loginSuccess.jsp", "_parent");
     })
 
     menu_suggest_icon.addEventListener("click", () => clickMenu(1));

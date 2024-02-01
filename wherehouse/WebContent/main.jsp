@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +7,7 @@
     <title>WhereHouse</title>
     <link rel="stylesheet" href="css/main.css?ver=123">
     <link rel="icon" href="images/home_icon.png">
-    <script src="js/main.js"></script>
+    <script src="js/main.js?ver=123"></script>
 </head>
 <body>
     <nav>

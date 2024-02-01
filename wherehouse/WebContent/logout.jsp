@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script language="javascript">
 		alert("로그아웃 되었습니다.");
-		document.location.href="index.html"
+		document.location.href="index.jsp"
 </script>
 <%
 	session.invalidate();

@@ -40,7 +40,7 @@
         <header>
             <div id="logo">
                 <div class=" mb-5"></div>
-                <a id="logo_text" href="index.html">Where House</a>
+                <a id="logo_text" href="index.jsp">Where House</a>
             </div>
         </header>
         <div class="mt-4 mb-4"></div>

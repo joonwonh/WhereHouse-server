@@ -42,7 +42,7 @@
 			session.setAttribute("name", name);
 			session.setAttribute("nickname", nickname);
 			session.setAttribute("validMem", "yes");
-			response.sendRedirect("loginSuccess.jsp");
+			response.sendRedirect("loginSuccess.jsp");	/* 준원 추가 코드. */
 		}
  }
 %>

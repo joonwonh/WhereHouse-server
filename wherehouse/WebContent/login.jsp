@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% if (session.getAttribute("ValidMem") != null){ %>
+<% if (session.getAttribute("validMem") != null){ %>
 		<jsp:forward page="loginSuccess.jsp"></jsp:forward>
 <% } %>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
         <header>
             <div id="logo">
                 <div class="mt-5 mb-5 pt-3"></div>
-                <a id="logo_text" href="index.html">Where House</a>
+                <a id="logo_text" href="index.jsp">Where House</a>
             </div>
         </header>
 
@@ -44,7 +44,7 @@
                         <div class="mb-5" id="login-pw"><input type="password" name="pw" class="form-control" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호"></div>
                         <div class="button-login-box">
                             <input type="submit" value="로그인" class="btn btn-primary btn-xs mb-3" style="width:100%"></input>
-                            또는
+                         		  또는
                             <input type="button" value="회원가입" class="btn btn-primary btn-xs mt-3 mb-4" style="width:100%" onclick="javascript:window.location='join.jsp'"></input>
                         </div>
                     </form>
