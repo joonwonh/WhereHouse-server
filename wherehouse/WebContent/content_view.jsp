@@ -11,14 +11,14 @@
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 				<title>게시글 수정 페이지</title>
 				<script language="JavaScript" src="./js/Contentview.js"></script>
-				<link href="css/contentView.css" rel="stylesheet">
+				<link href="./css/contentView.css" rel="stylesheet">
 			</head>
 
 			<body>
 				<h1 class="maintitle">Where House 게시글</h1>
 				<form action="modify.do" name="modifyform" class="modifyform" method="post">
 
-					<!-- sessionId와 writeId는 수정 버튼 클릭 시 "contentViewOk.js" 파일에서 "modifycheck()" 함수 통해 게시글 사용자와 현재 로그인
+					<!-- sessionId와 writeId는 수정 버튼 클릭 시 "Contentview.js" 파일에서 "modifycheck()" 함수 통해 게시글 사용자와 현재 로그인
 						사용자가 동일한지 확인하기 위한 값. -->
 					<input type="hidden" name="sessionId" class="sessionId" value="<%=sessionId %>"> <!-- 현재 로그인 ID -->
 					<input type="hidden" name="writerId" class="writerId" value="${content_view.userid}">

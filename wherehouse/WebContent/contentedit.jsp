@@ -12,8 +12,8 @@
 			<head>
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 				<title>게시글 수정 페이지</title>
-				<script language="JavaScript" src="contentviewOk.js"></script>
-				<link href="./contentedit.css" rel="stylesheet">
+				<script language="JavaScript" src="./js/contentviewOk.js"></script>
+				<link href="./css/contentedit.css" rel="stylesheet">
 			</head>
 
 			<body>

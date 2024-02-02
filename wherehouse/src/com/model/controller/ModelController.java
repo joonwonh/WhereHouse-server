@@ -22,13 +22,12 @@ public class ModelController extends HttpServlet {
 //	@Override
 //	public void init() {
 //		
-//		/* 珥덇린 媛믪쑝濡� �쟾泥� �뀒�씠釉� 由ъ뒪�듃瑜� �럹�씠吏� �꽕�씠�뀡�쑝濡� 議고쉶�븷 �닔 �엳�룄濡� �븿, �씠�썑 寃뚯떆湲� �닔�젙 諛� �궘�젣,  */
 //		BoardListCommand Blc = BoardListCommand.getInstance();
 //		Blc.LoadBoardList();
 //		
-//		PagenationDto pdto = new PagenationDto();
+//		System.out.println(Blc.BoardAll.get(0));
 //	}
-	
+//	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -57,10 +56,13 @@ public class ModelController extends HttpServlet {
 		BCommand command = null;
 		
 		String uri = request.getRequestURI();
+		
 		System.out.println("uri : " + uri);
 		String conPath = request.getContextPath() + "/ModelController";
 		System.out.println("conpath : " + conPath);
+		
 		String com = uri.substring(conPath.length());
+		
 		System.out.println("com : " + com);
 		
 		if(com.equals("/list.do")) {	
@@ -78,6 +80,7 @@ public class ModelController extends HttpServlet {
 		
 		} else if(com.equals("/content.do")) {	
 			
+			System.out.println("여기 실행~~?");
 			command = new BContentCommand();
 			command.execute(request, response);
 			nextpage = "/content_view.jsp";

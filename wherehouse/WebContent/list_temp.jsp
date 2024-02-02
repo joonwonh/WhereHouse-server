@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-      <% String nickname=(String) session.getAttribute("nickname"); %>
+      <% String nickname=(String) session.getAttribute("nickname");
+      int pnSize = (Integer) request.getAttribute("pnSize"); %>
          <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
          <html lang="ko">
 
@@ -62,6 +63,14 @@
                      <!-- writepage.jsp -->
                   </tr>
                </table>
+
+               <div class="paginationbtn">
+                  <a href="#">&laquo;</a>
+                  <c:forEach var="<%=pnSize %>" begin="1" end="5" >
+                  	<a href="<%=pnSize %>" name="<%=pnSize %>"><c:out value="<%=pnSize %>>"/></a>
+                  </c:forEach>
+                  <a href="#">&raquo;</a>
+               </div>
             </div>
          </body>
 
