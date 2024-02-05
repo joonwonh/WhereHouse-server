@@ -41,7 +41,7 @@ window.onload = function () {
             iframeSection.src = "informationPage.jsp";
         } else if (sel === 4) {
             menu_board_icon.style.backgroundColor = "rgba(34, 34, 34, 0.3)";
-            iframeSection.src = "list.jsp";
+            iframeSection.src = "list.do";			// 처음 호출되는 요청은 매개 변수 없이 요청.
         }
     }
 }

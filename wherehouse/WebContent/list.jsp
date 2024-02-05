@@ -2,7 +2,7 @@
 
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       <% String nickname=(String) session.getAttribute("nickname"); %>
-         <!DOCTYPE html>
+         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
          <html lang="ko">
 
          <head>
@@ -16,12 +16,13 @@
                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                crossorigin="anonymous"></script>
 
+            <script language="JavaScript" src="./js/writepage.js"></script>
+
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script src="https://kit.fontawesome.com/09b067fdc5.js" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="css/list.css?ver=123">
             <!-- <script src="js/list.js?ver=123"></script> 패널 열고 닫는 버튼 사용하지 않음. -->
-            <link href="./css/listTable.css" rel="stylesheet"> <!-- 페이지 리스트 보여주는 테이블 디자인 -->
 
          </head>
 
@@ -54,22 +55,13 @@
                      </c:forEach>
                   </tbody>
                </table>
+               <input type="hidden" class="nickname" value="<%=nickname %>">
                <table>
                   <tr>
-                     <td class="writebtn" colspan="5"><a href="writepage.jsp">글 작성</a></td>
+                     <td class="writebtn" colspan="5"><button type="button" onclick="writepage()">글 작성</button></td>
+                     <!-- writepage.jsp -->
                   </tr>
                </table>
-
-               <div class="paginationbtn">
-                  <a href="#">&laquo;</a>
-                  <a href="#">1</a>
-                  <a href="#">2</a>
-                  <a href="#">3</a>
-                  <a href="#">4</a>
-                  <a href="#">5</a>
-                  <a href="#">6</a>
-                  <a href="#">&raquo;</a>
-               </div>
             </div>
          </body>
 

@@ -5,14 +5,14 @@
 	<head>
 
 		<meta http-equiv="Content-Type" charset="text/html;charset=UTF-8">
-		<link href="./css/writepage.css" rel="stylesheet">
+		<script language="JavaScript" src="./js/writedo.js"></script>
 		<title>Insert title here</title>
 
 	</head>
 
 	<body>
 		<table border="1" class="writetbl">
-			<form action="write.do" method="post">
+			<form action="write.do" name="writefrm" method="post">
 				<input type="hidden" name="id" value="${sessionScope.id}">
 
 				<tr>
@@ -22,7 +22,7 @@
 
 				<tr>
 					<td>제목</td>
-					<td><textarea name="title" rows="1" cols="50"></textarea></td>
+					<td><textarea name="title" class="title" rows="1" cols="50"></textarea></td>
 				</tr>
 				<tr>
 					<td>
@@ -30,7 +30,7 @@
 					</td>
 					<td>
 						<select name="regions" class="regions">
-							<option value="default">지역구를 선택해주세요</option>
+							<option value="선택 지역 없음">지역구를 선택해주세요</option>
 							<option value="강남구">강남구</option>
 							<option value="강동구">강동구</option>
 							<option value="강북구">강북구</option>
@@ -61,10 +61,10 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="bcontent" rows="8" cols="50"></textarea></td>
+					<td><textarea name="bcontent" class="bcontent" rows="8" cols="50"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="입력">&nbsp;&nbsp;<a href="list.do">목록보기</a></td>
+					<td colspan="2"><input type="button" onclick="writedo()" value="입력">&nbsp;&nbsp;<a href="list.do">목록보기</a></td>
 				</tr>
 			</form>
 		</table>
