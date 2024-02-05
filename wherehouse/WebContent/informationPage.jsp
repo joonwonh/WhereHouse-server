@@ -40,8 +40,8 @@
                 </li>
                 <li id="amenity">
                     <div style="margin: 0 auto; width: 90%; line-height: 150%; font-size: 1.3rem;">인근 편의시설</div>
-                    <i class="fa-regular fa-circle-question" id="qustion"></i>
-                    <div id="qustionTip">·지하철역은 가장 우선 표기 됩니다.<br>
+                    <i class="fa-regular fa-circle-question" id="question"></i>
+                    <div id="questionTip">·지하철역은 가장 우선 표기 됩니다.<br>
                                         <br>·각 항목 클릭시 거리가 표시 됩니다.<br>
                                         <br>·제공되는 편의시설의 정보 :
                                             <br> &nbsp;&nbsp;&nbsp; 지하철역, 편의점, 음식점, 카페,

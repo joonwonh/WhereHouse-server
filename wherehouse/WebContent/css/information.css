@@ -117,13 +117,13 @@
     margin-top: 12px;
 }
 
-#qustion {
+#question {
     position: absolute;
     /* font-size: 1.1rem; */
     top: 107px; left: 140px;
 }
 
-#qustionTip {
+#questionTip {
     display: none;
     position: absolute;
     top: 112px; left: 148px;

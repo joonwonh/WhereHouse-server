@@ -1,5 +1,5 @@
-var q = document.querySelector("#qustion"),
-    qTip = document.querySelector("#qustionTip");;
+var q = document.querySelector("#question"),
+    qTip = document.querySelector("#questionTip");;
 
 q.addEventListener("mouseover",()=>{
     q.setAttribute("class" , "fa-solid fa-circle-question");
