@@ -12,10 +12,10 @@ import com.model.dao.RecServiceDao;
 import com.model.dto.RecServiceDto;
 
 
-public class RecService implements RecCommand {
+public class RecServiceCharter implements RecCommand {
 	private RecServiceDao dao;
 	
-	public RecService() {
+	public RecServiceCharter() {
 		dao = RecServiceDao.getInstance();
 	}
 	
@@ -40,10 +40,12 @@ public class RecService implements RecCommand {
             RecServiceDto dto = gson.fromJson(jsonData, RecServiceDto.class);
             
             int charter = dto.getCharter_avg();
-            System.out.println(charter);
+            System.out.println("입력받은 전세금 : "+charter);
             int safe_score = dto.getSafe_score();
+            System.out.println("입력받은 안전 단계 : " + safe_score);
             int cvt_score = dto.getCvt_score();
-
+            System.out.println("입력받은 편의 단계 : " + cvt_score);
+            
             ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 
             try {

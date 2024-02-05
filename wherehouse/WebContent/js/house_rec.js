@@ -15,35 +15,6 @@ var isIncrease = true;
 var polygon_interval;
 
 
-function initGuSpec() {
-    guSpec.push({ name: "강동구", convenienceStore: 324, cafe: 683, restaurant: 3797, olive: 13, daiso: 11, polliceOffice: 24, cctv: 3192, arrest: 69 });
-    guSpec.push({ name: "송파구", convenienceStore: 505, cafe: 842, restaurant: 7304, olive: 24, daiso: 16, polliceOffice: 29, cctv: 3253, arrest: 65 });
-    guSpec.push({ name: "강남구", convenienceStore: 712, cafe: 1948, restaurant: 12371, olive: 40, daiso: 19, polliceOffice: 30, cctv: 7243, arrest: 74 });
-    guSpec.push({ name: "서초구", convenienceStore: 396, cafe: 1309, restaurant: 5714, olive: 17, daiso: 10, polliceOffice: 28, cctv: 4995, arrest: 80 });
-    guSpec.push({ name: "관악구", convenienceStore: 384, cafe: 779, restaurant: 4813, olive: 14, daiso: 12, polliceOffice: 24, cctv: 5642, arrest: 69 });
-    guSpec.push({ name: "동작구", convenienceStore: 297, cafe: 742, restaurant: 3179, olive: 11, daiso: 15, polliceOffice: 23, cctv: 2690, arrest: 67 });
-    guSpec.push({ name: "영등포구", convenienceStore: 433, cafe: 968, restaurant: 6854, olive: 13, daiso: 11, polliceOffice: 22, cctv: 4660, arrest: 72 });
-    guSpec.push({ name: "금천구", convenienceStore: 283, cafe: 785, restaurant: 3054, olive: 7, daiso: 6, polliceOffice: 16, cctv: 2885, arrest: 71 });
-    guSpec.push({ name: "구로구", convenienceStore: 326, cafe: 655, restaurant: 4151, olive: 14, daiso: 10, polliceOffice: 25, cctv: 4831, arrest: 70 });
-    guSpec.push({ name: "강서구", convenienceStore: 496, cafe: 643, restaurant: 6190, olive: 23, daiso: 16, polliceOffice: 20, cctv: 3353, arrest: 66 });
-    guSpec.push({ name: "양천구", convenienceStore: 267, cafe: 553, restaurant: 3195, olive: 12, daiso: 8, polliceOffice: 22, cctv: 3890, arrest: 64 });
-    guSpec.push({ name: "마포구", convenienceStore: 459, cafe: 1848, restaurant: 8270, olive: 26, daiso: 7, polliceOffice: 23, cctv: 2638, arrest: 73 });
-    guSpec.push({ name: "서대문구", convenienceStore: 227, cafe: 1528, restaurant: 3671, olive: 13, daiso: 8, polliceOffice: 17, cctv: 3538, arrest: 70 });
-    guSpec.push({ name: "은평구", convenienceStore: 358, cafe: 552, restaurant: 3850, olive: 12, daiso: 9, polliceOffice: 27, cctv: 4653, arrest: 73 });
-    guSpec.push({ name: "노원구", convenienceStore: 302, cafe: 434, restaurant: 3488, olive: 12, daiso: 12, polliceOffice: 23, cctv: 2626, arrest: 70 });
-    guSpec.push({ name: "도봉구", convenienceStore: 220, cafe: 489, restaurant: 2224, olive: 6, daiso: 8, polliceOffice: 15, cctv: 2385, arrest: 70 });
-    guSpec.push({ name: "강북구", convenienceStore: 233, cafe: 574, restaurant: 3526, olive: 6, daiso: 8, polliceOffice: 20, cctv: 3321, arrest: 76 });
-    guSpec.push({ name: "성북구", convenienceStore: 297, cafe: 807, restaurant: 3802, olive: 12, daiso: 9, polliceOffice: 31, cctv: 4957, arrest: 75 });
-    guSpec.push({ name: "중랑구", convenienceStore: 284, cafe: 563, restaurant: 3824, olive: 8, daiso: 6, polliceOffice: 23, cctv: 4193, arrest: 69 });
-    guSpec.push({ name: "동대문구", convenienceStore: 316, cafe: 730, restaurant: 4256, olive: 10, daiso: 9, polliceOffice: 27, cctv: 2759, arrest: 71 });
-    guSpec.push({ name: "광진구", convenienceStore: 329, cafe: 875, restaurant: 4328, olive: 16, daiso: 6, polliceOffice: 17, cctv: 3592, arrest: 67 });
-    guSpec.push({ name: "성동구", convenienceStore: 258, cafe: 987, restaurant: 3818, olive: 11, daiso: 7, polliceOffice: 21, cctv: 4175, arrest: 74 });
-    guSpec.push({ name: "용산구", convenienceStore: 227, cafe: 1087, restaurant: 4996, olive: 12, daiso: 4, polliceOffice: 19, cctv: 2970, arrest: 79 });
-    guSpec.push({ name: "중구", convenienceStore: 292, cafe: 1452, restaurant: 6061, olive: 21, daiso: 6, polliceOffice: 27, cctv: 2584, arrest: 86 });
-    guSpec.push({ name: "종로구", convenienceStore: 259, cafe: 1690, restaurant: 7206, olive: 12, daiso: 7, polliceOffice: 32, cctv: 1966, arrest: 93 });
-}
-
-
 //카카오맵 커스텀 오버레이
 var customOverlay;
 
@@ -562,13 +533,8 @@ function showResult() {
                 }
             }
 
-
-
-
-
             var recommend_detail = recommend_result + "_detail";
             document.getElementById(recommend_detail).innerText = data[i].gu_name;
-
 
             var select_charter = orders[i] + "_charter_fee";
             document.getElementById(select_charter).innerText = data[i].charter_avg;
@@ -641,6 +607,8 @@ function showResult() {
             document.getElementById(conv_graph).style.width = data[i].cvt_score * 2 - 10 + "px";
         }
     }
+    
+    // chart.js
     function chart(data) {
         if (data && data.length > 0) {
             updateChart('policeOfficeChart', ['구 평균 파출소', '파출소'], [23, data[0].police_office], ['#0b5dd7ac', '#0b5dd7']);
@@ -783,6 +751,7 @@ function showResult() {
         updateChart('cafeChart', ['구 평균 카페', '카페'], [940, cafe], ['rgba(171, 58, 58, 0.669)', 'rgba(171, 58, 58)']);
     }
 
+    
     // 추천 지역 다시 그리기
     function showMap(data) {
         var rand = [];
@@ -819,6 +788,7 @@ function showResult() {
     }
 }
 
+// 추천된 지도 깜빡임 효과
 function intervalFunc() {
     if (polygons[recommendIdx[0]].Eb[0].strokeColor == "none") {
         polygons[recommendIdx[0]].setOptions({ strokeColor: "rgba(255,0,0,1)" });
@@ -1050,6 +1020,38 @@ function graphInit(spec, num, selMenu, selContent) {
  * 인구밀집도 시각화를 위한 임의 데이터 생성 함수
  * @returns [{name, population, idx}]
  */
+
+
+// static data
+function initGuSpec() {
+    guSpec.push({ name: "강동구", convenienceStore: 324, cafe: 683, restaurant: 3797, olive: 13, daiso: 11, polliceOffice: 24, cctv: 3192, arrest: 69 });
+    guSpec.push({ name: "송파구", convenienceStore: 505, cafe: 842, restaurant: 7304, olive: 24, daiso: 16, polliceOffice: 29, cctv: 3253, arrest: 65 });
+    guSpec.push({ name: "강남구", convenienceStore: 712, cafe: 1948, restaurant: 12371, olive: 40, daiso: 19, polliceOffice: 30, cctv: 7243, arrest: 74 });
+    guSpec.push({ name: "서초구", convenienceStore: 396, cafe: 1309, restaurant: 5714, olive: 17, daiso: 10, polliceOffice: 28, cctv: 4995, arrest: 80 });
+    guSpec.push({ name: "관악구", convenienceStore: 384, cafe: 779, restaurant: 4813, olive: 14, daiso: 12, polliceOffice: 24, cctv: 5642, arrest: 69 });
+    guSpec.push({ name: "동작구", convenienceStore: 297, cafe: 742, restaurant: 3179, olive: 11, daiso: 15, polliceOffice: 23, cctv: 2690, arrest: 67 });
+    guSpec.push({ name: "영등포구", convenienceStore: 433, cafe: 968, restaurant: 6854, olive: 13, daiso: 11, polliceOffice: 22, cctv: 4660, arrest: 72 });
+    guSpec.push({ name: "금천구", convenienceStore: 283, cafe: 785, restaurant: 3054, olive: 7, daiso: 6, polliceOffice: 16, cctv: 2885, arrest: 71 });
+    guSpec.push({ name: "구로구", convenienceStore: 326, cafe: 655, restaurant: 4151, olive: 14, daiso: 10, polliceOffice: 25, cctv: 4831, arrest: 70 });
+    guSpec.push({ name: "강서구", convenienceStore: 496, cafe: 643, restaurant: 6190, olive: 23, daiso: 16, polliceOffice: 20, cctv: 3353, arrest: 66 });
+    guSpec.push({ name: "양천구", convenienceStore: 267, cafe: 553, restaurant: 3195, olive: 12, daiso: 8, polliceOffice: 22, cctv: 3890, arrest: 64 });
+    guSpec.push({ name: "마포구", convenienceStore: 459, cafe: 1848, restaurant: 8270, olive: 26, daiso: 7, polliceOffice: 23, cctv: 2638, arrest: 73 });
+    guSpec.push({ name: "서대문구", convenienceStore: 227, cafe: 1528, restaurant: 3671, olive: 13, daiso: 8, polliceOffice: 17, cctv: 3538, arrest: 70 });
+    guSpec.push({ name: "은평구", convenienceStore: 358, cafe: 552, restaurant: 3850, olive: 12, daiso: 9, polliceOffice: 27, cctv: 4653, arrest: 73 });
+    guSpec.push({ name: "노원구", convenienceStore: 302, cafe: 434, restaurant: 3488, olive: 12, daiso: 12, polliceOffice: 23, cctv: 2626, arrest: 70 });
+    guSpec.push({ name: "도봉구", convenienceStore: 220, cafe: 489, restaurant: 2224, olive: 6, daiso: 8, polliceOffice: 15, cctv: 2385, arrest: 70 });
+    guSpec.push({ name: "강북구", convenienceStore: 233, cafe: 574, restaurant: 3526, olive: 6, daiso: 8, polliceOffice: 20, cctv: 3321, arrest: 76 });
+    guSpec.push({ name: "성북구", convenienceStore: 297, cafe: 807, restaurant: 3802, olive: 12, daiso: 9, polliceOffice: 31, cctv: 4957, arrest: 75 });
+    guSpec.push({ name: "중랑구", convenienceStore: 284, cafe: 563, restaurant: 3824, olive: 8, daiso: 6, polliceOffice: 23, cctv: 4193, arrest: 69 });
+    guSpec.push({ name: "동대문구", convenienceStore: 316, cafe: 730, restaurant: 4256, olive: 10, daiso: 9, polliceOffice: 27, cctv: 2759, arrest: 71 });
+    guSpec.push({ name: "광진구", convenienceStore: 329, cafe: 875, restaurant: 4328, olive: 16, daiso: 6, polliceOffice: 17, cctv: 3592, arrest: 67 });
+    guSpec.push({ name: "성동구", convenienceStore: 258, cafe: 987, restaurant: 3818, olive: 11, daiso: 7, polliceOffice: 21, cctv: 4175, arrest: 74 });
+    guSpec.push({ name: "용산구", convenienceStore: 227, cafe: 1087, restaurant: 4996, olive: 12, daiso: 4, polliceOffice: 19, cctv: 2970, arrest: 79 });
+    guSpec.push({ name: "중구", convenienceStore: 292, cafe: 1452, restaurant: 6061, olive: 21, daiso: 6, polliceOffice: 27, cctv: 2584, arrest: 86 });
+    guSpec.push({ name: "종로구", convenienceStore: 259, cafe: 1690, restaurant: 7206, olive: 12, daiso: 7, polliceOffice: 32, cctv: 1966, arrest: 93 });
+}
+
+//static data
 function initPopulation() {
     var populationArea = [];
     populationArea.push({ name: "강동구", population: 18 * 40000 + 10000, color: "rgba(0,0,0,0)", charter_avg_rank: 9, deposit_avg_rank: 6, monthly_avg_rank: 14, conv_rank: 17, safe_rank: 19, congest_rank: 8, gu_review: "집값은 평균선인데\n안전성과 편의성이 다소 낮네.." });

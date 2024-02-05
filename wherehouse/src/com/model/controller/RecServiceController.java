@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.command.RecCommand;
-import com.model.command.RecService;
+import com.model.command.RecServiceCharter;
 import com.model.command.RecServiceMonthly;
 
 @WebServlet("/RecServiceController/*")
@@ -41,7 +41,7 @@ public class RecServiceController extends HttpServlet {
 		System.out.println(com);
         
 		if(com.equals("/charter.do"))	{
-        RecCommand command = new RecService();
+        RecCommand command = new RecServiceCharter();
         command.execute(request, response);
 		}
 		if(com.equals("/monthly.do"))	{

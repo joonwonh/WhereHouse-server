@@ -31,6 +31,7 @@ public class RecServiceDao {
 		return Instance;
 	}
 	
+	// 전세 선택 시
 	public ArrayList<RecServiceDto> chooseCharterRec(int inputData, int safe, int cvt) {
 		ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 		Connection con = null;
@@ -93,6 +94,7 @@ public class RecServiceDao {
 		return dtos;
 	}
 	
+	// 월세 선택 시
 	public ArrayList<RecServiceDto> chooseMonthlyRec(int deposit, int monthly, int safe, int cvt) {
 		ArrayList<RecServiceDto> dtos = new ArrayList<RecServiceDto>();
 		Connection con = null;

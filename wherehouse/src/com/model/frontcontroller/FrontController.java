@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.model.command.InfoCommand;
 import com.model.command.InfoPoliceOffice;
 import com.model.command.RecCommand;
-import com.model.command.RecService;
+import com.model.command.RecServiceCharter;
 import com.model.command.RecServiceMonthly;
 import com.model.dao.InfoDao;
 import com.model.json.ReadJSON;
