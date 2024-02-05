@@ -65,7 +65,7 @@ public class ModelController extends HttpServlet {
 			nextpage = "/list.jsp";
 		
 			
-		} else if(com.equals("/write.do")) {	//write.do2
+		} else if(com.equals("/write.do")) {
 			
 			command = new BWriteCommand();
 			command.execute(request, response);
