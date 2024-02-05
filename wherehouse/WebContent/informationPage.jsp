@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/eafa49c7a2.js" crossorigin="anonymous"></script>
     <script src="./json/mapData.json" type="text/javascript"></script> 
 
-    <link rel="stylesheet" href="./css/information.css">
+    <link rel="stylesheet" href="./css/information.css?ver=1.1">
 <title>상세 페이지</title>
 </head>
 <body>
@@ -116,6 +116,6 @@
     <script type="module" src="./js/amenity.js"></script>
     <script type="module" src="./js/score.js"></script>
     <script type="module" src="./js/mouseEvent.js"></script>
-    <script src="./js/emoji.js"></script>
+    <script src="./js/emoji.js?ver=1.1"></script>
 </body>
 </html>
