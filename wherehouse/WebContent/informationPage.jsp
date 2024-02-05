@@ -75,7 +75,7 @@
                 </div>
             </ul>
             <div class="option">
-                <div class="check_wrap">
+                <!-- <div class="check_wrap">
                     <label for="check_btn"><span>인구 밀집 선호</span></label>
                     <input type="checkbox" id="check_btn" />
                 </div>
@@ -85,7 +85,7 @@
                         <option value="safty">안전</option>
                         <option value="conv">편의</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <ul id="link">
             </ul>
