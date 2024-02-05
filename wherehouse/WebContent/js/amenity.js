@@ -1,4 +1,6 @@
-var ps = new kakao.maps.services.Places(map);
+var ps = new kakao.maps.services.Places(map),
+    tip = document.querySelector(".tip");
+
 
 var categoryData = {
     'SW8': { data: [], weight: 10, minCount: 1 },
@@ -13,7 +15,6 @@ var categoryData = {
     'PM9': { data: [], weight: 4, minCount: 4 },
     'PK6': { data: [], weight: 4, minCount: 3 },
     'OL7': { data: [], weight: 4, minCount: 2 },
-    'PK6': { data: [], weight: 4, minCount: 3 },
     'SC4': { data: [], weight: 4, minCount: 1 },
     'AC5': { data: [], weight: 4, minCount: 3 },
     'AT4': { data: [], weight: 4, minCount: 1 },
@@ -55,15 +56,21 @@ function amenity_toMouseEvent(latlng, callback){
         
         displayMenu(dataSet);
         callback(score);
+
     });
+
 }
 
 function placesSearch(category, searchOption) {
     return new Promise(function(resolve) {
         ps.categorySearch(category, function(data, status) {
             if (status === kakao.maps.services.Status.OK) {
+
+                data.sort(function(a, b)  {       
+                    return a.distance - b.distance;
+                });
+
                 categoryData[category].data = data;
-                // dataSet.push(data);
                 score += (parseInt(data.length) / 15) * categoryData[category].weight;
 
                 if (categoryData[category].minCount && data.length > categoryData[category].minCount) {
@@ -82,6 +89,7 @@ document.querySelectorAll(".each-menu").forEach(function(menu, index) {
     menu.onclick = function() {
         if (now === index + 1) {
             removeMarkers();
+            tip.innerHTML = "*반경 500m 범위의 정보 입니다.";
             return now = 0;
         }
         clickMenu(index);
@@ -125,6 +133,8 @@ function clickMenu(each) {
     for (var i in dataSet[each]) {
         displayMarker(dataSet[each][i]);
     }
+
+    tip.innerHTML = "*가장 가까운 " + dataSet[each][0].category_group_name + "까지 " + dataSet[each][0].distance + "m 입니다.";
 }
 
 function forwardSort(arr, name) {

@@ -117,6 +117,20 @@
     margin-top: 12px;
 }
 
+#qustion {
+    position: absolute;
+    /* font-size: 1.1rem; */
+    top: 107px; left: 140px;
+}
+
+#qustionTip {
+    display: none;
+    position: absolute;
+    top: 112px; left: 148px;
+    border: 1px dotted #0f3369;
+    background-color: white;
+}
+
 #amenity div {
     /* border: 1px solid red; */
     margin: 0 auto; margin-top: 14px;
@@ -244,29 +258,18 @@
     background: #4690ff;
 }
 
-/*옵션 CSS*/
-#check_btn {
-    position: relative;
-    top: 1px; left: 2px;
-}
-
-#check_btn:hover {
-    cursor: pointer;
-}
-
 .option {
     /* border: 1px solid red; */
     width: 100%;
     position: absolute;
     display: flex;
-    justify-content: right;
     scale: 0.8;
-    top: 322px; left: 10px;
+    top: 330px;
     z-index: 1;
     color: #0f3369;
 }
 .option div {
-    margin-left: 12px;
+    margin-left: 56px;
 }
 
 #preference:focus {
@@ -281,21 +284,6 @@
     border-top: 2px solid #4690ff;
     width: 86%; height: 48px;
     left: 7%; top: 318px;
-}
-
-#link img {
-    position: relative;
-    z-index: 1; top: 4px; left: 0;
-    /* border: 1px solid black; */
-    box-shadow: 1px 1px 1px 1px rgb(177, 177, 177);
-    border-radius: 8px;
-    width: 24px; height: 24px;
-    margin-left: 8px;
-    
-}
-
-#link img:hover {
-    cursor: pointer;
 }
 
 footer {

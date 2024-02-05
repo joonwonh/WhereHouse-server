@@ -40,6 +40,14 @@
                 </li>
                 <li id="amenity">
                     <div style="margin: 0 auto; width: 90%; line-height: 150%; font-size: 1.3rem;">인근 편의시설</div>
+                    <i class="fa-regular fa-circle-question" id="qustion"></i>
+                    <div id="qustionTip">·지하철역은 가장 우선 표기 됩니다.<br>
+                                        <br>·각 항목 클릭시 거리가 표시 됩니다.<br>
+                                        <br>·제공되는 편의시설의 정보 :
+                                            <br> &nbsp;&nbsp;&nbsp; 지하철역, 편의점, 음식점, 카페,
+                                            <br> &nbsp;&nbsp;&nbsp; 대형마트, 은행, 공공기관, 문화시설,
+                                            <br> &nbsp;&nbsp;&nbsp; 병원, 약국, 주차장, 주유소,
+                                            <br> &nbsp;&nbsp;&nbsp; 학교, 학원, 관광명소, 숙박 </div>
                     <div class="each-menu" id="each1" style="color: #3a80e9;">-</div>
                     <div class="each-menu" id="each2" style="color: #3a80e9;">-</div>
                     <div class="each-menu" id="each3" style="color: #3a80e9;">-</div>
@@ -53,7 +61,7 @@
                     <img src="./images/pin_icon.png" alt="">
                     <img src="./images/pin_icon.png" alt="">
                 </li>
-                <div class="tip" style="bottom: 0; right: 6px; bottom: 3px;">*반경 500m 범위의 정보입니다.</div>
+                <div class="tip" style="bottom: 0; right: 6px; bottom: 3px;">*반경 500m 범위의 정보 입니다.</div>
             </ul>
         </div>
         <div id="section">
@@ -75,9 +83,10 @@
                 </div>
             </ul>
             <div class="option">
-                <!-- <div class="check_wrap">
-                    <label for="check_btn"><span>인구 밀집 선호</span></label>
-                    <input type="checkbox" id="check_btn" />
+                <!-- <div class="check_wrap"> -->
+                <a href="description.html#first_page" style="justify-content: left;">안전성 점수 산정 방식 <div>보러가기 =></div></a>
+                <a href="description.html#second_page" style="margin-left: 48px;">편의성 점수 산정 방식 <div>보러가기 =></div></a>
+                <!-- <input type="checkbox" id="check_btn" />
                 </div>
                 <div class="dropdown">선호 유형
                     <select id="preference">
@@ -107,5 +116,6 @@
     <script type="module" src="./js/amenity.js"></script>
     <script type="module" src="./js/score.js"></script>
     <script type="module" src="./js/mouseEvent.js"></script>
+    <script src="./js/emoji.js"></script>
 </body>
 </html>
