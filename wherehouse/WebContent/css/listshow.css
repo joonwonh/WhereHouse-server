@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+body {
+
+    position: relative;
+
+    background-image: url("./../images/city10.jpg");
+    background-size: cover;
+}
+
+
+.title {
+
+    position: relative;
+    top: 10%;
+    left: 40%;
+}
+
+#boardtable {
+
+    position: relative;
+    top: 10%;
+    width: 75%;
+
+    margin: auto;
+}
+
+
+.paginationbtn {
+
+    display: flex;
+    justify-content: space-center;
+
+    width: 12%;
+
+    position: absolute;
+    left: 50%;
+}
+
+.paginationbtn>button {
+
+    border: 0px solid black;
+    width: auto;
+
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* "글 작성" 버튼 */
+.writebtntbl {
+
+    border: 0px solid black;
+
+    width: auto;
+
+    position: relative;
+    left: 13%;
+    top: 3vh;
+}
+
+.writebtntbl>.writebtn {
+    background-color: blue;
+
+    font-size: 10px;
+    width: auto;
+}

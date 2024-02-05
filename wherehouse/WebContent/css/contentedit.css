@@ -4,12 +4,10 @@ body {
     display: block;
     position: static;
 
-    background-image: url('./images/city6.jpg');
+    background-image: url('./../images/city6.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-
-
 }
 
 /* 모든 테이블 공통 적용 사항, width:60%와 position 사용하여 가운데 정렬 위치 */

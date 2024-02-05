@@ -21,13 +21,7 @@
 				<form action="modify.do" name="modifyform" class="modifyform" method="post">
 
 					<input type="hidden" name="bId" value="<%=bId %>">
-					<!-- [header 부분]
-						1. headerTitle : 게시글 제목(title) 영역 부분
-						2. headerbody : 작성자 닉네임, 게시글 지역, 게시글 조회수, 게시글 날짜. 영역 부분 -->
-
 					<div class="header">
-
-						<!-- 1. 게시글 제목 : 게시글 제목 -->
 						<div class="headerTitle">
 							<textarea name="title" class="title" value="<%=title %>"><%=title %></textarea>
 						</div>
@@ -37,13 +31,13 @@
 
 							<!-- 작성자 닉네임 -->
 							<div class="boardUser">
-								<span>작성자 닉네임 : </span><span class="nickname">
+								<span>작성자 닉네임 </span><span class="nickname">
 									<%=nickname %>
 								</span>
 							</div>
 							<!-- 게시글 지역 작성 내용 -->
 							<div class="boardResion">
-								<span>게시글 지역 : </span>
+								<span>게시글 지역 </span>
 								<select name="regions" class="regions">
 									<option value="default">지역구를 선택해주세요</option>
 									<option value="강남구">강남구</option>
@@ -75,13 +69,13 @@
 							</div>
 							<!-- 게시글 날짜 -->
 							<div class="boardDate">
-								<span>게시글 날짜 : </span><span class="bDate">
+								<span>게시글 날짜 </span><span class="bDate">
 									<%=bDate %>
 								</span>
 							</div>
 							<!-- 게시글 조회수 -->
 							<div class="boardHit">
-								<span>조회수 : </span>
+								<span>조회수 </span>
 								<span>
 									<%=bHit %>
 								</span>

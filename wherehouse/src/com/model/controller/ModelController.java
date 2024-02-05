@@ -1,6 +1,7 @@
 package com.model.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.model.command.*;
 //import com.model.dto.PagenationDto;
+import com.model.dto.BDto;
 
 /**
  * Servlet implementation class FrontController
@@ -19,15 +21,6 @@ import com.model.command.*;
 public class ModelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-//	@Override
-//	public void init() {
-//		
-//		BoardListCommand Blc = BoardListCommand.getInstance();
-//		Blc.LoadBoardList();
-//		
-//		System.out.println(Blc.BoardAll.get(0));
-//	}
-//	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -80,7 +73,6 @@ public class ModelController extends HttpServlet {
 		
 		} else if(com.equals("/content.do")) {	
 			
-			System.out.println("여기 실행~~?");
 			command = new BContentCommand();
 			command.execute(request, response);
 			nextpage = "/content_view.jsp";
@@ -97,7 +89,7 @@ public class ModelController extends HttpServlet {
 			command.execute(request, response);
 			nextpage = "/list.do";
 			
-		} else if(com.equals("/reply_view.do")) {		/* �쁽�옱�뒗 �븞 ��, content_view.jsp �럹�씠吏��뿉�꽌 �뙎湲� �궗�슜�븯湲� �븣臾�  */
+		} else if(com.equals("/reply_view.do")) {
 			
 			command = new BReplyViewCommand();
 			command.execute(request, response);
@@ -112,8 +104,6 @@ public class ModelController extends HttpServlet {
 			
 			nextpage = "content.do?connum="+bId;
 		}
-		
-		System.out.println("nextpage : " + nextpage);
 		
 		RequestDispatcher dispathcer = request.getRequestDispatcher(nextpage);
 		dispathcer.forward(request, response);

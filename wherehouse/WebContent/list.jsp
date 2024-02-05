@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-      <% String nickname=(String) session.getAttribute("nickname"); %>
+      <% String nickname=(String) session.getAttribute("nickname");
+      	 int pnSize = Integer.parseInt(String.valueOf(request.getAttribute("pnSize")));      // pnSize : 요청 처리 후에 전체 페이지 네이션 크기를 주어야지만  브라우저가 페이지 내 버튼을 몇개 생성할지 알 수 있게 하기 위한 목적.
+      %>
          <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
          <html lang="ko">
 
@@ -16,12 +18,13 @@
                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                crossorigin="anonymous"></script>
 
-            <script language="JavaScript" src="./js/writepage.js"></script>
+            <script language="JavaScript" src="./js/listsecond.js"></script>
 
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script src="https://kit.fontawesome.com/09b067fdc5.js" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="css/list.css?ver=123">
+            <link rel="stylesheet" href="css/listshow.css">
             <!-- <script src="js/list.js?ver=123"></script> 패널 열고 닫는 버튼 사용하지 않음. -->
 
          </head>
@@ -56,13 +59,16 @@
                   </tbody>
                </table>
                <input type="hidden" class="nickname" value="<%=nickname %>">
-               <table>
+               <table class="writebtntbl">
                   <tr>
                      <td class="writebtn" colspan="5"><button type="button" onclick="writepage()">글 작성</button></td>
-                     <!-- writepage.jsp -->
                   </tr>
                </table>
-            </div>
+               <div class="paginationbtn">
+                  <c:forEach var="i" begin="1" end="<%=pnSize %>">
+                   <button class="${i}">${i}</button>
+                  </c:forEach>
+               </div>
+            </div>   
          </body>
-
-         </html>
+      </html>

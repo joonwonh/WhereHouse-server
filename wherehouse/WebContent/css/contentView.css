@@ -4,12 +4,10 @@ body {
     display: block;
     position: static;
 
-    background-image: url('./images/city6.jpg');
+    background-image: url('./../images/city6.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-
-
 }
 
 /* 모든 테이블 공통 적용 사항, width:60%와 position 사용하여 가운데 정렬 위치 */
@@ -31,8 +29,7 @@ table {
 /* 헤더 내 글 제목과 각 내용에 대한 배경색을 회색으로 설정 */
 .headerTitle,
 .headerbody>div {
-    background-color: #d3d3d3;
-    border-radius: 5%;
+    background-color: #d2d2d2;
 }
 
 /* 헤더에서 전체적으로 위치, 크기에 대한 조정 ("headerTitle, headerbody 별개 추가 조정) */
@@ -89,7 +86,7 @@ table {
     height: 50px;
 
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
 }
 
 .headerbody>div {
@@ -117,7 +114,7 @@ table {
 
 .headerbody>.boardHit {
 
-    width: 80%;
+    width: 100%;
 }
 
 .headerbody>div>span {
@@ -212,4 +209,14 @@ table {
 
 .commentContent {
     width: 70%;
+}
+
+.showtitle {
+
+    background-color: #d2d2d2;
+}
+
+.showcomment {
+
+    background-color: #dcdcdc;
 }

@@ -51,23 +51,23 @@
 
 							<!-- 작성자 닉네임 -->
 							<div class="boardUser">
-								<span>작성자 닉네임 : </span><span class="nickname">${mdto.nickname}</span>
+								<span>작성자 닉네임 </span><span class="nickname">${mdto.nickname}</span>
 							</div>
 							<!-- 게시글 지역 작성 내용 -->
 							<div class="boardResion">
-								<span>게시글 지역 : </span><span name="regions" class="regions"
+								<span>게시글 지역 </span><span name="regions" class="regions"
 									value="${content_view.region}">${content_view.region}</span>
 							</div>
 
 							<!-- 게시글 날짜 -->
 							<div class="boardDate">
-								<span>게시글 날짜 : </span>
+								<span>게시글 날짜 </span>
 								<input class="bDate" type="hidden" value="${content_view.bdate}"
 									readonly>${content_view.bdate}</input>
 							</div>
 							<!-- 게시글 조회수 -->
 							<div class="boardHit">
-								<span>조회수 : </span>
+								<span>조회수 </span>
 								<input class="bHit" type="hidden" value="${content_view.hit}"
 									readonly>${content_view.hit}</input>
 							</div>
@@ -87,12 +87,12 @@
 
 					<!-- 게시글 댓글 목록 보이는 테이블 부분 -->
 					<table class="commnetTbl" border="1">
-						<tr>
+						<tr class="showtitle">
 							<td>작성자</td>
 							<td>작성 내용</td>
 						</tr>
 						<c:forEach var="comments" items="${comments}">
-							<tr>
+							<tr class="showcomment">
 
 								<td class="commentUser">${comments.nickname}</td>
 								<td class="commentContent">${comments.content}</td>

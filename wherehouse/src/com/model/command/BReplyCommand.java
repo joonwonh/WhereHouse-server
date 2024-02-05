@@ -16,8 +16,8 @@ public class BReplyCommand implements BCommand{
 		
 		HttpSession session = request.getSession();
 		
-		int connum = Integer.parseInt(request.getParameter("bId"));		/* 현재 댓글 쓰는 게시판 글 id */
-		String userid = (String) request.getParameter("sessionId"); 	/* 현재 로그인 아이디 */
+		int connum = Integer.parseInt(request.getParameter("bId"));
+		String userid = (String) request.getParameter("sessionId"); 
 		String nickname = (String) session.getAttribute("nickname");
 		String title = request.getParameter("title");
 		String bconent = request.getParameter("replyvalue");

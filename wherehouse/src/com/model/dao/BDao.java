@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,22 +34,24 @@ public class BDao {
 		}
 	}
 	
-	public ArrayList<BDto> list(){
+	public HashMap<String, Object> list(int pnindex){		
 		
+		HashMap<String, Object> result = new HashMap<String, Object>();
 		
-		ArrayList<BDto> bdtos = new ArrayList<BDto>();
-	
-		String query = "select * from whereboard order by connum desc";		/* 프로젝트 이어 붙이기 전 query 문을 try에서 해당 위지로 이전 */
+		ArrayList<BDto> tempbdtos = new ArrayList<BDto>();
+		ArrayList<BDto> list = new ArrayList<BDto>();
+		
+		String query = "select * from whereboard order by connum desc";
 		
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		int pnCount = 0;		
+		
 		try {
 			
 			connection = dataSource.getConnection();
-			
-			
 			pstmt = connection.prepareStatement(query);
 			
 			rs = pstmt.executeQuery();
@@ -65,8 +68,18 @@ public class BDao {
 				bdto.sethit(rs.getInt("hit"));
 				bdto.setbdate(Timestamp.valueOf((rs.getString("bdate"))));
 				
-				bdtos.add(bdto);
+				tempbdtos.add(bdto);
+			}
+			
+			int totalRows = rs.getRow();					// 현재 커서가 위치한 마지막 행을 가지고 현재 행 번호를 파악.
+			pnCount = ((int) Math.ceil(totalRows / 10))+1;	// 클라이언트에서 페이지 네이션 할 게시글 목록에 대한 페이지 수 계산(한 페이지 당 10 줄)
+			
+			int maxpnindex = pnindex + 9;
+			
+			/* 클라이언트가 요청한 페이지 네이션 위치(기본 값으로 1이거나 지정한 별도 값) 에 따라 값 뽑아 내기 */
+			for(; pnindex <= maxpnindex && pnindex < totalRows; pnindex ++) {
 				
+				list.add(tempbdtos.get(pnindex));
 			}
 			
 		} catch(Exception e) {
@@ -75,6 +88,9 @@ public class BDao {
 		} 
 		
 		finally {
+			
+			result.put("list", list);
+			result.put("pnSize", pnCount);
 			
 			 try {
 			        if (rs != null) rs.close();
@@ -94,7 +110,7 @@ public class BDao {
 			        e.printStackTrace();
 			    }
 		}
-		return bdtos;
+		return result;
 	}
 	
 	public void Write(BDto bdto) {

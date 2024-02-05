@@ -7,26 +7,27 @@
 		<meta http-equiv="Content-Type" charset="text/html;charset=UTF-8">
 		<script language="JavaScript" src="./js/writedo.js"></script>
 		<title>Insert title here</title>
-
+		<link rel="stylesheet" href="css/list.css?ver=123">
+		<link rel="stylesheet" href="./css/write.css">
 	</head>
 
 	<body>
 		<table border="1" class="writetbl">
 			<form action="write.do" name="writefrm" method="post">
 				<input type="hidden" name="id" value="${sessionScope.id}">
-
+				<h1>WhereHouse 글 쓰기</h1>
 				<tr>
-					<td>이름</td>
+					<td class="narrow">이름</td>
 					<td>${sessionScope.name}</td>
 				</tr>
 
 				<tr>
-					<td>제목</td>
+					<td class="narrow">제목</td>
 					<td><textarea name="title" class="title" rows="1" cols="50"></textarea></td>
 				</tr>
 				<tr>
-					<td>
-						<label for="regions">지역 선택하세요 </label>
+					<td class="narrow">
+						<label for="regions">지역 선택하세요</label>
 					</td>
 					<td>
 						<select name="regions" class="regions">
@@ -60,11 +61,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td>내용</td>
-					<td><textarea name="bcontent" class="bcontent" rows="8" cols="50"></textarea></td>
+					<td class="narrow">내용</td>
+					<td><textarea name="bcontent" class="bcontent" rows="15" cols="50"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" onclick="writedo()" value="입력">&nbsp;&nbsp;<a href="list.do">목록보기</a></td>
+					<td colspan="2"><input type="button" onclick="writedo()" value="글 쓰기 완료">&nbsp;&nbsp;<a href="list.do">목록으로 돌아가기</a></td>
 				</tr>
 			</form>
 		</table>
