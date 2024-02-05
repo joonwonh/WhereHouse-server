@@ -40,7 +40,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
     var promises = [];
     //안전성 점수 시각화 그래프
-    promises.push(new Promise(function(resolve) {
+    promises.push(new Promise((resolve) => {
         saftyScore([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
             var safty = document.querySelector("#safty");
             var value = results[0]*saftyWeight.d + results[1]*saftyWeight.c + results[2]*saftyWeight.r;
@@ -50,7 +50,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         });
     }));
     //편의성 점수 시각화 그래프
-    promises.push(new Promise(function(resolve) {
+    promises.push(new Promise((resolve) => {
         amenity_toMouseEvent(latlng, (result) => {
             var conv = document.querySelector("#conv");
 
@@ -60,7 +60,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     }));
 
     //종합 점수 시각화 그래프
-    Promise.all(promises).then(function(results) {
+    Promise.all(promises).then((results) => {
         var total = document.querySelector("#total");
         var value = (results[0]+results[1])/2;
 
