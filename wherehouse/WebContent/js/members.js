@@ -1,3 +1,4 @@
+//정범진
 function updateInfoConfirm(){
 	
 	if(document.reg_frm.pw.value== ""){
