@@ -1,3 +1,9 @@
+//빅데이터 분석을 위한 변수
+var bigData = { distAVG : 0,
+                cctvAVG : 0 },
+    distAvg = 0,
+    cctvAvg = 0,
+    count = 0;
 /**
  * [이재서] 마우스 이벤트
  */
@@ -44,6 +50,16 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         saftyScore([distFunction, cctvFunction, arrestRateFunction], latlng, (results) => {
             var safty = document.querySelector("#safty");
             var value = results[0]*saftyWeight.d + results[1]*saftyWeight.c + results[2]*saftyWeight.r;
+            
+            distAvg += results[0];
+            cctvAvg += results[1];
+            count++;
+            console.log(count);
+            if (count == 100) {
+                bigData.distAVG = distAvg/count;
+                bigData.cctvAVG = cctvAvg/count;
+                console.log(bigData);
+            }
 
             moveGraph(safty, value);
             resolve(value)
@@ -72,7 +88,8 @@ kakao.maps.event.addListener(map, 'zoom_changed', function() {
     var level = map.getLevel();
 
     if (level > 2) {
-        circle.setMap(map);
+        if (marker.getMap() == map)
+            circle.setMap(map);
         circle.setPosition(marker.getPosition());
     }
     else {
@@ -80,10 +97,12 @@ kakao.maps.event.addListener(map, 'zoom_changed', function() {
     }
 
     if (level > 3) {
-        selectedArea.setMap(map);
+        if (selectedArea != null)
+            selectedArea.setMap(map);
     }
     else {
-        selectedArea.setMap(null);
+        if (selectedArea != null)
+            selectedArea.setMap(null);
     }
 });
 
